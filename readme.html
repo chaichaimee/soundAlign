@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SoundAlign for NVDA — README</title>
+  <style>
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, Noto Sans, sans-serif; line-height: 1.6; margin: 2rem auto; max-width: 900px; padding: 0 1rem; }
+    h1, h2, h3 { line-height: 1.25; }
+    .center { text-align: center; }
+    .meta { margin-top: .5rem; }
+    code, kbd { font-family: ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace; }
+    kbd { border: 1px solid #ccc; border-radius: 4px; padding: 0 .35em; box-shadow: inset 0 -1px 0 #ccc; }
+    .section { margin: 2rem 0; }
+    ul { padding-left: 1.5rem; }
+    .hr { height: 1px; background: #e5e7eb; border: 0; margin: 1.5rem 0; }
+    button.copy-btn {
+      background: #2563eb;
+      color: white;
+      border: none;
+      padding: .5rem 1rem;
+      border-radius: .5rem;
+      cursor: pointer;
+      font-size: 1rem;
+      margin-bottom: 1rem;
+    }
+    button.copy-btn:hover {
+      background: #1d4ed8;
+    }
+  </style>
+</head>
+<body>
+  <div class="center">
+
+  <main id="readme-content">
+    <header class="center">
+      <h1>SoundAlign</h1>
+
+<br>      
+
+<p class="meta"><strong>Author:</strong> ”chai chaimee</p>
+      <p class="meta"><strong>URL:</strong> <a href="https://github.com/chaichaimee/soundAlign" target="_blank" rel="noopener">https://github.com/chaichaimee/soundAlign</a></p>
+    </header>
+
+    <div class="hr"></div>
+
+<br>
+    <section class="section" id="overview">
+      <h2>Overview</h2>
+      <p>SoundAlign is an NVDA add-on designed to enhance the audio feedback experience by allowing users to customize the stereo panning of various sound categories used by NVDA and its add-ons.</p>
+      <p>It provides a settings panel to configure sound directions, waveforms, fade algorithms, volume, and frequency ranges for progress indicators, ensuring a tailored auditory experience for screen reader users.</p>
+    </section>
+
+    <div class="hr"></div>
+<br>
+    
+<section class="section" id="hotkey">
+      <h2>Hot Key</h2>
+      <p><strong><kbd>NVDA</kbd> + <kbd> Windows</kbd> + <kbd>S</kbd></strong> : Open SoundAlign settings panel.</p>
+    </section>
+<br>
+    <div class="hr"></div>
+
+    <section class="section" id="features">
+      <h2>Features</h2>
+
+      <h3>Customizable Sound Panning</h3>
+      <p>Adjust the stereo panning (<strong>left, center, right</strong>) for:</p>
+      <ul>
+        <li>Error sounds (e.g., spelling errors or alerts)</li>
+        <li>Sound effects (general NVDA effects)</li>
+        <li>Navigation sounds (e.g., boundary beeps for first/last line)</li>
+        <li>Add-on beeps (sounds from other NVDA add-ons)</li>
+        <li>Progress indicators (dynamic left-to-right or right-to-left panning)</li>
+      </ul>
+      <h3>Waveform Customization</h3>
+      <p>Choose between <strong>sine</strong>, <strong>triangle</strong>, or <strong>sawtooth</strong> waveforms for progress indicator sounds, providing a “flute-like” or other tonal qualities.</p>
+      <h3>Fade Algorithms</h3>
+      <p>Select between <strong>cosine</strong> or <strong>gaussian</strong> fade effects for smoother progress indicator audio transitions.</p>
+      <h3>Volume and Frequency Control</h3>
+      <p>Adjust <strong>volume (0.1 to 1.0)</strong> and <strong>frequency range</strong> (<strong>110–300 Hz</strong> for minimum, <strong>1200–1750 Hz</strong> for maximum) for progress sounds.</p>
+      <h3>Test Functionality</h3>
+      <p>Preview all configured sounds using the <strong>“Test All Settings”</strong> button in the settings panel.</p>
+    </section>
+  </main>
+
+  <script>
+    function copyReadme() {
+      const content = document.getElementById("readme-content").innerText;
+      navigator.clipboard.writeText(content).then(() => {
+        alert("README content copied to clipboard!");
+      }, () => {
+        alert("Failed to copy README content.");
+      });
+    }
+  </script>
+</body>
+</html>
+
