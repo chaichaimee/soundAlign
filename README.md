@@ -15,7 +15,7 @@ It provides a settings panel to configure sound directions, waveforms, fade algo
 
 ## Hot Key
 
-**NVDA+ALT+S** — Open SoundAlign setting panel
+**NVDA+Windows+S** : Open SoundAlign setting panel
 
 ---
 
