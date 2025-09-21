@@ -1,0 +1,129 @@
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: soundAlign v 2025.10\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-09-08 10:58+0700\n"
+"PO-Revision-Date: 2025-09-08 11:44+0700\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: Poedit 3.7\n"
+
+msgid "Sine"
+msgstr "Синусоида"
+
+msgid "Triangle"
+msgstr "Треугольник"
+
+msgid "Sawtooth"
+msgstr "Пила"
+
+msgid "Original Tone Beep"
+msgstr "Оригинальный тональный сигнал"
+
+msgid "Error sounds:"
+msgstr "Звуки ошибок:"
+
+msgid "Sound effects:"
+msgstr "Звуковые эффекты:"
+
+msgid "Addon beeps (Low Frequency):"
+msgstr "Дополнительные сигналы (низкая частота):"
+
+msgid "Addon beeps (High Frequency):"
+msgstr "Дополнительные сигналы (высокая частота):"
+
+msgid "Progress indicator:"
+msgstr "Индикатор прогресса:"
+
+msgid "Left"
+msgstr "Слева"
+
+msgid "Center"
+msgstr "Центр"
+
+msgid "Right"
+msgstr "Справа"
+
+msgid "Left to Right"
+msgstr "Слева направо"
+
+msgid "Right to Left"
+msgstr "Справа налево"
+
+msgid "Progress tone:"
+msgstr "Тон прогресса:"
+
+msgid "Fade algorithm:"
+msgstr "Алгоритм затухания:"
+
+msgid "Volume:"
+msgstr "Громкость:"
+
+msgid "Minimum frequency:"
+msgstr "Минимальная частота:"
+
+msgid "Maximum frequency:"
+msgstr "Максимальная частота:"
+
+msgid "Speech announcement interval:"
+msgstr "Интервал речевого объявления:"
+
+msgid "Beep announcement interval:"
+msgstr "Интервал объявления сигналом:"
+
+msgid "Time-based announcement (seconds, 0=disabled):"
+msgstr "Объявление по времени (секунды, 0=отключено):"
+
+msgid "Mixed mode (speech + beep)"
+msgstr "Смешанный режим (речь + сигнал)"
+
+msgid "Smooth panning (reduces cracking)"
+msgstr "Плавное панорамирование (уменьшает треск)"
+
+msgid "Test All Settings"
+msgstr "Проверить все настройки"
+
+msgid "Minimum frequency must be less than maximum frequency."
+msgstr "Минимальная частота должна быть меньше максимальной."
+
+msgid "Frequency Range Error"
+msgstr "Ошибка диапазона частот"
+
+msgid "Please select valid minimum and maximum frequencies."
+msgstr "Пожалуйста, выберите допустимые минимальную и максимальную частоты."
+
+msgid "Settings Error"
+msgstr "Ошибка настроек"
+
+msgid "Cannot save settings. No write permission for configuration directory."
+msgstr "Не удается сохранить настройки. Нет прав на запись в каталог конфигурации."
+
+msgid "Failed to save settings. Please check permissions or config path."
+msgstr "Не удалось сохранить настройки. Пожалуйста, проверьте права доступа или путь к файлу конфигурации."
+
+msgid "Save Error"
+msgstr "Ошибка сохранения"
+
+msgid "Progress test not available. Pyaudio not imported."
+msgstr "Тест прогресса недоступен. Pyaudio не импортирован."
+
+msgid "Open SoundAlign settings (single tap) or toggle SoundAlign on/off (double tap)"
+msgstr "Открыть настройки SoundAlign (одно нажатие) или включить/выключить SoundAlign (двойное нажатие)"
+
+msgid "SoundAlign on"
+msgstr "SoundAlign включен"
+
+msgid "SoundAlign off"
+msgstr "SoundAlign выключен"
+
+msgid "{percent}% complete"
+msgstr "{percent}% завершено"

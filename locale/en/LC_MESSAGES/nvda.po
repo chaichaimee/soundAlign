@@ -1,0 +1,130 @@
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: soundAlign v 2025.10\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-09-08 10:58+0700\n"
+"PO-Revision-Date: 2025-09-08 11:44+0700\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.7\n"
+
+msgid "Sine"
+msgstr "Sine"
+
+msgid "Triangle"
+msgstr "Triangle"
+
+msgid "Sawtooth"
+msgstr "Sawtooth"
+
+msgid "Original Tone Beep"
+msgstr "Original Tone Beep"
+
+msgid "Error sounds:"
+msgstr "Error sounds:"
+
+msgid "Sound effects:"
+msgstr "Sound effects:"
+
+msgid "Addon beeps (Low Frequency):"
+msgstr "Addon beeps (Low Frequency):"
+
+msgid "Addon beeps (High Frequency):"
+msgstr "Addon beeps (High Frequency):"
+
+msgid "Progress indicator:"
+msgstr "Progress indicator:"
+
+msgid "Left"
+msgstr "Left"
+
+msgid "Center"
+msgstr "Center"
+
+msgid "Right"
+msgstr "Right"
+
+msgid "Left to Right"
+msgstr "Left to Right"
+
+msgid "Right to Left"
+msgstr "Right to Left"
+
+msgid "Progress tone:"
+msgstr "Progress tone:"
+
+msgid "Fade algorithm:"
+msgstr "Fade algorithm:"
+
+msgid "Volume:"
+msgstr "Volume:"
+
+msgid "Minimum frequency:"
+msgstr "Minimum frequency:"
+
+msgid "Maximum frequency:"
+msgstr "Maximum frequency:"
+
+msgid "Speech announcement interval:"
+msgstr "Speech announcement interval:"
+
+msgid "Beep announcement interval:"
+msgstr "Beep announcement interval:"
+
+msgid "Time-based announcement (seconds, 0=disabled):"
+msgstr "Time-based announcement (seconds, 0=disabled):"
+
+msgid "Mixed mode (speech + beep)"
+msgstr "Mixed mode (speech + beep)"
+
+msgid "Smooth panning (reduces cracking)"
+msgstr "Smooth panning (reduces cracking)"
+
+msgid "Test All Settings"
+msgstr "Test All Settings"
+
+msgid "Minimum frequency must be less than maximum frequency."
+msgstr "Minimum frequency must be less than maximum frequency."
+
+msgid "Frequency Range Error"
+msgstr "Frequency Range Error"
+
+msgid "Please select valid minimum and maximum frequencies."
+msgstr "Please select valid minimum and maximum frequencies."
+
+msgid "Settings Error"
+msgstr "Settings Error"
+
+msgid "Cannot save settings. No write permission for configuration directory."
+msgstr "Cannot save settings. No write permission for configuration directory."
+
+msgid "Failed to save settings. Please check permissions or config path."
+msgstr "Failed to save settings. Please check permissions or config path."
+
+msgid "Save Error"
+msgstr "Save Error"
+
+msgid "Progress test not available. Pyaudio not imported."
+msgstr "Progress test not available. Pyaudio not imported."
+
+msgid "Open SoundAlign settings (single tap) or toggle SoundAlign on/off (double tap)"
+msgstr "Open SoundAlign settings (single tap) or toggle SoundAlign on/off (double tap)"
+
+msgid "SoundAlign on"
+msgstr "SoundAlign on"
+
+msgid "SoundAlign off"
+msgstr "SoundAlign off"
+
+msgid "{percent}% complete"
+msgstr "{percent}% complete"
+

@@ -1,0 +1,129 @@
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: soundAlign v 2025.10\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-09-08 10:58+0700\n"
+"PO-Revision-Date: 2025-09-08 11:44+0700\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Poedit 3.7\n"
+
+msgid "Sine"
+msgstr "Sinus"
+
+msgid "Triangle"
+msgstr "Triangle"
+
+msgid "Sawtooth"
+msgstr "Dent de scie"
+
+msgid "Original Tone Beep"
+msgstr "Bip de tonalité d'origine"
+
+msgid "Error sounds:"
+msgstr "Sons d'erreur :"
+
+msgid "Sound effects:"
+msgstr "Effets sonores :"
+
+msgid "Addon beeps (Low Frequency):"
+msgstr "Bips du module (basse fréquence) :"
+
+msgid "Addon beeps (High Frequency):"
+msgstr "Bips du module (haute fréquence) :"
+
+msgid "Progress indicator:"
+msgstr "Indicateur de progression :"
+
+msgid "Left"
+msgstr "Gauche"
+
+msgid "Center"
+msgstr "Centre"
+
+msgid "Right"
+msgstr "Droite"
+
+msgid "Left to Right"
+msgstr "De gauche à droite"
+
+msgid "Right to Left"
+msgstr "De droite à gauche"
+
+msgid "Progress tone:"
+msgstr "Tonalité de progression :"
+
+msgid "Fade algorithm:"
+msgstr "Algorithme de fondu :"
+
+msgid "Volume:"
+msgstr "Volume :"
+
+msgid "Minimum frequency:"
+msgstr "Fréquence minimale :"
+
+msgid "Maximum frequency:"
+msgstr "Fréquence maximale :"
+
+msgid "Speech announcement interval:"
+msgstr "Intervalle d'annonce vocale :"
+
+msgid "Beep announcement interval:"
+msgstr "Intervalle d'annonce par bip :"
+
+msgid "Time-based announcement (seconds, 0=disabled):"
+msgstr "Annonce basée sur le temps (secondes, 0=désactivé) :"
+
+msgid "Mixed mode (speech + beep)"
+msgstr "Mode mixte (voix + bip)"
+
+msgid "Smooth panning (reduces cracking)"
+msgstr "Panoramique fluide (réduit les craquements)"
+
+msgid "Test All Settings"
+msgstr "Tester tous les paramètres"
+
+msgid "Minimum frequency must be less than maximum frequency."
+msgstr "La fréquence minimale doit être inférieure à la fréquence maximale."
+
+msgid "Frequency Range Error"
+msgstr "Erreur de plage de fréquences"
+
+msgid "Please select valid minimum and maximum frequencies."
+msgstr "Veuillez sélectionner des fréquences minimales et maximales valides."
+
+msgid "Settings Error"
+msgstr "Erreur de paramètres"
+
+msgid "Cannot save settings. No write permission for configuration directory."
+msgstr "Impossible d'enregistrer les paramètres. Aucune permission d'écriture pour le répertoire de configuration."
+
+msgid "Failed to save settings. Please check permissions or config path."
+msgstr "Échec de l'enregistrement des paramètres. Veuillez vérifier les permissions ou le chemin de configuration."
+
+msgid "Save Error"
+msgstr "Erreur d'enregistrement"
+
+msgid "Progress test not available. Pyaudio not imported."
+msgstr "Test de progression non disponible. Pyaudio non importé."
+
+msgid "Open SoundAlign settings (single tap) or toggle SoundAlign on/off (double tap)"
+msgstr "Ouvrir les paramètres de SoundAlign (un seul appui) ou activer/désactiver SoundAlign (double appui)"
+
+msgid "SoundAlign on"
+msgstr "SoundAlign activé"
+
+msgid "SoundAlign off"
+msgstr "SoundAlign désactivé"
+
+msgid "{percent}% complete"
+msgstr "{percent}% terminé"
