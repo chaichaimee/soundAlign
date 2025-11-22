@@ -16,7 +16,6 @@ try:
     import comtypes
     import comtypes.client
 except ImportError as e:
-    log.warning(f"SoundUtils: Failed to import COM libraries ({e}). Progress tracking on some applications may not work.")
     pythoncom = None
     win32api = None
     winsound = None
@@ -79,10 +78,6 @@ class SoundProcessor:
         if self.pyaudio:
             try:
                 self.p = self.pyaudio.PyAudio()
-                if hasattr(self.pyaudio, 'get_version'):
-                    log.info(f"SoundProcessor: PyAudio version {self.pyaudio.get_version()}")
-                else:
-                    log.warning("SoundProcessor: PyAudio module has no 'get_version' attribute. Skipping version check.")
                 self.start_player_thread()
             except Exception as e:
                 log.error(f"SoundProcessor: Failed to initialize PyAudio: {e}")
@@ -99,7 +94,6 @@ class SoundProcessor:
             self.player_thread = threading.Thread(target=self._audio_player_loop)
             self.player_thread.daemon = True
             self.player_thread.start()
-            log.info("SoundProcessor: Audio player thread started.")
 
     def stop(self):
         """Stop the audio processor and clean up resources."""
@@ -110,7 +104,6 @@ class SoundProcessor:
                 self.audio_queue.put(None)
         if self.player_thread and self.player_thread.is_alive():
             self.player_thread.join(timeout=1.0)
-            log.info("SoundProcessor: Player thread joined.")
         
         with self._lock:
             if self.pa_stream and self.pa_stream.is_active():
@@ -119,12 +112,12 @@ class SoundProcessor:
                 self.pa_stream.close()
             if self.pyaudio and hasattr(self, 'p'):
                 self.p.terminate()
-            log.info("SoundProcessor: Audio stream and PyAudio terminated.")
 
     def _audio_player_loop(self):
         """Main loop for playing audio from the queue."""
         with self._lock:
-            if not self.pyaudio: return
+            if not self.pyaudio:
+                return
             try:
                 self.pa_stream = self.p.open(
                     format=self.pyaudio.paInt16,
@@ -134,7 +127,6 @@ class SoundProcessor:
                     frames_per_buffer=CHUNK_SIZE
                 )
                 self.pa_stream.start_stream()
-                log.info("SoundProcessor: Audio stream opened and started.")
             except Exception as e:
                 log.error(f"SoundProcessor: Failed to open audio stream: {e}")
                 self.is_running = False
@@ -145,138 +137,97 @@ class SoundProcessor:
                 # Get data with a timeout to allow the thread to check is_running flag
                 data = self.audio_queue.get(timeout=0.2)
                 if data is None:
-                    log.info("SoundProcessor: Received None data, exiting loop.")
                     break
                 
                 with self._lock:
                     if self.pa_stream and self.pa_stream.is_active():
                         self.pa_stream.write(data)
-                    else:
-                        log.warning("SoundProcessor: Stream is not active, dropping audio data.")
+                    self.audio_queue.task_done()
             except queue.Empty:
                 continue
             except Exception as e:
-                log.error(f"SoundProcessor: Error in audio loop: {e}")
+                log.error(f"SoundProcessor: Error in audio player loop: {e}")
                 break
+
+    def flush_queue(self):
+        """Flush the audio queue."""
+        with self._lock:
+            while not self.audio_queue.empty():
+                try:
+                    self.audio_queue.get_nowait()
+                    self.audio_queue.task_done()
+                except queue.Empty:
+                    break
 
     def get_progress_percent(self, obj):
-        """Get progress percentage from various NVDA objects."""
-        if obj is None:
-            return None
-            
-        role = obj.role
+        """Get the progress percentage for the given object."""
         try:
-            if role == controlTypes.ROLE_PROGRESSBAR:
-                # Use UIA if available, otherwise fallback
-                if hasattr(obj, 'UIAControl') and obj.UIAControl:
-                    progress_value = obj.UIAControl.GetCurrentPropertyValue(
-                        comtypes.client.GetModule("UIAutomationCore.dll").UIA_RangeValueValuePropertyId)
-                    return progress_value
-                else:
-                    return obj.value
-            elif role == controlTypes.ROLE_SLIDER or role == controlTypes.ROLE_SPINBUTTON:
-                return obj.value
-            elif hasattr(obj, "states") and controlTypes.STATE_BUSY in obj.states:
-                # For busy states, we might not have a precise value, but we can return a symbolic one
-                return -1 # Use a special value to indicate busy, which can be handled by the caller
+            if obj and hasattr(obj, 'value') and obj.value:
+                match = re.search(r'(\d+)%', obj.value)
+                if match:
+                    return int(match.group(1))
         except Exception as e:
-            # Handle potential exceptions gracefully and return None
-            log.warning(f"SoundProcessor: Failed to get progress for object {obj.name}: {e}")
-        
+            log.error(f"SoundProcessor: Error getting progress percent: {e}")
         return None
 
-    def play_progress_sound(self, percent, direction, use_default_hz=False, force_hz=None):
-        """Generate and play a progress tone based on percentage and direction."""
+    def play_progress_sound(self, percent, direction):
+        """Play a progress sound with the specified percentage and direction."""
         if not self.pyaudio or not self.is_running:
-            log.warning("SoundProcessor: Cannot play progress sound, module or thread not running.")
             return
 
-        # Ensure percent is a valid number before calculation
-        if percent is None or not isinstance(percent, (int, float)):
-            log.error(f"SoundProcessor: Invalid percent value: {percent}. Skipping audio generation.")
-            return
+        frequency = self.min_frequency + (self.max_frequency - self.min_frequency) * (percent / 100.0)
+        samples = self._generate_tone(frequency, self.audio_duration)
 
-        # Handle the case where the progress bar is busy but has no percentage
-        if percent == -1:
-            frequency = self.min_frequency + (self.max_frequency - self.min_frequency) * 0.5
+        if direction == LEFT_TO_RIGHT:
+            pan = percent / 100.0
+        elif direction == RIGHT_TO_LEFT:
+            pan = 1.0 - (percent / 100.0)
+        else:
             pan = 0.5
-        else:
-            frequency = self.min_frequency + (self.max_frequency - self.min_frequency) * (percent / 100.0)
-            if direction == LEFT_TO_RIGHT:
-                pan = percent / 100.0
-            elif direction == RIGHT_TO_LEFT:
-                pan = 1.0 - (percent / 100.0)
-            else: # CENTER
-                pan = 0.5
-        
-        # Power law panning for smoother sound localization
-        left_pan_factor = math.sqrt(1.0 - pan)
-        right_pan_factor = math.sqrt(pan)
-        
-        frame_count = int(SAMPLE_RATE * self.audio_duration)
-        samples = bytearray(frame_count * CHANNELS * SAMPLE_WIDTH)
-        
+
+        left_volume = self.volume * (1.0 - pan) * PAN_BOOST_FACTOR
+        right_volume = self.volume * pan * PAN_BOOST_FACTOR
+
+        # Apply volume and panning
+        stereo_samples = array.array('h')
+        for i in range(len(samples)):
+            stereo_samples.append(int(samples[i] * left_volume))
+            stereo_samples.append(int(samples[i] * right_volume))
+
+        # Apply fade
+        fade_samples = self._apply_fade(stereo_samples, self.fade_ratio)
+
         try:
-            with self._lock:
-                # Critical section: generate audio data
-                samples_array = array.array('h')
-                for i in range(frame_count):
-                    t = float(i) / SAMPLE_RATE
-                    
-                    # Apply fade
-                    fade_factor = self.get_fade_factor(i, frame_count)
-                    
-                    sample_value = 0.0
-                    for k, amp in enumerate(self.harmonics):
-                        if amp == 0: continue
-                        f_k = frequency * (k + 1)
-                        sample_value += amp * math.sin(2.0 * math.pi * f_k * t)
-                    
-                    sample_value *= fade_factor * self.volume
-                    
-                    # Apply pan and convert to 16-bit integer
-                    left_sample = int(sample_value * left_pan_factor * 32767)
-                    right_sample = int(sample_value * right_pan_factor * 32767)
-                    
-                    # Ensure samples are within 16-bit range
-                    left_sample = max(-32768, min(32767, left_sample))
-                    right_sample = max(-32768, min(32767, right_sample))
-                    
-                    samples_array.append(left_sample)
-                    samples_array.append(right_sample)
-
-                self.audio_queue.put(samples_array.tobytes())
+            self.audio_queue.put(fade_samples.tobytes())
         except Exception as e:
-            log.error(f"SoundProcessor: Error generating audio data: {e}")
-            
-    def get_fade_factor(self, i, frame_count):
-        """Calculate fade-in/fade-out factor."""
-        fade_frames = int(frame_count * self.fade_ratio)
-        if self.fade_algorithm == "cosine":
-            if i < fade_frames:
-                # Fade-in
-                return 0.5 * (1 - math.cos(math.pi * i / fade_frames))
-            elif i > frame_count - fade_frames:
-                # Fade-out
-                return 0.5 * (1 - math.cos(math.pi * (frame_count - i) / fade_frames))
-            else:
-                return 1.0
-        elif self.fade_algorithm == "gaussian":
-            # Simple linear fade for now as a placeholder
-            if i < fade_frames:
-                return i / fade_frames
-            elif i > frame_count - fade_frames:
-                return (frame_count - i) / fade_frames
-            else:
-                return 1.0
-        else:
-            return 1.0
-            
-    def flush_queue(self):
-        """Clear the audio queue."""
-        while not self.audio_queue.empty():
-            try:
-                self.audio_queue.get_nowait()
-            except queue.Empty:
-                break
+            log.error(f"SoundProcessor: Error queuing progress sound: {e}")
 
+    def _generate_tone(self, frequency, duration):
+        """Generate a tone with the specified frequency and duration."""
+        samples = array.array('h')
+        num_samples = int(SAMPLE_RATE * duration)
+
+        for i in range(num_samples):
+            t = i / SAMPLE_RATE
+            value = 0.0
+            for j, amplitude in enumerate(self.harmonics):
+                value += amplitude * math.sin(2 * math.pi * frequency * (j + 1) * t)
+            value = max(min(value, 1.0), -1.0) * 32767
+            samples.append(int(value))
+
+        return samples
+
+    def _apply_fade(self, samples, fade_ratio):
+        """Apply fade-in and fade-out to the samples."""
+        fade_samples = array.array('h', samples)
+        fade_length = int(len(samples) * fade_ratio / 2)
+
+        for i in range(fade_length):
+            if self.fade_algorithm == "cosine":
+                fade = 0.5 * (1 - math.cos(math.pi * i / fade_length))
+            else:  # gaussian
+                fade = math.exp(-((i - fade_length) ** 2) / (2 * (fade_length / 3) ** 2))
+            fade_samples[i] = int(fade_samples[i] * fade)
+            fade_samples[-(i + 1)] = int(fade_samples[-(i + 1)] * fade)
+
+        return fade_samples

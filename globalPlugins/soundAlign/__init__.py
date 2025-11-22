@@ -110,7 +110,6 @@ if os.path.isdir(pyaudio_dir):
         if not os.path.exists(init_file):
             with open(init_file, "w", encoding="utf-8") as f:
                 f.write("")
-            log.info("SoundAlign: Created __init__.py in pyaudiowpatch directory")
     except Exception as e:
         log.error(f"SoundAlign: Failed to create __init__.py in pyaudiowpatch: {e}")
 
@@ -120,26 +119,19 @@ pyd_file_new = os.path.join(plugin_dir, "_portaudiowpatch.pyd")
 if os.path.exists(pyd_file_old) and not os.path.exists(pyd_file_new):
     try:
         shutil.copy(pyd_file_old, pyd_file_new)
-        log.info("SoundAlign: Renamed _portaudiowpatch.cp311-win32.pyd to _portaudiowpatch.pyd")
     except Exception as e:
         log.error(f"SoundAlign: Failed to rename _portaudiowpatch.cp311-win32.pyd: {e}")
 
 # Attempt to import pyaudiowpatch
 try:
     import pyaudiowpatch as pyaudio
-    log.info("SoundAlign: pyaudiowpatch imported successfully")
 except ImportError as e:
     log.error(f"SoundAlign: Failed to import pyaudiowpatch: {e}")
-    log.info(f"SoundAlign: sys.path: {sys.path}")
-    log.info(f"SoundAlign: Contents of plugin directory: {os.listdir(plugin_dir) if os.path.exists(plugin_dir) else 'Directory not found'}")
-    if os.path.isdir(pyaudio_dir):
-        log.info(f"SoundAlign: Contents of pyaudiowpatch directory: {os.listdir(pyaudio_dir) if os.path.exists(pyaudio_dir) else 'Directory not found'}")
     pyaudio = None
 
 def loadSettings():
     """Load settings from config file"""
     settingsPath = os.path.join(config.getUserDefaultConfigPath(), "soundAlign.json")
-    log.info(f"SoundAlign: Loading settings from {settingsPath}")
     settings = DEFAULT_SETTINGS.copy()
     
     if os.path.exists(settingsPath):
@@ -149,7 +141,6 @@ def loadSettings():
             for key in settings:
                 if key in userSettings:
                     settings[key] = userSettings[key]
-            log.info("SoundAlign: Settings loaded successfully")
         except json.JSONDecodeError as e:
             log.error(f"SoundAlign: Error loading settings: JSON file is corrupted or empty ({e}). Using default settings.")
             saveSettings(DEFAULT_SETTINGS)
@@ -161,7 +152,6 @@ def loadSettings():
 def saveSettings(settings):
     """Save settings to config file with enhanced error handling"""
     settingsPath = os.path.join(config.getUserDefaultConfigPath(), "soundAlign.json")
-    log.info(f"SoundAlign: Saving settings to {settingsPath}")
     try:
         os.makedirs(os.path.dirname(settingsPath), exist_ok=True)
         if not os.access(os.path.dirname(settingsPath), os.W_OK):
@@ -174,7 +164,6 @@ def saveSettings(settings):
             return False
         with open(settingsPath, "w", encoding="utf-8") as f:
             json.dump(settings, f, ensure_ascii=False, indent=4)
-        log.info("SoundAlign: Settings saved successfully")
         return True
     except Exception as e:
         log.error(f"SoundAlign: Error saving settings: {e}")
@@ -335,7 +324,6 @@ class SoundAlignSettingsPanel(gui.settingsDialogs.SettingsPanel):
             return
         
         instance = GlobalPlugin.instance
-        log.info("SoundAlign: Starting test of all settings")
         
         tests_beep = [
             ("errorDirection", ERROR_WARNING, 600, 300),
@@ -402,7 +390,6 @@ class SoundAlignSettingsPanel(gui.settingsDialogs.SettingsPanel):
         if saveSettings(settings):
             if hasattr(GlobalPlugin, 'instance') and GlobalPlugin.instance:
                 GlobalPlugin.instance.applySettings()
-                log.info("SoundAlign: Settings applied after save")
         else:
             gui.messageBox(
                 _("Failed to save settings. Please check permissions or config path."),
@@ -426,7 +413,6 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
         if pyaudio:
             try:
                 self.sound_processor = SoundProcessor(self, pyaudio)
-                log.info("SoundAlign: SoundProcessor initialized successfully")
             except Exception as e:
                 log.error(f"SoundAlign: Failed to initialize SoundProcessor: {e}")
         
@@ -447,7 +433,6 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
         self.registerSettingsPanel()
         
         wx.CallAfter(self.applySettings)
-        log.info("SoundAlign: GlobalPlugin initialized")
 
     def startHookMonitor(self):
         """Start a timer to periodically check and reapply hooks"""
@@ -465,14 +450,12 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
         
         if self.settings.get("isActive", True):
             threading.Timer(5.0, checkHooks).start()
-            log.info("SoundAlign: Hook monitor started")
 
     def registerSettingsPanel(self):
         """Register settings panel with proper binding"""
         try:
             if SoundAlignSettingsPanel not in gui.settingsDialogs.NVDASettingsDialog.categoryClasses:
                 gui.settingsDialogs.NVDASettingsDialog.categoryClasses.append(SoundAlignSettingsPanel)
-            log.info("SoundAlign: Settings panel registered")
         except Exception as e:
             log.error(f"SoundAlign: Error registering settings panel: {e}")
 
@@ -487,38 +470,28 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
                 try:
                     if hasattr(addon, 'module') and hasattr(addon.module, 'tones'):
                         addon.module.tones.beep = self.safeBeep
-                        log.info(f"SoundAlign: Hooked tones.beep for add-on {addon.name}")
                     if winsound is not None and hasattr(addon, 'module') and hasattr(addon.module, 'winsound'):
                         addon.module.winsound.Beep = self.safeBeepWinsound
-                        log.info(f"SoundAlign: Hooked winsound.Beep for add-on {addon.name}")
                 except Exception as e:
                     log.error(f"SoundAlign: Failed to hook tones.beep or winsound.Beep for add-on {addon.name}: {e}")
-            
-            log.info("SoundAlign: Hooks setup successfully")
         except Exception as e:
             log.error(f"SoundAlign: Error setting up hooks: {e}")
 
     def safeBeep(self, hz, length, left=50, right=50, *args, **kwargs):
         """Safe beep handler with balance control and progress handling"""
-        log.info(f"SoundAlign: safeBeep called - Hz: {hz}, Length: {length}, Left: {left}, Right: {right}")
         if not self.settings.get("isActive", True):
-            log.info("SoundAlign: Plugin inactive, using original beep")
             return self.originalBeep(hz, length, left, right, *args, **kwargs)
         
         soundType = self.getSoundType(hz, length)
-        log.info(f"SoundAlign: Sound type determined: {soundType}")
-        
         direction = self.getDirection(soundType, hz)
         
         if soundType == PROGRESS_INDICATOR:
             if self.settings.get("waveformType") == 3:  # Original Tone Beep
-                log.info("SoundAlign: User selected original tone beep for progress indicator")
                 obj = api.getFocusObject()
                 
                 percent = self.sound_processor.get_progress_percent(obj) if self.sound_processor else None
                 
                 if not isinstance(percent, (int, float)) or percent < 0:
-                    log.info(f"SoundAlign: No valid progress value found, falling back to Hz calculation.")
                     if self.settings.get("maxFrequency") > self.settings.get("minFrequency"):
                         percent = (hz - self.settings.get("minFrequency")) / (self.settings.get("maxFrequency") - self.settings.get("minFrequency")) * 100
                     else:
@@ -535,11 +508,8 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
                 obj = api.getFocusObject()
                 percent = self.sound_processor.get_progress_percent(obj) if self.sound_processor else None
                 
-                log.info(f"SoundAlign: Processing progress sound - Hz: {hz}, Length: {length}, Percent: {percent}, Direction: {direction}, Object Role: {getattr(obj, 'role', None)}")
-                
                 if percent is None:
                     percent = min(100, max(0, (hz - self.settings.get("minFrequency", 110)) / (self.settings.get("maxFrequency", 1760) - self.settings.get("minFrequency", 110)) * 100))
-                    log.info(f"SoundAlign: Fallback percent calculated from hz: {percent}")
                 
                 self.handleProgressAnnouncements(percent, obj)
                 
@@ -548,22 +518,16 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
                         if self.sound_processor:
                             self.sound_processor.play_progress_sound(percent, direction)
                             sound_context.last_progress_value = percent
-                            log.info(f"SoundAlign: Progress sound triggered for {percent}%")
                     except Exception as e:
                         log.error(f"SoundAlign: Error playing progress sound: {e}. Falling back to original beep.")
                         self.originalBeep(hz, length, left=left, right=right)
-                else:
-                    log.info("SoundAlign: Progress value unchanged, skipping")
         else:
             leftVol, rightVol = self.getBalance(direction)
-            log.info(f"SoundAlign: Addon beep - hz: {hz}, direction: {direction}, leftVol: {leftVol}, rightVol: {rightVol}")
             self.originalBeep(hz, length, left=int(leftVol * 100), right=int(rightVol * 100))
             
     def safeBeepWinsound(self, frequency, duration):
         """Safe handler for winsound.Beep"""
-        log.info(f"SoundAlign: safeBeepWinsound called - Frequency: {frequency}, Duration: {duration}")
         if winsound is None or not self.settings.get("isActive", True):
-            log.info("SoundAlign: Plugin inactive or winsound unavailable, doing nothing.")
             if self.originalWinsoundBeep:
                 self.originalWinsoundBeep(frequency, duration)
             return
@@ -586,7 +550,6 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
             self.last_spoken_percent = -1
             self.last_beep_percent = -1
             self.last_time_announced = 0
-            log.info("SoundAlign: Progress object changed, resetting announcement tracking")
         
         if time_interval > 0 and current_time - self.last_time_announced >= time_interval:
             ui.message(_("{percent}% complete").format(percent=int(percent)))
@@ -630,7 +593,6 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
             }
             direction = self.settings.get(settingMap.get(soundType), LEFT_TO_RIGHT if soundType == PROGRESS_INDICATOR else CENTER)
         
-        log.info(f"SoundAlign: Direction for {soundType} (hz={hz}): {direction}")
         return direction
 
     def getBalance(self, direction):
@@ -643,7 +605,6 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
             return (0.0, 1.0)
         elif direction == LEFT_TO_RIGHT or direction == RIGHT_TO_LEFT:
             return (0.5, 0.5)
-        log.warning(f"SoundAlign: Invalid direction {direction}, falling back to center")
         return (0.5, 0.5)
 
     def applySettings(self):
@@ -658,7 +619,6 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
                 self.sound_processor.min_frequency = self.settings.get("minFrequency", 110)
                 self.sound_processor.max_frequency = self.settings.get("maxFrequency", 1760)
                 self.sound_processor.smooth_panning = self.settings.get("smoothPanning", True)
-                log.info(f"SoundAlign: Settings applied - Waveform: {waveform_type}, Fade: {self.sound_processor.fade_algorithm}, Volume: {self.sound_processor.volume}, Freq Range: {self.sound_processor.min_frequency}-{self.sound_processor.max_frequency}Hz")
                 if not self.sound_processor.player_thread or not self.sound_processor.player_thread.is_alive():
                     log.warning("SoundAlign: Player thread not running, restarting")
                     self.sound_processor.start_player_thread()
@@ -671,12 +631,10 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
         """Test beep output with given direction"""
         leftVol, rightVol = self.getBalance(direction)
         self.originalBeep(freq, duration, left=int(leftVol*100), right=int(rightVol*100))
-        log.info(f"SoundAlign: Test beep via original tones.beep - Freq: {freq}, Duration: {duration}, Direction: {direction}")
 
     def testProgress(self, direction, waveform_type):
         """Test progress indicator with dynamic panning and selected waveform"""
         if waveform_type == 3:
-            log.info("SoundAlign: Testing progress with original tone beep")
             for i in range(0, 101, 2):
                 hz = self.settings.get("minFrequency") + (i / 100.0) * (self.settings.get("maxFrequency") - self.settings.get("minFrequency"))
                 pan_pos = i / 100.0 if direction == LEFT_TO_RIGHT else 1.0 - (i / 100.0) if direction == RIGHT_TO_LEFT else 0.5
@@ -698,7 +656,6 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
                 percent = i
                 self.sound_processor.play_progress_sound(percent, direction=direction)
                 time.sleep(0.02)
-                log.info(f"SoundAlign: Test progress - Percent: {percent}, Direction: {direction}")
             
             self.sound_processor.harmonics = original_harmonics
 
@@ -709,7 +666,6 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
     def script_handleSoundAlign(self, gesture):
         """Handle single tap to open settings and double tap to toggle SoundAlign"""
         current_time = time.time()
-        log.info(f"SoundAlign: Gesture received - Time: {current_time}, Current count: {self.gesture_count}")
         
         if current_time - self.last_gesture_time < self.double_tap_threshold:
             self.gesture_count += 1
@@ -727,23 +683,17 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
             else:
                 ui.message(_("SoundAlign off"))
             self.gesture_count = 0
-            log.info("SoundAlign: Toggled SoundAlign state")
         else:
             def handleSingleTap():
                 if self.gesture_count == 1 and time.time() - self.last_gesture_time >= self.double_tap_threshold:
-                    log.info("SoundAlign: Executing single tap action")
                     wx.CallAfter(
                         gui.mainFrame.popupSettingsDialog,
                         gui.settingsDialogs.NVDASettingsDialog,
                         SoundAlignSettingsPanel
                     )
-                    log.info("SoundAlign: Settings dialog opened")
                     self.gesture_count = 0
-                else:
-                    log.info("SoundAlign: Single tap skipped due to gesture count or timing")
             
             threading.Timer(self.double_tap_threshold, handleSingleTap).start()
-            log.info("SoundAlign: Scheduled single tap check")
 
     def terminate(self):
         tones.beep = self.originalBeep
@@ -752,7 +702,7 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
         
         if self.sound_processor:
             self.sound_processor.stop()
-            log.info("SoundAlign: Sound processor stopped and cleaned up")
         
         GlobalPlugin.instance = None
-        log.info("SoundAlign: GlobalPlugin terminated")
+
+
