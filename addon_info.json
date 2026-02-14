@@ -1,10 +1,11 @@
-﻿{
-  "addon_name": "soundAlign",
-  "addon_description": "This add-on provides flexible customization of NVDA sound direction and patterns, including progress indicators",
-  "addon_version": "2026.3",
-  "addon_author": "chaichaimee",
-  "addon_url": "https://github.com/chaichaimee/soundAlign",
-  "addon_download_url": "https://github.com/chaichaimee/soundAlign/releases/download/2026.3-dev2/soundAlign-v2026.3-dev2.nvda-addon",
-  "addon_min_nvda_version": "2022.4"
+{
+  "externalId": "soundAlign",
+  "channels": [
+    {
+      "channel": "beta",
+      "version": "2026.3-beta",
+      "url": "https://github.com/chaichaimee/soundAlign/releases/download/2026.3-beta/soundAlign-v2026.3-beta.nvda-addon",
+      "sha256": "b66522efd5401af42125d95303c118a1bbb23f69ec5f33b106b114966f119a62-00000012"
+    }
+  ]
 }
-
