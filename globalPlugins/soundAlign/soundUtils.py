@@ -7,23 +7,8 @@ import time
 import os
 import sys
 import array
+import re  # เพิ่ม import re สำหรับใช้ใน get_progress_percent
 from logHandler import log
-try:
-    import pythoncom
-    import win32api
-    import winsound
-    import ctypes
-    import comtypes
-    import comtypes.client
-except ImportError as e:
-    pythoncom = None
-    win32api = None
-    winsound = None
-    ctypes = None
-    comtypes = None
-
-# Import the missing module
-import controlTypes
 
 # Constants for sound types and directions
 LEFT = 0
@@ -104,7 +89,7 @@ class SoundProcessor:
                 self.audio_queue.put(None)
         if self.player_thread and self.player_thread.is_alive():
             self.player_thread.join(timeout=1.0)
-        
+
         with self._lock:
             if self.pa_stream and self.pa_stream.is_active():
                 self.pa_stream.stop_stream()
@@ -138,7 +123,7 @@ class SoundProcessor:
                 data = self.audio_queue.get(timeout=0.2)
                 if data is None:
                     break
-                
+
                 with self._lock:
                     if self.pa_stream and self.pa_stream.is_active():
                         self.pa_stream.write(data)

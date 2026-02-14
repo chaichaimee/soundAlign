@@ -37,14 +37,17 @@ import winsound
 import comtypes
 import comtypes.client
 
+# ----- โหลด overlay_loader เพื่อ deploy ไบนารีที่เหมาะสมและล้างสถาปัตยกรรมที่ไม่เกี่ยวข้อง -----
+from . import overlay_loader   # overlayBinaries() ทำงานทันทีที่ import
+
 plugin_dir = os.path.dirname(__file__)
 if plugin_dir not in sys.path:
     sys.path.insert(0, plugin_dir)
-pyaudio_dir = os.path.join(plugin_dir, "pyaudiowpatch")
-if pyaudio_dir not in sys.path:
-    sys.path.insert(0, pyaudio_dir)
 
-# Import all necessary constants and classes
+# ----- ลบโค้ดเก่าทั้งหมดที่เกี่ยวกับ pyaudio_dir, การคัดลอก .pyd, การสร้าง __init__.py -----
+# (ไม่มีการประกาศ pyaudio_dir, ไม่มีการคัดลอกไฟล์, ไม่มีการสร้าง __init__.py)
+
+# ----- นำเข้าค่าคงที่และคลาสจาก soundUtils -----
 from .soundUtils import (
     SoundProcessor,
     LEFT,
@@ -103,26 +106,7 @@ WAVEFORM_MAP = {
     2: TONE_SAWTOOTH
 }
 
-# Ensure pyaudiowpatch directory has __init__.py if it exists
-if os.path.isdir(pyaudio_dir):
-    try:
-        init_file = os.path.join(pyaudio_dir, "__init__.py")
-        if not os.path.exists(init_file):
-            with open(init_file, "w", encoding="utf-8") as f:
-                f.write("")
-    except Exception as e:
-        log.error(f"SoundAlign: Failed to create __init__.py in pyaudiowpatch: {e}")
-
-# Rename _portaudiowpatch.cp311-win32.pyd to _portaudiowpatch.pyd if necessary
-pyd_file_old = os.path.join(plugin_dir, "_portaudiowpatch.cp311-win32.pyd")
-pyd_file_new = os.path.join(plugin_dir, "_portaudiowpatch.pyd")
-if os.path.exists(pyd_file_old) and not os.path.exists(pyd_file_new):
-    try:
-        shutil.copy(pyd_file_old, pyd_file_new)
-    except Exception as e:
-        log.error(f"SoundAlign: Failed to rename _portaudiowpatch.cp311-win32.pyd: {e}")
-
-# Attempt to import pyaudiowpatch
+# ----- import pyaudiowpatch โดยตรง (overlay_loader จัดการคัดลอกและเพิ่ม sys.path ให้แล้ว) -----
 try:
     import pyaudiowpatch as pyaudio
 except ImportError as e:
@@ -704,5 +688,3 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
             self.sound_processor.stop()
         
         GlobalPlugin.instance = None
-
-
