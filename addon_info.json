@@ -2,10 +2,10 @@
   "externalId": "soundAlign",
   "channels": [
     {
-      "channel": "beta",
-      "version": "2026.3-beta",
-      "url": "https://github.com/chaichaimee/soundAlign/releases/download/2026.3-beta/soundAlign-v2026.3-beta.nvda-addon",
-      "sha256": "b66522efd5401af42125d95303c118a1bbb23f69ec5f33b106b114966f119a62-00000012"
+"channel": "beta",      
+      "version": "2026.3",
+      "url": "https://github.com/chaichaimee/soundAlign/releases/download/2026.3/soundAlign-v2026.3.nvda-addon",
+      "sha256": "7143b8cad3a772a35a392162a9cfca75df122cbd30b46372c961fcb42e715e20"
     }
   ]
 }
