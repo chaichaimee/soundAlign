@@ -1,50 +1,46 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: soundAlign 2026.4\n"
-"Language: es\n"
+"Language: uk\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 #: __init__.py:225
 msgid "Center"
-msgstr "Centro"
+msgstr "Центр"
 
 #: __init__.py:251
 msgid "Fade algorithm:"
-msgstr "Algoritmo de desvanecimiento:"
+msgstr "Алгоритм загасання:"
 
 #: __init__.py:225
 msgid "Left"
-msgstr "Izquierda"
+msgstr "Зліва"
 
 #: __init__.py:227
 msgid "Left to Right"
-msgstr "De izquierda a derecha"
+msgstr "Зліва направо"
 
 #: __init__.py:272
 msgid "Master volume (%):"
-msgstr "Volumen maestro (%):"
+msgstr "Загальна гучність (%):"
 
 #: __init__.py:333
 msgid "Mixed mode (speech + beep)"
-msgstr "Modo mixto (voz + pitido)"
+msgstr "Змішаний режим (мовлення + сигнал)"
 
 #: __init__.py:225
 msgid "Right"
-msgstr "Derecha"
-
-#: __init__.py:227
-msgid "Right to Left"
-msgstr "De derecha a izquierda"
+msgstr "Справа"
 
 #: __init__.py:336
 msgid "Smooth panning (reduces cracking)"
-msgstr "Panorámica suave (reduce chasquidos)"
+msgstr "Плавне панорамування (зменшує тріск)"
 
 #: __init__.py:703
 msgid "SoundAlign off"
-msgstr "SoundAlign desactivado"
+msgstr "SoundAlign вимкнено"
 
 #: __init__.py:701
 msgid "SoundAlign on"
-msgstr "SoundAlign activado"
+msgstr "SoundAlign увімкнено"
