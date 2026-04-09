@@ -1,46 +1,227 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: soundAlign 2026.4\n"
+"POT-Creation-Date: 2026-04-09 08:39+0300\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
 "Language: uk\n"
+"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.9\n"
 
-#: __init__.py:225
-msgid "Center"
-msgstr "Центр"
+#: soundAlign/__init__.py:90 soundAlign/__init__.py:126
+msgid "Sine"
+msgstr "Синус"
 
-#: __init__.py:251
-msgid "Fade algorithm:"
-msgstr "Алгоритм загасання:"
+#: soundAlign/__init__.py:91
+msgid "Triangle"
+msgstr "Трикутник"
 
-#: __init__.py:225
+#: soundAlign/__init__.py:92
+msgid "Sawtooth"
+msgstr "Пилкоподібний"
+
+#: soundAlign/__init__.py:93
+msgid "Square"
+msgstr "Квадрат"
+
+#: soundAlign/__init__.py:94
+msgid "Original Tone Beep"
+msgstr "Оригінальний звуковий сигнал"
+
+#: soundAlign/__init__.py:120
+msgid "Cosine"
+msgstr "Косинус"
+
+#: soundAlign/__init__.py:121
+msgid "Gaussian"
+msgstr "Гаусовий"
+
+#: soundAlign/__init__.py:122
+msgid "Linear"
+msgstr "Лінійний"
+
+#: soundAlign/__init__.py:123
+msgid "Exponential"
+msgstr "Експоненційний"
+
+#: soundAlign/__init__.py:124
+msgid "Logarithmic"
+msgstr "Логарифмічний"
+
+#: soundAlign/__init__.py:125
+msgid "S-Curve"
+msgstr "S-подібна крива"
+
+#: soundAlign/__init__.py:127
+msgid "Quarter Sine"
+msgstr "Чверть синуса"
+
+#: soundAlign/__init__.py:128
+msgid "Half Sine"
+msgstr "Половина синуса"
+
+#: soundAlign/__init__.py:129
+msgid "Square Root"
+msgstr "Квадратний корінь"
+
+#: soundAlign/__init__.py:130
+msgid "Cubic Root"
+msgstr "Кубічний корінь"
+
+#: soundAlign/__init__.py:131
+msgid "Quadratic"
+msgstr "Квадратичний"
+
+#: soundAlign/__init__.py:186
+msgid "Cannot save settings. No write permission for configuration directory."
+msgstr ""
+"Неможливо зберегти налаштування. Немає дозволу на запис для каталогу "
+"конфігурації."
+
+#: soundAlign/__init__.py:187 soundAlign/__init__.py:198
+#: soundAlign/__init__.py:440
+msgid "Save Error"
+msgstr "Помилка збереження"
+
+#: soundAlign/__init__.py:197 soundAlign/__init__.py:439
+msgid "Failed to save settings. Please check permissions or config path."
+msgstr ""
+"Не вдалося зберегти налаштування. Будь ласка, перевірте дозволи або шлях до "
+"конфігурації."
+
+#: soundAlign/__init__.py:204 soundAlign/__init__.py:446
+msgid "SoundAlign"
+msgstr "SoundAlign"
+
+#: soundAlign/__init__.py:211
+msgid "Error sounds:"
+msgstr "Звуки помилки:"
+
+#: soundAlign/__init__.py:212
+msgid "Sound effects:"
+msgstr "Звукові ефекти:"
+
+#: soundAlign/__init__.py:213
+msgid "Addon beeps (Low Frequency):"
+msgstr "Додаткові звукові сигнали (низька частота):"
+
+#: soundAlign/__init__.py:214
+msgid "Addon beeps (High Frequency):"
+msgstr "Додаткові звукові сигнали (висока частота):"
+
+#: soundAlign/__init__.py:215
+msgid "Progress indicator:"
+msgstr "Індикатор виконання:"
+
+#: soundAlign/__init__.py:225
 msgid "Left"
 msgstr "Зліва"
 
-#: __init__.py:227
-msgid "Left to Right"
-msgstr "Зліва направо"
+#: soundAlign/__init__.py:225
+msgid "Center"
+msgstr "Центр"
 
-#: __init__.py:272
-msgid "Master volume (%):"
-msgstr "Загальна гучність (%):"
-
-#: __init__.py:333
-msgid "Mixed mode (speech + beep)"
-msgstr "Змішаний режим (мовлення + сигнал)"
-
-#: __init__.py:225
+#: soundAlign/__init__.py:225
 msgid "Right"
 msgstr "Справа"
 
-#: __init__.py:336
+#: soundAlign/__init__.py:227
+msgid "Left to Right"
+msgstr "Зліва направо"
+
+#: soundAlign/__init__.py:227
+msgid "Right to Left"
+msgstr "Справа наліво"
+
+#: soundAlign/__init__.py:239
+msgid "Progress tone:"
+msgstr "Сигнал про хід виконання:"
+
+#: soundAlign/__init__.py:251
+msgid "Fade algorithm:"
+msgstr "Алгоритм загасання:"
+
+#: soundAlign/__init__.py:263
+msgid "Volume:"
+msgstr "Гучність:"
+
+#: soundAlign/__init__.py:272
+msgid "Master volume (%):"
+msgstr "Загальна гучність (%):"
+
+#: soundAlign/__init__.py:287
+msgid "Minimum frequency:"
+msgstr "Мінімальна частота:"
+
+#: soundAlign/__init__.py:297
+msgid "Maximum frequency:"
+msgstr "Максимальна частота:"
+
+#: soundAlign/__init__.py:307
+msgid "Speech announcement interval:"
+msgstr "Інтервал між мовленням:"
+
+#: soundAlign/__init__.py:317
+msgid "Beep announcement interval:"
+msgstr "Інтервал звукового сигналу:"
+
+#: soundAlign/__init__.py:326
+msgid "Time-based announcement (seconds, 0=disabled):"
+msgstr "Оголошення за часом (у секундах, 0=вимкнено):"
+
+#: soundAlign/__init__.py:333
+msgid "Mixed mode (speech + beep)"
+msgstr "Змішаний режим (мовлення + сигнал)"
+
+#: soundAlign/__init__.py:336
 msgid "Smooth panning (reduces cracking)"
 msgstr "Плавне панорамування (зменшує тріск)"
 
-#: __init__.py:703
-msgid "SoundAlign off"
-msgstr "SoundAlign вимкнено"
+#: soundAlign/__init__.py:342
+msgid "Test All Settings"
+msgstr "Перевірити всі налаштування"
 
-#: __init__.py:701
+#: soundAlign/__init__.py:356 soundAlign/__init__.py:402
+msgid "Minimum frequency must be less than maximum frequency."
+msgstr "Мінімальна частота має бути меншою за максимальну."
+
+#: soundAlign/__init__.py:357 soundAlign/__init__.py:403
+msgid "Frequency Range Error"
+msgstr "Помилка діапазону частот"
+
+#: soundAlign/__init__.py:391
+msgid "Please select valid minimum and maximum frequencies."
+msgstr "Виберіть дійсну мінімальну та максимальну частоти."
+
+#: soundAlign/__init__.py:392
+msgid "Settings Error"
+msgstr "Помилка налаштувань"
+
+#: soundAlign/__init__.py:575 soundAlign/__init__.py:582
+#: soundAlign/__init__.py:588
+#, python-brace-format
+msgid "{percent}% complete"
+msgstr "Виконано: {percent}%"
+
+#: soundAlign/__init__.py:665
+msgid "Progress test not available. Pyaudio not imported."
+msgstr "Тест перебігу недоступний. Pyaudio не імпортовано."
+
+#: soundAlign/__init__.py:683
+msgid ""
+"Open SoundAlign settings (single tap) or toggle SoundAlign on/off (double "
+"tap)"
+msgstr ""
+"Відкрити налаштування SoundAlign (одне натискання) або увімкнути/вимкнути "
+"SoundAlign (подвійне натискання)"
+
+#: soundAlign/__init__.py:701
 msgid "SoundAlign on"
 msgstr "SoundAlign увімкнено"
+
+#: soundAlign/__init__.py:703
+msgid "SoundAlign off"
+msgstr "SoundAlign вимкнено"
