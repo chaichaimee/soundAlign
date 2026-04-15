@@ -1,0 +1,226 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: soundAlign 2026.4.3\n"
+"Report-Msgid-Bugs-To: chaicm75@gmail.com\n"
+"POT-Creation-Date: 2026-04-11 17:34+0700\n"
+"PO-Revision-Date: \n"
+"Last-Translator: chaiBot and Malee Yamazaki\n"
+"Language-Team: Bulgarian\n"
+"Language: bg\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: DevOn Addon\n"
+
+#: __init__.py:214
+msgid "Addon beeps (High Frequency):"
+msgstr "Бипкания на добавката (висока честота):"
+
+#: __init__.py:213
+msgid "Addon beeps (Low Frequency):"
+msgstr "Бипкания на добавката (ниска честота):"
+
+#: __init__.py:317
+msgid "Beep announcement interval:"
+msgstr "Интервал на известяване с бипкане:"
+
+#: __init__.py:186
+msgid "Cannot save settings. No write permission for configuration directory."
+msgstr "Настройките не могат да бъдат запазени. Няма разрешение за запис в конфигурационната директория."
+
+#: __init__.py:225
+msgid "Center"
+msgstr "Център"
+
+#: __init__.py:120
+msgid "Cosine"
+msgstr "Косинус"
+
+#: __init__.py:130
+msgid "Cubic Root"
+msgstr "Кубичен корен"
+
+#: __init__.py:211
+msgid "Error sounds:"
+msgstr "Звуци за грешка:"
+
+#: __init__.py:123
+msgid "Exponential"
+msgstr "Експоненциален"
+
+#: __init__.py:251
+msgid "Fade algorithm:"
+msgstr "Алгоритъм на затихване:"
+
+#: __init__.py:197
+#: __init__.py:439
+msgid "Failed to save settings. Please check permissions or config path."
+msgstr "Неуспешно запазване на настройките. Моля, проверете разрешенията или пътя до конфигурацията."
+
+#: __init__.py:357
+#: __init__.py:403
+msgid "Frequency Range Error"
+msgstr "Грешка в честотния диапазон"
+
+#: __init__.py:121
+msgid "Gaussian"
+msgstr "Гаусов"
+
+#: __init__.py:128
+msgid "Half Sine"
+msgstr "Полусинусоида"
+
+#: __init__.py:225
+msgid "Left"
+msgstr "Ляво"
+
+#: __init__.py:227
+msgid "Left to Right"
+msgstr "От ляво надясно"
+
+#: __init__.py:122
+msgid "Linear"
+msgstr "Линеен"
+
+#: __init__.py:124
+msgid "Logarithmic"
+msgstr "Логаритмичен"
+
+#: __init__.py:272
+msgid "Master volume (%):"
+msgstr "Главен обем (%):"
+
+#: __init__.py:297
+msgid "Maximum frequency:"
+msgstr "Максимална честота:"
+
+#: __init__.py:356
+#: __init__.py:402
+msgid "Minimum frequency must be less than maximum frequency."
+msgstr "Минималната честота трябва да бъде по-малка от максималната честота."
+
+#: __init__.py:287
+msgid "Minimum frequency:"
+msgstr "Минимална честота:"
+
+#: __init__.py:333
+msgid "Mixed mode (speech + beep)"
+msgstr "Смесен режим (говор + бипкане)"
+
+#: __init__.py:683
+msgid "Open SoundAlign settings (single tap) or toggle SoundAlign on/off (double tap)"
+msgstr "Отворете настройките на SoundAlign (еднократно докосване) или включете/изключете SoundAlign (двукратно докосване)"
+
+#: __init__.py:94
+msgid "Original Tone Beep"
+msgstr "Оригинален тонален сигнал"
+
+#: __init__.py:391
+msgid "Please select valid minimum and maximum frequencies."
+msgstr "Моля, изберете валидни минимални и максимални честоти."
+
+#: __init__.py:215
+msgid "Progress indicator:"
+msgstr "Индикатор за прогрес:"
+
+#: __init__.py:665
+msgid "Progress test not available. Pyaudio not imported."
+msgstr "Тестът за прогрес не е наличен. Pyaudio не е импортиран."
+
+#: __init__.py:239
+msgid "Progress tone:"
+msgstr "Тон за прогрес:"
+
+#: __init__.py:131
+msgid "Quadratic"
+msgstr "Квадратичен"
+
+#: __init__.py:127
+msgid "Quarter Sine"
+msgstr "Четвърт синусоида"
+
+#: __init__.py:225
+msgid "Right"
+msgstr "Дясно"
+
+#: __init__.py:227
+msgid "Right to Left"
+msgstr "От дясно наляво"
+
+#: __init__.py:125
+msgid "S-Curve"
+msgstr "S-крива"
+
+#: __init__.py:187
+#: __init__.py:198
+#: __init__.py:440
+msgid "Save Error"
+msgstr "Грешка при запис"
+
+#: __init__.py:92
+msgid "Sawtooth"
+msgstr "Трион"
+
+#: __init__.py:392
+msgid "Settings Error"
+msgstr "Грешка в настройките"
+
+#: __init__.py:90
+#: __init__.py:126
+msgid "Sine"
+msgstr "Синусоида"
+
+#: __init__.py:336
+msgid "Smooth panning (reduces cracking)"
+msgstr "Гладко панорамиране (намалява пукането)"
+
+#: __init__.py:212
+msgid "Sound effects:"
+msgstr "Звукови ефекти:"
+
+#: __init__.py:204
+#: __init__.py:446
+msgid "SoundAlign"
+msgstr "SoundAlign"
+
+#: __init__.py:703
+msgid "SoundAlign off"
+msgstr "SoundAlign изключен"
+
+#: __init__.py:701
+msgid "SoundAlign on"
+msgstr "SoundAlign включен"
+
+#: __init__.py:307
+msgid "Speech announcement interval:"
+msgstr "Интервал на гласово известяване:"
+
+#: __init__.py:93
+msgid "Square"
+msgstr "Квадрат"
+
+#: __init__.py:129
+msgid "Square Root"
+msgstr "Корен квадратен"
+
+#: __init__.py:342
+msgid "Test All Settings"
+msgstr "Тествайте всички настройки"
+
+#: __init__.py:326
+msgid "Time-based announcement (seconds, 0=disabled):"
+msgstr "Известяване въз основа на време (секунди, 0=изключено):"
+
+#: __init__.py:91
+msgid "Triangle"
+msgstr "Триъгълник"
+
+#: __init__.py:263
+msgid "Volume:"
+msgstr "Сила на звука:"
+
+#: __init__.py:575
+#: __init__.py:582
+#: __init__.py:588
+msgid "{percent}% complete"
+msgstr "{percent}% завършено"

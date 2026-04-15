@@ -1,17 +1,74 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: soundAlign 2026.4\n"
+"Project-Id-Version: soundAlign 2026.4.3\n"
+"Report-Msgid-Bugs-To: chaicm75@gmail.com\n"
+"POT-Creation-Date: 2026-04-11 17:34+0700\n"
+"PO-Revision-Date: \n"
+"Last-Translator: chaiBot and Malee Yamazaki\n"
+"Language-Team: Ukrainian\n"
 "Language: uk\n"
+"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Generator: DevOn Addon\n"
+
+#: __init__.py:214
+msgid "Addon beeps (High Frequency):"
+msgstr "Сигнали додатка (висока частота):"
+
+#: __init__.py:213
+msgid "Addon beeps (Low Frequency):"
+msgstr "Сигнали додатка (низька частота):"
+
+#: __init__.py:317
+msgid "Beep announcement interval:"
+msgstr "Інтервал сигналу сповіщення:"
+
+#: __init__.py:186
+msgid "Cannot save settings. No write permission for configuration directory."
+msgstr "Не вдалося зберегти. Немає прав на запис у папку конфігурації."
 
 #: __init__.py:225
 msgid "Center"
 msgstr "Центр"
 
+#: __init__.py:120
+msgid "Cosine"
+msgstr "Косинус"
+
+#: __init__.py:130
+msgid "Cubic Root"
+msgstr "Кубічний корінь"
+
+#: __init__.py:211
+msgid "Error sounds:"
+msgstr "Звуки помилок:"
+
+#: __init__.py:123
+msgid "Exponential"
+msgstr "Експоненціальний"
+
 #: __init__.py:251
 msgid "Fade algorithm:"
 msgstr "Алгоритм загасання:"
+
+#: __init__.py:197
+#: __init__.py:439
+msgid "Failed to save settings. Please check permissions or config path."
+msgstr "Помилка збереження. Перевірте права доступу."
+
+#: __init__.py:357
+#: __init__.py:403
+msgid "Frequency Range Error"
+msgstr "Помилка діапазону частот"
+
+#: __init__.py:121
+msgid "Gaussian"
+msgstr "Гауссовий"
+
+#: __init__.py:128
+msgid "Half Sine"
+msgstr "Півсинусоїда"
 
 #: __init__.py:225
 msgid "Left"
@@ -21,21 +78,110 @@ msgstr "Зліва"
 msgid "Left to Right"
 msgstr "Зліва направо"
 
+#: __init__.py:122
+msgid "Linear"
+msgstr "Лінійний"
+
+#: __init__.py:124
+msgid "Logarithmic"
+msgstr "Логарифмічний"
+
 #: __init__.py:272
 msgid "Master volume (%):"
 msgstr "Загальна гучність (%):"
+
+#: __init__.py:297
+msgid "Maximum frequency:"
+msgstr "Максимальна частота:"
+
+#: __init__.py:356
+#: __init__.py:402
+msgid "Minimum frequency must be less than maximum frequency."
+msgstr "Мінімальна частота повинна бути меншою за максимальну."
+
+#: __init__.py:287
+msgid "Minimum frequency:"
+msgstr "Мінімальна частота:"
 
 #: __init__.py:333
 msgid "Mixed mode (speech + beep)"
 msgstr "Змішаний режим (мовлення + сигнал)"
 
+#: __init__.py:683
+msgid "Open SoundAlign settings (single tap) or toggle SoundAlign on/off (double tap)"
+msgstr "Параметри (1 нат.) або увімк./вимк. SoundAlign (2 нат.)"
+
+#: __init__.py:94
+msgid "Original Tone Beep"
+msgstr "Оригінальний тон сигналу"
+
+#: __init__.py:391
+msgid "Please select valid minimum and maximum frequencies."
+msgstr "Будь ласка, виберіть коректні частоти."
+
+#: __init__.py:215
+msgid "Progress indicator:"
+msgstr "Індикатор прогресу:"
+
+#: __init__.py:665
+msgid "Progress test not available. Pyaudio not imported."
+msgstr "Тест прогресу недоступний. Pyaudio не імпортовано."
+
+#: __init__.py:239
+msgid "Progress tone:"
+msgstr "Тон прогресу:"
+
+#: __init__.py:131
+msgid "Quadratic"
+msgstr "Квадратичний"
+
+#: __init__.py:127
+msgid "Quarter Sine"
+msgstr "Чвертьсинусоїда"
+
 #: __init__.py:225
 msgid "Right"
 msgstr "Справа"
 
+#: __init__.py:227
+msgid "Right to Left"
+msgstr "Справа наліво"
+
+#: __init__.py:125
+msgid "S-Curve"
+msgstr "S-подібна крива"
+
+#: __init__.py:187
+#: __init__.py:198
+#: __init__.py:440
+msgid "Save Error"
+msgstr "Помилка збереження"
+
+#: __init__.py:92
+msgid "Sawtooth"
+msgstr "Пилкоподібний"
+
+#: __init__.py:392
+msgid "Settings Error"
+msgstr "Помилка налаштувань"
+
+#: __init__.py:90
+#: __init__.py:126
+msgid "Sine"
+msgstr "Синусоїда"
+
 #: __init__.py:336
 msgid "Smooth panning (reduces cracking)"
 msgstr "Плавне панорамування (зменшує тріск)"
+
+#: __init__.py:212
+msgid "Sound effects:"
+msgstr "Звукові ефекти:"
+
+#: __init__.py:204
+#: __init__.py:446
+msgid "SoundAlign"
+msgstr "SoundAlign"
 
 #: __init__.py:703
 msgid "SoundAlign off"
@@ -44,3 +190,37 @@ msgstr "SoundAlign вимкнено"
 #: __init__.py:701
 msgid "SoundAlign on"
 msgstr "SoundAlign увімкнено"
+
+#: __init__.py:307
+msgid "Speech announcement interval:"
+msgstr "Інтервал мовного сповіщення:"
+
+#: __init__.py:93
+msgid "Square"
+msgstr "Квадратний"
+
+#: __init__.py:129
+msgid "Square Root"
+msgstr "Квадратний корінь"
+
+#: __init__.py:342
+msgid "Test All Settings"
+msgstr "Перевірити всі налаштування"
+
+#: __init__.py:326
+msgid "Time-based announcement (seconds, 0=disabled):"
+msgstr "Сповіщення за часом (сек, 0=вимкнено):"
+
+#: __init__.py:91
+msgid "Triangle"
+msgstr "Трикутний"
+
+#: __init__.py:263
+msgid "Volume:"
+msgstr "Гучність:"
+
+#: __init__.py:575
+#: __init__.py:582
+#: __init__.py:588
+msgid "{percent}% complete"
+msgstr "{percent}% завершено"

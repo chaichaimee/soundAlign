@@ -1,0 +1,226 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: soundAlign 2026.4.3\n"
+"Report-Msgid-Bugs-To: chaicm75@gmail.com\n"
+"POT-Creation-Date: 2026-04-11 17:34+0700\n"
+"PO-Revision-Date: \n"
+"Last-Translator: chaiBot and Malee Yamazaki\n"
+"Language-Team: Tamil\n"
+"Language: ta\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: DevOn Addon\n"
+
+#: __init__.py:214
+msgid "Addon beeps (High Frequency):"
+msgstr "துணைநிரல் பீப் ஒலிகள் (அதிர்வெண் அதிகம்):"
+
+#: __init__.py:213
+msgid "Addon beeps (Low Frequency):"
+msgstr "துணைநிரல் பீப் ஒலிகள் (அதிர்வெண் குறைவு):"
+
+#: __init__.py:317
+msgid "Beep announcement interval:"
+msgstr "பீப் அறிவிப்பு இடைவெளி:"
+
+#: __init__.py:186
+msgid "Cannot save settings. No write permission for configuration directory."
+msgstr "அமைப்புகளைச் சேமிக்க முடியவில்லை. கோப்பகத்தில் எழுத அனுமதி இல்லை."
+
+#: __init__.py:225
+msgid "Center"
+msgstr "மையம்"
+
+#: __init__.py:120
+msgid "Cosine"
+msgstr "Cosine"
+
+#: __init__.py:130
+msgid "Cubic Root"
+msgstr "Cubic Root"
+
+#: __init__.py:211
+msgid "Error sounds:"
+msgstr "பிழை ஒலிகள்:"
+
+#: __init__.py:123
+msgid "Exponential"
+msgstr "Exponential"
+
+#: __init__.py:251
+msgid "Fade algorithm:"
+msgstr "ஃபேட் அல்காரிதம்:"
+
+#: __init__.py:197
+#: __init__.py:439
+msgid "Failed to save settings. Please check permissions or config path."
+msgstr "அமைப்புகளைச் சேமிக்க முடியவில்லை. அனுமதிகளைச் சரிபார்க்கவும்."
+
+#: __init__.py:357
+#: __init__.py:403
+msgid "Frequency Range Error"
+msgstr "அதிர்வெண் வரம்பு பிழை"
+
+#: __init__.py:121
+msgid "Gaussian"
+msgstr "Gaussian"
+
+#: __init__.py:128
+msgid "Half Sine"
+msgstr "Half Sine"
+
+#: __init__.py:225
+msgid "Left"
+msgstr "இடது"
+
+#: __init__.py:227
+msgid "Left to Right"
+msgstr "இடமிருந்து வலமாக"
+
+#: __init__.py:122
+msgid "Linear"
+msgstr "Linear"
+
+#: __init__.py:124
+msgid "Logarithmic"
+msgstr "Logarithmic"
+
+#: __init__.py:272
+msgid "Master volume (%):"
+msgstr "முதன்மை ஒலி அளவு (%):"
+
+#: __init__.py:297
+msgid "Maximum frequency:"
+msgstr "அதிகபட்ச அதிர்வெண்:"
+
+#: __init__.py:356
+#: __init__.py:402
+msgid "Minimum frequency must be less than maximum frequency."
+msgstr "குறைந்தபட்ச அதிர்வெண் அதிகபட்சத்தை விட குறைவாக இருக்க வேண்டும்."
+
+#: __init__.py:287
+msgid "Minimum frequency:"
+msgstr "குறைந்தபட்ச அதிர்வெண்:"
+
+#: __init__.py:333
+msgid "Mixed mode (speech + beep)"
+msgstr "கலப்பு முறை (பேச்சு + பீப்)"
+
+#: __init__.py:683
+msgid "Open SoundAlign settings (single tap) or toggle SoundAlign on/off (double tap)"
+msgstr "SoundAlign அமைப்புகளைத் திற (ஒரு தட்டு) அல்லது ஆன்/ஆஃப் செய் (இரு தட்டு)"
+
+#: __init__.py:94
+msgid "Original Tone Beep"
+msgstr "Original Tone Beep"
+
+#: __init__.py:391
+msgid "Please select valid minimum and maximum frequencies."
+msgstr "சரியான அதிர்வெண் வரம்பைத் தேர்ந்தெடுக்கவும்."
+
+#: __init__.py:215
+msgid "Progress indicator:"
+msgstr "முன்னேற்றக் காட்டி:"
+
+#: __init__.py:665
+msgid "Progress test not available. Pyaudio not imported."
+msgstr "முன்னேற்ற சோதனை கிடைக்கவில்லை. Pyaudio இல்லை."
+
+#: __init__.py:239
+msgid "Progress tone:"
+msgstr "முன்னேற்ற ஒலி:"
+
+#: __init__.py:131
+msgid "Quadratic"
+msgstr "Quadratic"
+
+#: __init__.py:127
+msgid "Quarter Sine"
+msgstr "Quarter Sine"
+
+#: __init__.py:225
+msgid "Right"
+msgstr "வலது"
+
+#: __init__.py:227
+msgid "Right to Left"
+msgstr "வலமிருந்து இடமாக"
+
+#: __init__.py:125
+msgid "S-Curve"
+msgstr "S-Curve"
+
+#: __init__.py:187
+#: __init__.py:198
+#: __init__.py:440
+msgid "Save Error"
+msgstr "சேமிப்புப் பிழை"
+
+#: __init__.py:92
+msgid "Sawtooth"
+msgstr "Sawtooth"
+
+#: __init__.py:392
+msgid "Settings Error"
+msgstr "அமைப்புகள் பிழை"
+
+#: __init__.py:90
+#: __init__.py:126
+msgid "Sine"
+msgstr "Sine"
+
+#: __init__.py:336
+msgid "Smooth panning (reduces cracking)"
+msgstr "மென்மையான பேன்னிங் (வெடிப்பு ஒலியைக் குறைக்கிறது)"
+
+#: __init__.py:212
+msgid "Sound effects:"
+msgstr "ஒலி விளைவுகள்:"
+
+#: __init__.py:204
+#: __init__.py:446
+msgid "SoundAlign"
+msgstr "SoundAlign"
+
+#: __init__.py:703
+msgid "SoundAlign off"
+msgstr "SoundAlign அணைக்கப்பட்டது"
+
+#: __init__.py:701
+msgid "SoundAlign on"
+msgstr "SoundAlign இயக்கப்பட்டது"
+
+#: __init__.py:307
+msgid "Speech announcement interval:"
+msgstr "பேச்சு அறிவிப்பு இடைவெளி:"
+
+#: __init__.py:93
+msgid "Square"
+msgstr "Square"
+
+#: __init__.py:129
+msgid "Square Root"
+msgstr "Square Root"
+
+#: __init__.py:342
+msgid "Test All Settings"
+msgstr "அனைத்து அமைப்புகளையும் சோதிக்கவும்"
+
+#: __init__.py:326
+msgid "Time-based announcement (seconds, 0=disabled):"
+msgstr "நேர அடிப்படையிலான அறிவிப்பு (வினாடி, 0=முடக்கப்பட்டது):"
+
+#: __init__.py:91
+msgid "Triangle"
+msgstr "Triangle"
+
+#: __init__.py:263
+msgid "Volume:"
+msgstr "ஒலி அளவு:"
+
+#: __init__.py:575
+#: __init__.py:582
+#: __init__.py:588
+msgid "{percent}% complete"
+msgstr "{percent}% முடிந்தது"

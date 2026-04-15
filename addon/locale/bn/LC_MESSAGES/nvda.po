@@ -1,0 +1,226 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: soundAlign 2026.4.3\n"
+"Report-Msgid-Bugs-To: chaicm75@gmail.com\n"
+"POT-Creation-Date: 2026-04-11 17:34+0700\n"
+"PO-Revision-Date: \n"
+"Last-Translator: chaiBot and Malee Yamazaki\n"
+"Language-Team: Bengali\n"
+"Language: bn\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: DevOn Addon\n"
+
+#: __init__.py:214
+msgid "Addon beeps (High Frequency):"
+msgstr "অ্যাডঅন বিপ (উচ্চ ফ্রিকোয়েন্সি):"
+
+#: __init__.py:213
+msgid "Addon beeps (Low Frequency):"
+msgstr "অ্যাডঅন বিপ (নিম্ন ফ্রিকোয়েন্সি):"
+
+#: __init__.py:317
+msgid "Beep announcement interval:"
+msgstr "বিপ ঘোষণার ব্যবধান:"
+
+#: __init__.py:186
+msgid "Cannot save settings. No write permission for configuration directory."
+msgstr "সেটিংস সংরক্ষণ করা যাচ্ছে না। কনফিগারেশন ডিরেক্টরির জন্য কোনো লেখার অনুমতি নেই।"
+
+#: __init__.py:225
+msgid "Center"
+msgstr "কেন্দ্র"
+
+#: __init__.py:120
+msgid "Cosine"
+msgstr "কোসাইন"
+
+#: __init__.py:130
+msgid "Cubic Root"
+msgstr "ঘনমূল"
+
+#: __init__.py:211
+msgid "Error sounds:"
+msgstr "ত্রুটির শব্দ:"
+
+#: __init__.py:123
+msgid "Exponential"
+msgstr "এক্সপোনেনশিয়াল"
+
+#: __init__.py:251
+msgid "Fade algorithm:"
+msgstr "ফেড অ্যালগরিদম:"
+
+#: __init__.py:197
+#: __init__.py:439
+msgid "Failed to save settings. Please check permissions or config path."
+msgstr "সেটিংস সংরক্ষণ করতে ব্যর্থ হয়েছে। অনুমতি বা কনফিগার পাথ পরীক্ষা করুন।"
+
+#: __init__.py:357
+#: __init__.py:403
+msgid "Frequency Range Error"
+msgstr "ফ্রিকোয়েন্সি রেঞ্জ ত্রুটি"
+
+#: __init__.py:121
+msgid "Gaussian"
+msgstr "গাউসিয়ান"
+
+#: __init__.py:128
+msgid "Half Sine"
+msgstr "অর্ধ সাইন"
+
+#: __init__.py:225
+msgid "Left"
+msgstr "বাম"
+
+#: __init__.py:227
+msgid "Left to Right"
+msgstr "বাম থেকে ডানে"
+
+#: __init__.py:122
+msgid "Linear"
+msgstr "লিনিয়ার"
+
+#: __init__.py:124
+msgid "Logarithmic"
+msgstr "লগারিদমিক"
+
+#: __init__.py:272
+msgid "Master volume (%):"
+msgstr "মাস্টার ভলিউম (%):"
+
+#: __init__.py:297
+msgid "Maximum frequency:"
+msgstr "সর্বোচ্চ ফ্রিকোয়েন্সি:"
+
+#: __init__.py:356
+#: __init__.py:402
+msgid "Minimum frequency must be less than maximum frequency."
+msgstr "সর্বনিম্ন ফ্রিকোয়েন্সি অবশ্যই সর্বোচ্চ ফ্রিকোয়েন্সির চেয়ে কম হতে হবে।"
+
+#: __init__.py:287
+msgid "Minimum frequency:"
+msgstr "সর্বনিম্ন ফ্রিকোয়েন্সি:"
+
+#: __init__.py:333
+msgid "Mixed mode (speech + beep)"
+msgstr "মিশ্র মোড (কথা + বিপ)"
+
+#: __init__.py:683
+msgid "Open SoundAlign settings (single tap) or toggle SoundAlign on/off (double tap)"
+msgstr "SoundAlign সেটিংস খুলুন (একক ট্যাপ) অথবা SoundAlign চালু/বন্ধ করুন (ডবল ট্যাপ)"
+
+#: __init__.py:94
+msgid "Original Tone Beep"
+msgstr "আসল টোন বিপ"
+
+#: __init__.py:391
+msgid "Please select valid minimum and maximum frequencies."
+msgstr "অনুগ্রহ করে সঠিক সর্বনিম্ন এবং সর্বোচ্চ ফ্রিকোয়েন্সি নির্বাচন করুন।"
+
+#: __init__.py:215
+msgid "Progress indicator:"
+msgstr "অগ্রগতি নির্দেশক:"
+
+#: __init__.py:665
+msgid "Progress test not available. Pyaudio not imported."
+msgstr "অগ্রগতি পরীক্ষা উপলব্ধ নেই। Pyaudio ইমপোর্ট করা হয়নি।"
+
+#: __init__.py:239
+msgid "Progress tone:"
+msgstr "অগ্রগতি টোন:"
+
+#: __init__.py:131
+msgid "Quadratic"
+msgstr "দ্বিঘাত"
+
+#: __init__.py:127
+msgid "Quarter Sine"
+msgstr "কোয়ার্টার সাইন"
+
+#: __init__.py:225
+msgid "Right"
+msgstr "ডান"
+
+#: __init__.py:227
+msgid "Right to Left"
+msgstr "ডান থেকে বামে"
+
+#: __init__.py:125
+msgid "S-Curve"
+msgstr "এস-কার্ভ"
+
+#: __init__.py:187
+#: __init__.py:198
+#: __init__.py:440
+msgid "Save Error"
+msgstr "সংরক্ষণ ত্রুটি"
+
+#: __init__.py:92
+msgid "Sawtooth"
+msgstr "সটুথ"
+
+#: __init__.py:392
+msgid "Settings Error"
+msgstr "সেটিংস ত্রুটি"
+
+#: __init__.py:90
+#: __init__.py:126
+msgid "Sine"
+msgstr "সাইন"
+
+#: __init__.py:336
+msgid "Smooth panning (reduces cracking)"
+msgstr "মসৃণ প্যানিং (ক্র্যাকিং কমায়)"
+
+#: __init__.py:212
+msgid "Sound effects:"
+msgstr "সাউন্ড ইফেক্ট:"
+
+#: __init__.py:204
+#: __init__.py:446
+msgid "SoundAlign"
+msgstr "SoundAlign"
+
+#: __init__.py:703
+msgid "SoundAlign off"
+msgstr "SoundAlign বন্ধ"
+
+#: __init__.py:701
+msgid "SoundAlign on"
+msgstr "SoundAlign চালু"
+
+#: __init__.py:307
+msgid "Speech announcement interval:"
+msgstr "কথা ঘোষণার ব্যবধান:"
+
+#: __init__.py:93
+msgid "Square"
+msgstr "স্কয়ার"
+
+#: __init__.py:129
+msgid "Square Root"
+msgstr "বর্গমূল"
+
+#: __init__.py:342
+msgid "Test All Settings"
+msgstr "সমস্ত সেটিংস পরীক্ষা করুন"
+
+#: __init__.py:326
+msgid "Time-based announcement (seconds, 0=disabled):"
+msgstr "সময় ভিত্তিক ঘোষণা (সেকেন্ড, ০=নিষ্ক্রিয়):"
+
+#: __init__.py:91
+msgid "Triangle"
+msgstr "ট্রায়াঙ্গেল"
+
+#: __init__.py:263
+msgid "Volume:"
+msgstr "ভলিউম:"
+
+#: __init__.py:575
+#: __init__.py:582
+#: __init__.py:588
+msgid "{percent}% complete"
+msgstr "{percent}% সম্পন্ন"

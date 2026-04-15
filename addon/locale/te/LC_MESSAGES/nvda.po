@@ -1,0 +1,226 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: soundAlign 2026.4.3\n"
+"Report-Msgid-Bugs-To: chaicm75@gmail.com\n"
+"POT-Creation-Date: 2026-04-11 17:34+0700\n"
+"PO-Revision-Date: \n"
+"Last-Translator: chaiBot and Malee Yamazaki\n"
+"Language-Team: Telugu\n"
+"Language: te\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: DevOn Addon\n"
+
+#: __init__.py:214
+msgid "Addon beeps (High Frequency):"
+msgstr "యాడ్ఆన్ బీప్‌లు (అధిక ఫ్రీక్వెన్సీ):"
+
+#: __init__.py:213
+msgid "Addon beeps (Low Frequency):"
+msgstr "యాడ్ఆన్ బీప్‌లు (తక్కువ ఫ్రీక్వెన్సీ):"
+
+#: __init__.py:317
+msgid "Beep announcement interval:"
+msgstr "బీప్ ప్రకటన విరామం:"
+
+#: __init__.py:186
+msgid "Cannot save settings. No write permission for configuration directory."
+msgstr "అమరికలను సేవ్ చేయలేము. వ్రాయడానికి అనుమతి లేదు."
+
+#: __init__.py:225
+msgid "Center"
+msgstr "మధ్యలో"
+
+#: __init__.py:120
+msgid "Cosine"
+msgstr "Cosine"
+
+#: __init__.py:130
+msgid "Cubic Root"
+msgstr "Cubic Root"
+
+#: __init__.py:211
+msgid "Error sounds:"
+msgstr "లోపం శబ్దాలు:"
+
+#: __init__.py:123
+msgid "Exponential"
+msgstr "Exponential"
+
+#: __init__.py:251
+msgid "Fade algorithm:"
+msgstr "ఫేడ్ అల్గారిథమ్:"
+
+#: __init__.py:197
+#: __init__.py:439
+msgid "Failed to save settings. Please check permissions or config path."
+msgstr "సేవ్ చేయడం విఫలమైంది. అనుమతులను తనిఖీ చేయండి."
+
+#: __init__.py:357
+#: __init__.py:403
+msgid "Frequency Range Error"
+msgstr "ఫ్రీక్వెన్సీ పరిధి లోపం"
+
+#: __init__.py:121
+msgid "Gaussian"
+msgstr "Gaussian"
+
+#: __init__.py:128
+msgid "Half Sine"
+msgstr "Half Sine"
+
+#: __init__.py:225
+msgid "Left"
+msgstr "ఎడమ"
+
+#: __init__.py:227
+msgid "Left to Right"
+msgstr "ఎడమ నుండి కుడికి"
+
+#: __init__.py:122
+msgid "Linear"
+msgstr "Linear"
+
+#: __init__.py:124
+msgid "Logarithmic"
+msgstr "Logarithmic"
+
+#: __init__.py:272
+msgid "Master volume (%):"
+msgstr "ప్రధాన వాల్యూమ్ (%):"
+
+#: __init__.py:297
+msgid "Maximum frequency:"
+msgstr "గరిష్ట ఫ్రీక్వెన్సీ:"
+
+#: __init__.py:356
+#: __init__.py:402
+msgid "Minimum frequency must be less than maximum frequency."
+msgstr "కనీస ఫ్రీక్వెన్సీ గరిష్ట ఫ్రీక్వెన్సీ కంటే తక్కువగా ఉండాలి."
+
+#: __init__.py:287
+msgid "Minimum frequency:"
+msgstr "కనీస ఫ్రీక్వెన్సీ:"
+
+#: __init__.py:333
+msgid "Mixed mode (speech + beep)"
+msgstr "మిశ్రమ మోడ్ (మాట్లాడటం + బీప్)"
+
+#: __init__.py:683
+msgid "Open SoundAlign settings (single tap) or toggle SoundAlign on/off (double tap)"
+msgstr "SoundAlign అమరికలు (ఒక ట్యాప్) లేదా ఆన్/ఆఫ్ (రెండు ట్యాప్‌లు)"
+
+#: __init__.py:94
+msgid "Original Tone Beep"
+msgstr "Original Tone Beep"
+
+#: __init__.py:391
+msgid "Please select valid minimum and maximum frequencies."
+msgstr "దయచేసి సరైన ఫ్రీక్వెన్సీలను ఎంచుకోండి."
+
+#: __init__.py:215
+msgid "Progress indicator:"
+msgstr "పురోగతి సూచిక:"
+
+#: __init__.py:665
+msgid "Progress test not available. Pyaudio not imported."
+msgstr "పురోగతి పరీక్ష అందుబాటులో లేదు. Pyaudio లేదు."
+
+#: __init__.py:239
+msgid "Progress tone:"
+msgstr "పురోగతి టోన్:"
+
+#: __init__.py:131
+msgid "Quadratic"
+msgstr "Quadratic"
+
+#: __init__.py:127
+msgid "Quarter Sine"
+msgstr "Quarter Sine"
+
+#: __init__.py:225
+msgid "Right"
+msgstr "కుడి"
+
+#: __init__.py:227
+msgid "Right to Left"
+msgstr "కుడి నుండి ఎడమకు"
+
+#: __init__.py:125
+msgid "S-Curve"
+msgstr "S-Curve"
+
+#: __init__.py:187
+#: __init__.py:198
+#: __init__.py:440
+msgid "Save Error"
+msgstr "సేవ్ లోపం"
+
+#: __init__.py:92
+msgid "Sawtooth"
+msgstr "Sawtooth"
+
+#: __init__.py:392
+msgid "Settings Error"
+msgstr "అమరికల లోపం"
+
+#: __init__.py:90
+#: __init__.py:126
+msgid "Sine"
+msgstr "Sine"
+
+#: __init__.py:336
+msgid "Smooth panning (reduces cracking)"
+msgstr "స్మూత్ పానింగ్ (శబ్దాల పగుళ్లను తగ్గిస్తుంది)"
+
+#: __init__.py:212
+msgid "Sound effects:"
+msgstr "ధ్వని ప్రభావాలు:"
+
+#: __init__.py:204
+#: __init__.py:446
+msgid "SoundAlign"
+msgstr "SoundAlign"
+
+#: __init__.py:703
+msgid "SoundAlign off"
+msgstr "SoundAlign ఆఫ్"
+
+#: __init__.py:701
+msgid "SoundAlign on"
+msgstr "SoundAlign ఆన్"
+
+#: __init__.py:307
+msgid "Speech announcement interval:"
+msgstr "మాట్లాడే ప్రకటన విరామం:"
+
+#: __init__.py:93
+msgid "Square"
+msgstr "Square"
+
+#: __init__.py:129
+msgid "Square Root"
+msgstr "Square Root"
+
+#: __init__.py:342
+msgid "Test All Settings"
+msgstr "అన్ని అమరికలను పరీక్షించండి"
+
+#: __init__.py:326
+msgid "Time-based announcement (seconds, 0=disabled):"
+msgstr "సమయ ఆధారిత ప్రకటన (సెకన్లు, 0=నిలిపివేయబడింది):"
+
+#: __init__.py:91
+msgid "Triangle"
+msgstr "Triangle"
+
+#: __init__.py:263
+msgid "Volume:"
+msgstr "వాల్యూమ్:"
+
+#: __init__.py:575
+#: __init__.py:582
+#: __init__.py:588
+msgid "{percent}% complete"
+msgstr "{percent}% పూర్తయింది"

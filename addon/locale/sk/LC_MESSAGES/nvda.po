@@ -1,0 +1,226 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: soundAlign 2026.4.3\n"
+"Report-Msgid-Bugs-To: chaicm75@gmail.com\n"
+"POT-Creation-Date: 2026-04-11 17:34+0700\n"
+"PO-Revision-Date: \n"
+"Last-Translator: chaiBot and Malee Yamazaki\n"
+"Language-Team: Slovak\n"
+"Language: sk\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: DevOn Addon\n"
+
+#: __init__.py:214
+msgid "Addon beeps (High Frequency):"
+msgstr "Pípania doplnku (vysoká frekvencia):"
+
+#: __init__.py:213
+msgid "Addon beeps (Low Frequency):"
+msgstr "Pípania doplnku (nízka frekvencia):"
+
+#: __init__.py:317
+msgid "Beep announcement interval:"
+msgstr "Interval pípaného oznámenia:"
+
+#: __init__.py:186
+msgid "Cannot save settings. No write permission for configuration directory."
+msgstr "Nemožno uložiť nastavenia. Chýba oprávnenie na zápis do konfiguračného adresára."
+
+#: __init__.py:225
+msgid "Center"
+msgstr "Stred"
+
+#: __init__.py:120
+msgid "Cosine"
+msgstr "Kosínus"
+
+#: __init__.py:130
+msgid "Cubic Root"
+msgstr "Tretia odmocnina"
+
+#: __init__.py:211
+msgid "Error sounds:"
+msgstr "Zvuky chýb:"
+
+#: __init__.py:123
+msgid "Exponential"
+msgstr "Exponenciálne"
+
+#: __init__.py:251
+msgid "Fade algorithm:"
+msgstr "Algoritmus stíšenia:"
+
+#: __init__.py:197
+#: __init__.py:439
+msgid "Failed to save settings. Please check permissions or config path."
+msgstr "Zlyhalo uloženie nastavení. Skontrolujte oprávnenia alebo cestu ku konfiguračnému súboru."
+
+#: __init__.py:357
+#: __init__.py:403
+msgid "Frequency Range Error"
+msgstr "Chyba frekvenčného rozsahu"
+
+#: __init__.py:121
+msgid "Gaussian"
+msgstr "Gaussovo"
+
+#: __init__.py:128
+msgid "Half Sine"
+msgstr "Polovičný sínus"
+
+#: __init__.py:225
+msgid "Left"
+msgstr "Vľavo"
+
+#: __init__.py:227
+msgid "Left to Right"
+msgstr "Zľava doprava"
+
+#: __init__.py:122
+msgid "Linear"
+msgstr "Lineárne"
+
+#: __init__.py:124
+msgid "Logarithmic"
+msgstr "Logaritmické"
+
+#: __init__.py:272
+msgid "Master volume (%):"
+msgstr "Celková hlasitosť (%):"
+
+#: __init__.py:297
+msgid "Maximum frequency:"
+msgstr "Maximálna frekvencia:"
+
+#: __init__.py:356
+#: __init__.py:402
+msgid "Minimum frequency must be less than maximum frequency."
+msgstr "Minimálna frekvencia musí byť menšia ako maximálna."
+
+#: __init__.py:287
+msgid "Minimum frequency:"
+msgstr "Minimálna frekvencia:"
+
+#: __init__.py:333
+msgid "Mixed mode (speech + beep)"
+msgstr "Zmiešaný režim (reč + pípanie)"
+
+#: __init__.py:683
+msgid "Open SoundAlign settings (single tap) or toggle SoundAlign on/off (double tap)"
+msgstr "Otvoriť nastavenia SoundAlign (jedno klepnutie) alebo zapnúť/vypnúť SoundAlign (dvojité klepnutie)"
+
+#: __init__.py:94
+msgid "Original Tone Beep"
+msgstr "Pípnutie pôvodným tónom"
+
+#: __init__.py:391
+msgid "Please select valid minimum and maximum frequencies."
+msgstr "Vyberte platnú minimálnu a maximálnu frekvenciu."
+
+#: __init__.py:215
+msgid "Progress indicator:"
+msgstr "Indikátor priebehu:"
+
+#: __init__.py:665
+msgid "Progress test not available. Pyaudio not imported."
+msgstr "Test priebehu nie je k dispozícii. Pyaudio nebolo importované."
+
+#: __init__.py:239
+msgid "Progress tone:"
+msgstr "Tón priebehu:"
+
+#: __init__.py:131
+msgid "Quadratic"
+msgstr "Kvadratické"
+
+#: __init__.py:127
+msgid "Quarter Sine"
+msgstr "Štvrtinový sínus"
+
+#: __init__.py:225
+msgid "Right"
+msgstr "Vpravo"
+
+#: __init__.py:227
+msgid "Right to Left"
+msgstr "Sprava doľava"
+
+#: __init__.py:125
+msgid "S-Curve"
+msgstr "S-krivka"
+
+#: __init__.py:187
+#: __init__.py:198
+#: __init__.py:440
+msgid "Save Error"
+msgstr "Chyba ukladania"
+
+#: __init__.py:92
+msgid "Sawtooth"
+msgstr "Pílovitý priebeh"
+
+#: __init__.py:392
+msgid "Settings Error"
+msgstr "Chyba nastavení"
+
+#: __init__.py:90
+#: __init__.py:126
+msgid "Sine"
+msgstr "Sínus"
+
+#: __init__.py:336
+msgid "Smooth panning (reduces cracking)"
+msgstr "Hladké vyváženie (znižuje praskanie)"
+
+#: __init__.py:212
+msgid "Sound effects:"
+msgstr "Zvukové efekty:"
+
+#: __init__.py:204
+#: __init__.py:446
+msgid "SoundAlign"
+msgstr "SoundAlign"
+
+#: __init__.py:703
+msgid "SoundAlign off"
+msgstr "SoundAlign vypnuté"
+
+#: __init__.py:701
+msgid "SoundAlign on"
+msgstr "SoundAlign zapnuté"
+
+#: __init__.py:307
+msgid "Speech announcement interval:"
+msgstr "Interval hlasového oznámenia:"
+
+#: __init__.py:93
+msgid "Square"
+msgstr "Štvorcový priebeh"
+
+#: __init__.py:129
+msgid "Square Root"
+msgstr "Druhá odmocnina"
+
+#: __init__.py:342
+msgid "Test All Settings"
+msgstr "Testovať všetky nastavenia"
+
+#: __init__.py:326
+msgid "Time-based announcement (seconds, 0=disabled):"
+msgstr "Časové oznámenie (sekundy, 0=vypnuté):"
+
+#: __init__.py:91
+msgid "Triangle"
+msgstr "Trojuholníkový priebeh"
+
+#: __init__.py:263
+msgid "Volume:"
+msgstr "Hlasitosť:"
+
+#: __init__.py:575
+#: __init__.py:582
+#: __init__.py:588
+msgid "{percent}% complete"
+msgstr "Dokončené na {percent}%"

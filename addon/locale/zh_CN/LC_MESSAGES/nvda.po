@@ -1,0 +1,226 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: soundAlign 2026.4.3\n"
+"Report-Msgid-Bugs-To: chaicm75@gmail.com\n"
+"POT-Creation-Date: 2026-04-11 17:34+0700\n"
+"PO-Revision-Date: \n"
+"Last-Translator: chaiBot and Malee Yamazaki\n"
+"Language-Team: Chinese (Simplified)\n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: DevOn Addon\n"
+
+#: __init__.py:214
+msgid "Addon beeps (High Frequency):"
+msgstr "插件提示音 (高频):"
+
+#: __init__.py:213
+msgid "Addon beeps (Low Frequency):"
+msgstr "插件提示音 (低频):"
+
+#: __init__.py:317
+msgid "Beep announcement interval:"
+msgstr "提示音播报间隔:"
+
+#: __init__.py:186
+msgid "Cannot save settings. No write permission for configuration directory."
+msgstr "无法保存设置。没有配置目录的写入权限。"
+
+#: __init__.py:225
+msgid "Center"
+msgstr "居中"
+
+#: __init__.py:120
+msgid "Cosine"
+msgstr "余弦 (Cosine)"
+
+#: __init__.py:130
+msgid "Cubic Root"
+msgstr "立方根 (Cubic Root)"
+
+#: __init__.py:211
+msgid "Error sounds:"
+msgstr "错误提示音:"
+
+#: __init__.py:123
+msgid "Exponential"
+msgstr "指数 (Exponential)"
+
+#: __init__.py:251
+msgid "Fade algorithm:"
+msgstr "淡入淡出算法:"
+
+#: __init__.py:197
+#: __init__.py:439
+msgid "Failed to save settings. Please check permissions or config path."
+msgstr "保存设置失败。请检查权限或配置路径。"
+
+#: __init__.py:357
+#: __init__.py:403
+msgid "Frequency Range Error"
+msgstr "频率范围错误"
+
+#: __init__.py:121
+msgid "Gaussian"
+msgstr "高斯 (Gaussian)"
+
+#: __init__.py:128
+msgid "Half Sine"
+msgstr "半正弦 (Half Sine)"
+
+#: __init__.py:225
+msgid "Left"
+msgstr "左侧"
+
+#: __init__.py:227
+msgid "Left to Right"
+msgstr "从左到右"
+
+#: __init__.py:122
+msgid "Linear"
+msgstr "线性 (Linear)"
+
+#: __init__.py:124
+msgid "Logarithmic"
+msgstr "对数 (Logarithmic)"
+
+#: __init__.py:272
+msgid "Master volume (%):"
+msgstr "主音量 (%):"
+
+#: __init__.py:297
+msgid "Maximum frequency:"
+msgstr "最大频率:"
+
+#: __init__.py:356
+#: __init__.py:402
+msgid "Minimum frequency must be less than maximum frequency."
+msgstr "最小频率必须小于最大频率。"
+
+#: __init__.py:287
+msgid "Minimum frequency:"
+msgstr "最小频率:"
+
+#: __init__.py:333
+msgid "Mixed mode (speech + beep)"
+msgstr "混合模式 (语音 + 提示音)"
+
+#: __init__.py:683
+msgid "Open SoundAlign settings (single tap) or toggle SoundAlign on/off (double tap)"
+msgstr "打开 SoundAlign 设置 (单击) 或切换 SoundAlign 开关 (双击)"
+
+#: __init__.py:94
+msgid "Original Tone Beep"
+msgstr "原音提示音"
+
+#: __init__.py:391
+msgid "Please select valid minimum and maximum frequencies."
+msgstr "请选择有效的最小和最大频率。"
+
+#: __init__.py:215
+msgid "Progress indicator:"
+msgstr "进度指示器:"
+
+#: __init__.py:665
+msgid "Progress test not available. Pyaudio not imported."
+msgstr "进度测试不可用。未导入 Pyaudio。"
+
+#: __init__.py:239
+msgid "Progress tone:"
+msgstr "进度提示音:"
+
+#: __init__.py:131
+msgid "Quadratic"
+msgstr "二次方 (Quadratic)"
+
+#: __init__.py:127
+msgid "Quarter Sine"
+msgstr "四分之一正弦 (Quarter Sine)"
+
+#: __init__.py:225
+msgid "Right"
+msgstr "右侧"
+
+#: __init__.py:227
+msgid "Right to Left"
+msgstr "从右到左"
+
+#: __init__.py:125
+msgid "S-Curve"
+msgstr "S 曲线 (S-Curve)"
+
+#: __init__.py:187
+#: __init__.py:198
+#: __init__.py:440
+msgid "Save Error"
+msgstr "保存错误"
+
+#: __init__.py:92
+msgid "Sawtooth"
+msgstr "锯齿波 (Sawtooth)"
+
+#: __init__.py:392
+msgid "Settings Error"
+msgstr "设置错误"
+
+#: __init__.py:90
+#: __init__.py:126
+msgid "Sine"
+msgstr "正弦波 (Sine)"
+
+#: __init__.py:336
+msgid "Smooth panning (reduces cracking)"
+msgstr "平滑平移 (减少爆音)"
+
+#: __init__.py:212
+msgid "Sound effects:"
+msgstr "音效:"
+
+#: __init__.py:204
+#: __init__.py:446
+msgid "SoundAlign"
+msgstr "SoundAlign"
+
+#: __init__.py:703
+msgid "SoundAlign off"
+msgstr "SoundAlign 已关闭"
+
+#: __init__.py:701
+msgid "SoundAlign on"
+msgstr "SoundAlign 已开启"
+
+#: __init__.py:307
+msgid "Speech announcement interval:"
+msgstr "语音播报间隔:"
+
+#: __init__.py:93
+msgid "Square"
+msgstr "方波 (Square)"
+
+#: __init__.py:129
+msgid "Square Root"
+msgstr "平方根 (Square Root)"
+
+#: __init__.py:342
+msgid "Test All Settings"
+msgstr "测试所有设置"
+
+#: __init__.py:326
+msgid "Time-based announcement (seconds, 0=disabled):"
+msgstr "基于时间的播报 (秒, 0=禁用):"
+
+#: __init__.py:91
+msgid "Triangle"
+msgstr "三角波 (Triangle)"
+
+#: __init__.py:263
+msgid "Volume:"
+msgstr "音量:"
+
+#: __init__.py:575
+#: __init__.py:582
+#: __init__.py:588
+msgid "{percent}% complete"
+msgstr "已完成 {percent}%"

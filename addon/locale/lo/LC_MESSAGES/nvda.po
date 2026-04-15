@@ -1,0 +1,134 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: soundAlign 2026.4.3\n"
+"Report-Msgid-Bugs-To: chaicm75@gmail.com\n"
+"POT-Creation-Date: 2026-04-11 17:34+0700\n"
+"PO-Revision-Date: \n"
+"Last-Translator: chaiBot and Malee Yamazaki\n"
+"Language-Team: Lao\n"
+"Language: lo\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: DevOn Addon\n"
+
+#: __init__.py:214
+msgid "Addon beeps (High Frequency):"
+msgstr "ສຽງບິບຂອງສ່ວນເສີມ (ຄວາມຖີ່ສູງ):"
+
+#: __init__.py:213
+msgid "Addon beeps (Low Frequency):"
+msgstr "ສຽງບິບຂອງສ່ວນເສີມ (ຄວາມຖີ່ຕ່ຳ):"
+
+#: __init__.py:317
+msgid "Beep announcement interval:"
+msgstr "ໄລຍະຫ່າງການແຈ້ງເຕືອນດ້ວຍສຽງບິບ:"
+
+#: __init__.py:186
+msgid "Cannot save settings. No write permission for configuration directory."
+msgstr "ບໍ່ສາມາດບັນທຶກການຕັ້ງຄ່າໄດ້. ບໍ່ມີສິດໃນການຂຽນລົງໃນໂຟນເດີກຳນົດຄ່າ."
+
+#: __init__.py:225
+msgid "Center"
+msgstr "ກາງ"
+
+#: __init__.py:120
+msgid "Cosine"
+msgstr "ໂຄຊາຍ (Cosine)"
+
+#: __init__.py:130
+msgid "Cubic Root"
+msgstr "ຮາກຂັ້ນສາມ"
+
+#: __init__.py:211
+msgid "Error sounds:"
+msgstr "ສຽງແຈ້ງເຕືອນຂໍ້ຜິດພາດ:"
+
+#: __init__.py:123
+msgid "Exponential"
+msgstr "ເອັກໂປເນນຊຽວ (Exponential)"
+
+#: __init__.py:251
+msgid "Fade algorithm:"
+msgstr "ອັລກໍຣິດທຶມການປັບສຽງຄ່ອຍໆ (Fade):"
+
+#: __init__.py:197
+#: __init__.py:439
+msgid "Failed to save settings. Please check permissions or config path."
+msgstr "ບັນທຶກການຕັ້ງຄ່າບໍ່ສຳເລັດ. ກະລຸນາກວດສອບສິດການເຂົ້າເຖິງ ຫຼື ເສັ້ນທາງໄຟລ໌."
+
+#: __init__.py:357
+#: __init__.py:403
+msgid "Frequency Range Error"
+msgstr "ຂໍ້ຜິດພາດຊ່ວງຄວາມຖີ່"
+
+#: __init__.py:121
+msgid "Gaussian"
+msgstr "ກາວສ່ຽນ (Gaussian)"
+
+#: __init__.py:128
+msgid "Half Sine"
+msgstr "ເຄິ່ງຊາຍ (Half Sine)"
+
+#: __init__.py:225
+msgid "Left"
+msgstr "ຊ້າຍ"
+
+#: __init__.py:227
+msgid "Left to Right"
+msgstr "ຈາກຊ້າຍໄປຂວາ"
+
+#: __init__.py:122
+msgid "Linear"
+msgstr "ລີເນຍ (Linear)"
+
+#: __init__.py:124
+msgid "Logarithmic"
+msgstr "ໂລກາຣິດທຶມ (Logarithmic)"
+
+#: __init__.py:272
+msgid "Master volume (%):"
+msgstr "ລະດັບສຽງຫຼັກ (%):"
+
+#: __init__.py:297
+msgid "Maximum frequency:"
+msgstr "ຄວາມຖີ່ສູງສຸດ:"
+
+#: __init__.py:356
+#: __init__.py:402
+msgid "Minimum frequency must be less than maximum frequency."
+msgstr "ຄວາມຖີ່ຕ່ຳສຸດຕ້ອງນ້ອຍກວ່າຄວາມຖີ່ສູງສຸດ."
+
+#: __init__.py:287
+msgid "Minimum frequency:"
+msgstr "ຄວາມຖີ່ຕ່ຳສຸດ:"
+
+#: __init__.py:333
+msgid "Mixed mode (speech + beep)"
+msgstr "ໂໝດປະສົມ (ສຽງເວົ້າ + ສຽງບິບ)"
+
+#: __init__.py:683
+msgid "Open SoundAlign settings (single tap) or toggle SoundAlign on/off (double tap)"
+msgstr "ເປີດການຕັ້ງຄ່າ SoundAlign (ແຕະໜຶ່ງຄັ້ງ) ຫຼື ເປີດ/ປິດ SoundAlign (ແຕະສອງຄັ້ງ)"
+
+#: __init__.py:94
+msgid "Original Tone Beep"
+msgstr "ສຽງບິບໂທນຕົ້ນສະບັບ"
+
+#: __init__.py:391
+msgid "Please select valid minimum and maximum frequencies."
+msgstr "ກະລຸນາເລືອກຄວາມຖີ່ຕ່ຳສຸດ ແລະ ສູງສຸດທີ່ຖືກຕ້ອງ."
+
+#: __init__.py:215
+msgid "Progress indicator:"
+msgstr "ຕົວບົ່ງຊີ້ຄວາມຄືບໜ້າ:"
+
+#: __init__.py:665
+msgid "Progress test not available. Pyaudio not imported."
+msgstr "ບໍ່ສາມາດທົດສອບຄວາມຄືບໜ້າໄດ້. ບໍ່ພົບ Pyaudio."
+
+#: __init__.py:239
+msgid "Progress tone:"
+msgstr "ສຽງບົ່ງຊີ້ຄວາມຄືບໜ້າ:"
+
+#: __init__.

@@ -1,0 +1,226 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: soundAlign 2026.4.3\n"
+"Report-Msgid-Bugs-To: chaicm75@gmail.com\n"
+"POT-Creation-Date: 2026-04-11 17:34+0700\n"
+"PO-Revision-Date: \n"
+"Last-Translator: chaiBot and Malee Yamazaki\n"
+"Language-Team: Italian\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: DevOn Addon\n"
+
+#: __init__.py:214
+msgid "Addon beeps (High Frequency):"
+msgstr "Segnali acustici addon (Alta frequenza):"
+
+#: __init__.py:213
+msgid "Addon beeps (Low Frequency):"
+msgstr "Segnali acustici addon (Bassa frequenza):"
+
+#: __init__.py:317
+msgid "Beep announcement interval:"
+msgstr "Intervallo annuncio segnale acustico:"
+
+#: __init__.py:186
+msgid "Cannot save settings. No write permission for configuration directory."
+msgstr "Impossibile salvare le impostazioni. Nessun permesso di scrittura per la cartella di configurazione."
+
+#: __init__.py:225
+msgid "Center"
+msgstr "Centro"
+
+#: __init__.py:120
+msgid "Cosine"
+msgstr "Coseno"
+
+#: __init__.py:130
+msgid "Cubic Root"
+msgstr "Radice cubica"
+
+#: __init__.py:211
+msgid "Error sounds:"
+msgstr "Suoni di errore:"
+
+#: __init__.py:123
+msgid "Exponential"
+msgstr "Esponenziale"
+
+#: __init__.py:251
+msgid "Fade algorithm:"
+msgstr "Algoritmo di dissolvenza:"
+
+#: __init__.py:197
+#: __init__.py:439
+msgid "Failed to save settings. Please check permissions or config path."
+msgstr "Salvataggio impostazioni fallito. Verificare i permessi o il percorso di configurazione."
+
+#: __init__.py:357
+#: __init__.py:403
+msgid "Frequency Range Error"
+msgstr "Errore intervallo di frequenza"
+
+#: __init__.py:121
+msgid "Gaussian"
+msgstr "Gaussiana"
+
+#: __init__.py:128
+msgid "Half Sine"
+msgstr "Mezza sinusoide"
+
+#: __init__.py:225
+msgid "Left"
+msgstr "Sinistra"
+
+#: __init__.py:227
+msgid "Left to Right"
+msgstr "Da sinistra a destra"
+
+#: __init__.py:122
+msgid "Linear"
+msgstr "Lineare"
+
+#: __init__.py:124
+msgid "Logarithmic"
+msgstr "Logaritmica"
+
+#: __init__.py:272
+msgid "Master volume (%):"
+msgstr "Volume master (%):"
+
+#: __init__.py:297
+msgid "Maximum frequency:"
+msgstr "Frequenza massima:"
+
+#: __init__.py:356
+#: __init__.py:402
+msgid "Minimum frequency must be less than maximum frequency."
+msgstr "La frequenza minima deve essere inferiore alla frequenza massima."
+
+#: __init__.py:287
+msgid "Minimum frequency:"
+msgstr "Frequenza minima:"
+
+#: __init__.py:333
+msgid "Mixed mode (speech + beep)"
+msgstr "Modalità mista (voce + segnale acustico)"
+
+#: __init__.py:683
+msgid "Open SoundAlign settings (single tap) or toggle SoundAlign on/off (double tap)"
+msgstr "Apri impostazioni SoundAlign (tocco singolo) o attiva/disattiva SoundAlign (tocco doppio)"
+
+#: __init__.py:94
+msgid "Original Tone Beep"
+msgstr "Segnale acustico tono originale"
+
+#: __init__.py:391
+msgid "Please select valid minimum and maximum frequencies."
+msgstr "Selezionare frequenze minime e massime valide."
+
+#: __init__.py:215
+msgid "Progress indicator:"
+msgstr "Indicatore di progresso:"
+
+#: __init__.py:665
+msgid "Progress test not available. Pyaudio not imported."
+msgstr "Test di progresso non disponibile. Pyaudio non importato."
+
+#: __init__.py:239
+msgid "Progress tone:"
+msgstr "Tono di progresso:"
+
+#: __init__.py:131
+msgid "Quadratic"
+msgstr "Quadratica"
+
+#: __init__.py:127
+msgid "Quarter Sine"
+msgstr "Quarto di sinusoide"
+
+#: __init__.py:225
+msgid "Right"
+msgstr "Destra"
+
+#: __init__.py:227
+msgid "Right to Left"
+msgstr "Da destra a sinistra"
+
+#: __init__.py:125
+msgid "S-Curve"
+msgstr "Curva a S"
+
+#: __init__.py:187
+#: __init__.py:198
+#: __init__.py:440
+msgid "Save Error"
+msgstr "Errore di salvataggio"
+
+#: __init__.py:92
+msgid "Sawtooth"
+msgstr "Dente di sega"
+
+#: __init__.py:392
+msgid "Settings Error"
+msgstr "Errore impostazioni"
+
+#: __init__.py:90
+#: __init__.py:126
+msgid "Sine"
+msgstr "Sinusoide"
+
+#: __init__.py:336
+msgid "Smooth panning (reduces cracking)"
+msgstr "Panoramica fluida (riduce i crepitii)"
+
+#: __init__.py:212
+msgid "Sound effects:"
+msgstr "Effetti sonori:"
+
+#: __init__.py:204
+#: __init__.py:446
+msgid "SoundAlign"
+msgstr "SoundAlign"
+
+#: __init__.py:703
+msgid "SoundAlign off"
+msgstr "SoundAlign disattivato"
+
+#: __init__.py:701
+msgid "SoundAlign on"
+msgstr "SoundAlign attivato"
+
+#: __init__.py:307
+msgid "Speech announcement interval:"
+msgstr "Intervallo annuncio vocale:"
+
+#: __init__.py:93
+msgid "Square"
+msgstr "Quadra"
+
+#: __init__.py:129
+msgid "Square Root"
+msgstr "Radice quadrata"
+
+#: __init__.py:342
+msgid "Test All Settings"
+msgstr "Testa tutte le impostazioni"
+
+#: __init__.py:326
+msgid "Time-based announcement (seconds, 0=disabled):"
+msgstr "Annuncio basato sul tempo (secondi, 0=disattivato):"
+
+#: __init__.py:91
+msgid "Triangle"
+msgstr "Triangolare"
+
+#: __init__.py:263
+msgid "Volume:"
+msgstr "Volume:"
+
+#: __init__.py:575
+#: __init__.py:582
+#: __init__.py:588
+msgid "{percent}% complete"
+msgstr "{percent}% completato"
