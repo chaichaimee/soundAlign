@@ -8,6 +8,7 @@ import os
 import sys
 import array
 import re
+import importlib
 from logHandler import log
 
 LEFT = 0
@@ -60,6 +61,7 @@ class SoundProcessor:
 			try:
 				self.p = self.pyaudio.PyAudio()
 				self.start_player_thread()
+				log.info("SoundProcessor: PyAudio initialized successfully")
 			except Exception as e:
 				log.error(f"SoundProcessor: Failed to initialize PyAudio: {e}")
 				self.pyaudio = None
@@ -104,6 +106,7 @@ class SoundProcessor:
 					frames_per_buffer=CHUNK_SIZE
 				)
 				self.pa_stream.start_stream()
+				log.info("SoundProcessor: Audio stream opened successfully")
 			except Exception as e:
 				log.error(f"SoundProcessor: Failed to open audio stream: {e}")
 				self.is_running = False

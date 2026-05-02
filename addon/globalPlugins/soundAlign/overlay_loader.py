@@ -7,6 +7,7 @@
 import os
 import sys
 import shutil
+import importlib
 
 def _is_64bit_process():
 	return sys.maxsize > 2**32
@@ -24,6 +25,14 @@ def _add_dll_directory(path):
 def _log(msg):
 	import builtins
 	builtins.print(f"[overlay_loader] {msg}")
+
+def _remove_module_from_cache(module_name):
+	try:
+		if module_name in sys.modules:
+			del sys.modules[module_name]
+			_log(f"Removed {module_name} from module cache")
+	except Exception as e:
+		_log(f"Failed to remove {module_name} from cache: {e}")
 
 def overlayBinaries():
 	base_dir = os.path.dirname(os.path.abspath(__file__))
@@ -61,14 +70,29 @@ def overlayBinaries():
 				_log(f"Removing {arch_path}")
 				shutil.rmtree(arch_path, ignore_errors=True)
 
-	# --- 4. Add tools directory to sys.path and DLL search path ---
+	# --- 4. Add tools directory and pyaudiowpatch package to sys.path ---
 	if tools_dir not in sys.path:
 		sys.path.insert(0, tools_dir)
 		_log(f"Added {tools_dir} to sys.path")
 
-	_add_dll_directory(tools_dir)
 	if os.path.isdir(dst_pkg_dir):
-		_add_dll_directory(dst_pkg_dir)  # in case there are .dll files in the package
+		if dst_pkg_dir not in sys.path:
+			sys.path.insert(0, dst_pkg_dir)
+			_log(f"Added {dst_pkg_dir} to sys.path")
+		_add_dll_directory(dst_pkg_dir)
+
+		# --- 5. Pre-clean module cache for pyaudiowpatch and its dependencies ---
+		for module_name in ['pyaudiowpatch', '_portaudiowpatch']:
+			_remove_module_from_cache(module_name)
+
+		# --- 6. Pre-import pyaudiowpatch to verify it works ---
+		try:
+			import pyaudiowpatch
+			_log("pyaudiowpatch pre-import successful")
+		except ImportError as e:
+			_log(f"WARNING: pyaudiowpatch pre-import failed: {e}")
+		except Exception as e:
+			_log(f"WARNING: Unexpected error during pyaudiowpatch pre-import: {e}")
 
 	_log("overlayBinaries completed.")
 

@@ -131,12 +131,6 @@ FADE_NAMES = {
 	"quadratic": _("Quadratic")
 }
 
-try:
-	import pyaudiowpatch as pyaudio
-except ImportError as e:
-	log.error(f"SoundAlign: Failed to import pyaudiowpatch: {e}")
-	pyaudio = None
-
 def loadSettings():
 	old_settings_path = os.path.join(config.getUserDefaultConfigPath(), "soundAlign.json")
 	new_settings_path = os.path.join(config.getUserDefaultConfigPath(), "ChaiChaimee", "soundAlign.json")
@@ -454,11 +448,31 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 		self.originalWinsoundBeep = winsound.Beep if winsound is not None else None
 		
 		self.sound_processor = None
-		if pyaudio:
+		
+		# Try to import pyaudiowpatch with improved path handling
+		pyaudio_module = None
+		try:
+			# Ensure tools/pyaudiowpatch is in sys.path
+			tools_dir = os.path.join(os.path.dirname(__file__), "tools")
+			pkg_dir = os.path.join(tools_dir, "pyaudiowpatch")
+			if os.path.isdir(pkg_dir) and pkg_dir not in sys.path:
+				sys.path.insert(0, pkg_dir)
+				log.info(f"SoundAlign: Added {pkg_dir} to sys.path")
+			
+			import pyaudiowpatch as pyaudio_module
+			log.info("SoundAlign: pyaudiowpatch imported successfully")
+		except ImportError as e:
+			log.error(f"SoundAlign: Failed to import pyaudiowpatch: {e}")
+			pyaudio_module = None
+		
+		if pyaudio_module:
 			try:
-				self.sound_processor = SoundProcessor(self, pyaudio)
+				self.sound_processor = SoundProcessor(self, pyaudio_module)
+				log.info("SoundAlign: SoundProcessor initialized successfully")
 			except Exception as e:
 				log.error(f"SoundAlign: Failed to initialize SoundProcessor: {e}")
+		else:
+			log.warning("SoundAlign: PyAudio not available, progress sounds disabled. Using fallback beep method.")
 		
 		self.last_spoken_percent = -1
 		self.last_beep_percent = -1
