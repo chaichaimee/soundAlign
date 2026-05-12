@@ -61,12 +61,11 @@ class SoundProcessor:
 			try:
 				self.p = self.pyaudio.PyAudio()
 				self.start_player_thread()
-				log.info("SoundProcessor: PyAudio initialized successfully")
 			except Exception as e:
-				log.error(f"SoundProcessor: Failed to initialize PyAudio: {e}")
+				log.error(f"SoundProcessor: PyAudio init failed: {e}")
 				self.pyaudio = None
 		else:
-			log.error("SoundProcessor: PyAudio not available, sound generation disabled.")
+			log.error("SoundProcessor: PyAudio not available")
 
 	def start_player_thread(self):
 		with self._lock:
@@ -106,9 +105,8 @@ class SoundProcessor:
 					frames_per_buffer=CHUNK_SIZE
 				)
 				self.pa_stream.start_stream()
-				log.info("SoundProcessor: Audio stream opened successfully")
 			except Exception as e:
-				log.error(f"SoundProcessor: Failed to open audio stream: {e}")
+				log.error(f"SoundProcessor: Audio stream failed: {e}")
 				self.is_running = False
 				return
 
@@ -125,7 +123,7 @@ class SoundProcessor:
 			except queue.Empty:
 				continue
 			except Exception as e:
-				log.error(f"SoundProcessor: Error in audio player loop: {e}")
+				log.error(f"SoundProcessor: Player loop error: {e}")
 				break
 
 	def flush_queue(self):
@@ -144,7 +142,7 @@ class SoundProcessor:
 				if match:
 					return int(match.group(1))
 		except Exception as e:
-			log.error(f"SoundProcessor: Error getting progress percent: {e}")
+			log.error(f"SoundProcessor: Percent parse error: {e}")
 		return None
 
 	def play_progress_sound(self, percent, direction):
@@ -174,7 +172,7 @@ class SoundProcessor:
 		try:
 			self.audio_queue.put(fade_samples.tobytes())
 		except Exception as e:
-			log.error(f"SoundProcessor: Error queuing progress sound: {e}")
+			log.error(f"SoundProcessor: Queue error: {e}")
 
 	def _generate_tone(self, frequency, duration):
 		samples = array.array('h')

@@ -6,15 +6,9 @@ import sys
 import os
 import shutil
 import threading
-import types
-import math
-import array
 import time
 import json
 import re
-import queueHandler
-import eventHandler
-from queue import Queue
 import globalPluginHandler
 import gui
 import wx
@@ -30,12 +24,10 @@ import scriptHandler
 from scriptHandler import script
 import nvwave
 import api
-import controlTypes
 import UIAHandler
 from NVDAObjects import NVDAObject
 import winsound
-import comtypes
-import comtypes.client
+from core import callLater
 
 from . import overlay_loader
 
@@ -157,14 +149,13 @@ def loadSettings():
 				try:
 					os.makedirs(os.path.dirname(new_settings_path), exist_ok=True)
 					shutil.move(old_settings_path, new_settings_path)
-					log.info(f"SoundAlign: Migrated settings from {old_settings_path} to {new_settings_path}")
 				except Exception as e:
-					log.error(f"SoundAlign: Failed to migrate settings to new location: {e}")
+					log.error(f"SoundAlign: Failed to migrate settings: {e}")
 		except json.JSONDecodeError as e:
-			log.error(f"SoundAlign: Error loading settings: JSON file is corrupted or empty ({e}). Using default settings.")
+			log.error(f"SoundAlign: JSON corrupt ({e})")
 			saveSettings(DEFAULT_SETTINGS)
 		except Exception as e:
-			log.error(f"SoundAlign: Error loading settings: {e}")
+			log.error(f"SoundAlign: Load error: {e}")
 	else:
 		saveSettings(settings)
 	
@@ -186,7 +177,7 @@ def saveSettings(settings):
 			json.dump(settings, f, ensure_ascii=False, indent=4)
 		return True
 	except Exception as e:
-		log.error(f"SoundAlign: Error saving settings: {e}")
+		log.error(f"SoundAlign: Save error: {e}")
 		gui.messageBox(
 			_("Failed to save settings. Please check permissions or config path."),
 			_("Save Error"),
@@ -359,22 +350,11 @@ class SoundAlignSettingsPanel(gui.settingsDialogs.SettingsPanel):
 			return
 		
 		instance = GlobalPlugin.instance
+		if hasattr(instance, '_test_running') and instance._test_running:
+			ui.message(_("Test already in progress"))
+			return
 		
-		tests_beep = [
-			("errorDirection", ERROR_WARNING, 600, 300),
-			("effectsDirection", SOUND_EFFECTS, 1000, 100),
-			("addonBeepDirectionA", ADDON_BEEP, 500, 500),
-			("addonBeepDirectionB", ADDON_BEEP, 1500, 500),
-		]
-
-		for key, sound_type, freq, duration in tests_beep:
-			direction = self.controls[key].GetSelection()
-			instance.testBeep(freq, duration, direction, sound_type)
-			time.sleep(0.6)
-		
-		progress_direction = self.controls["progressDirection"].GetSelection()
-		waveform_type = self.waveformControl.GetSelection()
-		instance.testProgress(progress_direction, waveform_type)
+		instance.start_test_sequence()
 
 	def isValid(self):
 		min_freq_index = self.minFrequencyControl.GetSelection()
@@ -449,18 +429,14 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 		
 		self.sound_processor = None
 		
-		# Try to import pyaudiowpatch with improved path handling
 		pyaudio_module = None
 		try:
-			# Ensure tools/pyaudiowpatch is in sys.path
 			tools_dir = os.path.join(os.path.dirname(__file__), "tools")
 			pkg_dir = os.path.join(tools_dir, "pyaudiowpatch")
 			if os.path.isdir(pkg_dir) and pkg_dir not in sys.path:
 				sys.path.insert(0, pkg_dir)
-				log.info(f"SoundAlign: Added {pkg_dir} to sys.path")
 			
 			import pyaudiowpatch as pyaudio_module
-			log.info("SoundAlign: pyaudiowpatch imported successfully")
 		except ImportError as e:
 			log.error(f"SoundAlign: Failed to import pyaudiowpatch: {e}")
 			pyaudio_module = None
@@ -468,11 +444,10 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 		if pyaudio_module:
 			try:
 				self.sound_processor = SoundProcessor(self, pyaudio_module)
-				log.info("SoundAlign: SoundProcessor initialized successfully")
 			except Exception as e:
 				log.error(f"SoundAlign: Failed to initialize SoundProcessor: {e}")
 		else:
-			log.warning("SoundAlign: PyAudio not available, progress sounds disabled. Using fallback beep method.")
+			log.warning("SoundAlign: PyAudio not available, progress sounds disabled")
 		
 		self.last_spoken_percent = -1
 		self.last_beep_percent = -1
@@ -483,6 +458,12 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 		self.gesture_count = 0
 		self.double_tap_threshold = 0.3
 		self._settings_dialog_open = False
+		
+		self._test_running = False
+		self._test_sequence = []
+		self._test_index = 0
+		self._test_progress_values = []
+		self._test_progress_idx = 0
 		
 		self.setupHooks()
 		self.registerSettingsPanel()
@@ -509,9 +490,9 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 					if winsound is not None and hasattr(addon, 'module') and hasattr(addon.module, 'winsound'):
 						addon.module.winsound.Beep = self.safeBeepWinsound
 				except Exception as e:
-					log.error(f"SoundAlign: Failed to hook tones.beep or winsound.Beep for add-on {addon.name}: {e}")
+					log.error(f"SoundAlign: Hook failed for {addon.name}: {e}")
 		except Exception as e:
-			log.error(f"SoundAlign: Error setting up hooks: {e}")
+			log.error(f"SoundAlign: Setup hooks error: {e}")
 
 	def safeBeep(self, hz, length, left=50, right=50, *args, **kwargs):
 		if not self.settings.get("isActive", True):
@@ -534,7 +515,19 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 				
 				self.handleProgressAnnouncements(percent, obj)
 				
-				pan_pos = percent / 100.0 if direction == LEFT_TO_RIGHT else 1.0 - (percent / 100.0) if direction == RIGHT_TO_LEFT else 0.5
+				if direction == LEFT:
+					pan_pos = 0.0
+				elif direction == CENTER:
+					pan_pos = 0.5
+				elif direction == RIGHT:
+					pan_pos = 1.0
+				elif direction == LEFT_TO_RIGHT:
+					pan_pos = percent / 100.0
+				elif direction == RIGHT_TO_LEFT:
+					pan_pos = 1.0 - (percent / 100.0)
+				else:
+					pan_pos = 0.5
+				
 				leftVol_dynamic = (1.0 - pan_pos) * 100
 				rightVol_dynamic = pan_pos * 100
 				master = self.settings.get("masterVolume", 100) / 100.0
@@ -554,7 +547,7 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 							self.sound_processor.play_progress_sound(percent, direction)
 							sound_context.last_progress_value = percent
 					except Exception as e:
-						log.error(f"SoundAlign: Error playing progress sound: {e}. Falling back to original beep.")
+						log.error(f"SoundAlign: Progress sound error: {e}")
 						self.originalBeep(hz, length, left=left, right=right)
 		else:
 			leftVol, rightVol = self.getBalance(direction)
@@ -651,32 +644,49 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 				self.sound_processor.max_frequency = self.settings.get("maxFrequency", 1760)
 				self.sound_processor.smooth_panning = self.settings.get("smoothPanning", True)
 				if not self.sound_processor.player_thread or not self.sound_processor.player_thread.is_alive():
-					log.warning("SoundAlign: Player thread not running, restarting")
+					log.warning("SoundAlign: Player thread dead, restarting")
 					self.sound_processor.start_player_thread()
-			else:
-				log.warning("SoundAlign: No sound processor available for settings application")
 		except Exception as e:
-			log.error(f"SoundAlign: Error applying settings: {e}")
+			log.error(f"SoundAlign: Apply settings error: {e}")
 
-	def testBeep(self, freq, duration, direction, soundType):
+	def start_test_sequence(self):
+		if self._test_running:
+			return
+		self._test_running = True
+		self._test_sequence = [
+			("error", 600, 300, self.settings.get("errorDirection", LEFT), ERROR_WARNING),
+			("effects", 1000, 100, self.settings.get("effectsDirection", LEFT), SOUND_EFFECTS),
+			("addon_beep_low", 500, 500, self.settings.get("addonBeepDirectionA", LEFT), ADDON_BEEP),
+			("addon_beep_high", 1500, 500, self.settings.get("addonBeepDirectionB", RIGHT), ADDON_BEEP),
+		]
+		self._test_index = 0
+		self._run_next_test_beep()
+
+	def _run_next_test_beep(self):
+		if self._test_index >= len(self._test_sequence):
+			progress_direction = self.settings.get("progressDirection", LEFT_TO_RIGHT)
+			waveform_type = self.settings.get("waveformType", 0)
+			self._run_progress_test(progress_direction, waveform_type)
+			return
+		
+		_, freq, duration, direction, sound_type = self._test_sequence[self._test_index]
 		leftVol, rightVol = self.getBalance(direction)
 		master = self.settings.get("masterVolume", 100) / 100.0
 		self.originalBeep(freq, duration, left=int(leftVol*100*master), right=int(rightVol*100*master))
+		self._test_index += 1
+		callLater(600, self._run_next_test_beep)
 
-	def testProgress(self, direction, waveform_type):
+	def _run_progress_test(self, direction, waveform_type):
 		if waveform_type == 4:
-			for i in range(0, 101, 2):
-				hz = self.settings.get("minFrequency") + (i / 100.0) * (self.settings.get("maxFrequency") - self.settings.get("minFrequency"))
-				pan_pos = i / 100.0 if direction == LEFT_TO_RIGHT else 1.0 - (i / 100.0) if direction == RIGHT_TO_LEFT else 0.5
-				leftVol_dynamic = (1.0 - pan_pos) * 100
-				rightVol_dynamic = pan_pos * 100
-				master = self.settings.get("masterVolume", 100) / 100.0
-				self.originalBeep(int(hz), 40, left=int(leftVol_dynamic * master), right=int(rightVol_dynamic * master))
-				time.sleep(0.02)
+			self._test_progress_values = list(range(0, 101, 2))
+			self._test_progress_idx = 0
+			self._test_progress_direction = direction
+			self._run_next_progress_beep()
 		else:
 			if not self.sound_processor:
-				log.error("SoundAlign: Cannot test progress, pyaudio not available.")
+				log.error("SoundAlign: Cannot test progress, pyaudio not available")
 				ui.message(_("Progress test not available. Pyaudio not imported."))
+				self._test_running = False
 				return
 			
 			original_harmonics = self.sound_processor.harmonics
@@ -685,13 +695,60 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 			self.sound_processor.master_volume = self.settings.get("masterVolume", 100) / 100.0
 			
 			self.sound_processor.flush_queue()
-			for i in range(0, 101, 2):
-				percent = i
-				self.sound_processor.play_progress_sound(percent, direction=direction)
-				time.sleep(0.02)
-			
-			self.sound_processor.harmonics = original_harmonics
-			self.sound_processor.master_volume = original_master
+			self._test_progress_values = list(range(0, 101, 2))
+			self._test_progress_idx = 0
+			self._stored_harmonics = original_harmonics
+			self._stored_master = original_master
+			self._test_progress_direction = direction
+			self._run_next_progress_sound()
+
+	def _run_next_progress_beep(self):
+		if self._test_progress_idx >= len(self._test_progress_values):
+			self._test_running = False
+			return
+		percent = self._test_progress_values[self._test_progress_idx]
+		hz = self.settings.get("minFrequency") + (percent / 100.0) * (self.settings.get("maxFrequency") - self.settings.get("minFrequency"))
+		
+		direction = self._test_progress_direction
+		if direction == LEFT:
+			pan_pos = 0.0
+		elif direction == CENTER:
+			pan_pos = 0.5
+		elif direction == RIGHT:
+			pan_pos = 1.0
+		elif direction == LEFT_TO_RIGHT:
+			pan_pos = percent / 100.0
+		elif direction == RIGHT_TO_LEFT:
+			pan_pos = 1.0 - (percent / 100.0)
+		else:
+			pan_pos = 0.5
+		
+		leftVol_dynamic = (1.0 - pan_pos) * 100
+		rightVol_dynamic = pan_pos * 100
+		master = self.settings.get("masterVolume", 100) / 100.0
+		self.originalBeep(int(hz), 40, left=int(leftVol_dynamic * master), right=int(rightVol_dynamic * master))
+		self._test_progress_idx += 1
+		callLater(20, self._run_next_progress_beep)
+
+	def _run_next_progress_sound(self):
+		if self._test_progress_idx >= len(self._test_progress_values):
+			if hasattr(self, '_stored_harmonics'):
+				self.sound_processor.harmonics = self._stored_harmonics
+				self.sound_processor.master_volume = self._stored_master
+			self._test_running = False
+			return
+		percent = self._test_progress_values[self._test_progress_idx]
+		self.sound_processor.play_progress_sound(percent, direction=self._test_progress_direction)
+		self._test_progress_idx += 1
+		callLater(20, self._run_next_progress_sound)
+
+	def testBeep(self, freq, duration, direction, soundType):
+		leftVol, rightVol = self.getBalance(direction)
+		master = self.settings.get("masterVolume", 100) / 100.0
+		self.originalBeep(freq, duration, left=int(leftVol*100*master), right=int(rightVol*100*master))
+
+	def testProgress(self, direction, waveform_type):
+		self._run_progress_test(direction, waveform_type)
 
 	@script(
 		description=_("Open SoundAlign settings (single tap) or toggle SoundAlign on/off (double tap)"),
