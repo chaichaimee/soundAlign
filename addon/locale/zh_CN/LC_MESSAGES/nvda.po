@@ -72,7 +72,7 @@ msgstr "半正弦 (Half Sine)"
 
 #: __init__.py:225
 msgid "Left"
-msgstr "左侧"
+msgstr "左"
 
 #: __init__.py:227
 msgid "Left to Right"
@@ -109,11 +109,11 @@ msgstr "混合模式 (语音 + 提示音)"
 
 #: __init__.py:683
 msgid "Open SoundAlign settings (single tap) or toggle SoundAlign on/off (double tap)"
-msgstr "打开 SoundAlign 设置 (单击) 或切换 SoundAlign 开关 (双击)"
+msgstr "打开 SoundAlign 设置（按一次）或切换 SoundAlign 开关（连按两次）"
 
 #: __init__.py:94
 msgid "Original Tone Beep"
-msgstr "原音提示音"
+msgstr "原始提示音"
 
 #: __init__.py:391
 msgid "Please select valid minimum and maximum frequencies."
@@ -125,7 +125,7 @@ msgstr "进度指示器:"
 
 #: __init__.py:665
 msgid "Progress test not available. Pyaudio not imported."
-msgstr "进度测试不可用。未导入 Pyaudio。"
+msgstr "进度测试不可用。未加载 PyAudio。"
 
 #: __init__.py:239
 msgid "Progress tone:"
@@ -133,7 +133,7 @@ msgstr "进度提示音:"
 
 #: __init__.py:131
 msgid "Quadratic"
-msgstr "二次方 (Quadratic)"
+msgstr "二次 (Quadratic)"
 
 #: __init__.py:127
 msgid "Quarter Sine"
@@ -141,7 +141,7 @@ msgstr "四分之一正弦 (Quarter Sine)"
 
 #: __init__.py:225
 msgid "Right"
-msgstr "右侧"
+msgstr "右"
 
 #: __init__.py:227
 msgid "Right to Left"
@@ -172,7 +172,7 @@ msgstr "正弦波 (Sine)"
 
 #: __init__.py:336
 msgid "Smooth panning (reduces cracking)"
-msgstr "平滑平移 (减少爆音)"
+msgstr "平滑声像移动（减少爆音）"
 
 #: __init__.py:212
 msgid "Sound effects:"
@@ -209,7 +209,7 @@ msgstr "测试所有设置"
 
 #: __init__.py:326
 msgid "Time-based announcement (seconds, 0=disabled):"
-msgstr "基于时间的播报 (秒, 0=禁用):"
+msgstr "按时间播报（秒，0=禁用）:"
 
 #: __init__.py:91
 msgid "Triangle"
