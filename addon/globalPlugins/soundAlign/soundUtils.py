@@ -4,11 +4,8 @@ import threading
 import queue
 import math
 import time
-import os
-import sys
 import array
 import re
-import importlib
 from logHandler import log
 
 LEFT = 0
@@ -32,7 +29,6 @@ CHANNELS = 2
 SAMPLE_WIDTH = 2
 FORMAT = 8
 CHUNK_SIZE = 1024
-
 PAN_BOOST_FACTOR = 1.0
 
 class SoundProcessor:
@@ -55,7 +51,10 @@ class SoundProcessor:
 		self.fade_ratio = 0.5
 		self.last_update_time = time.time()
 		self.last_focus_obj = None
-		self._lock = threading.Lock()
+		self.smooth_panning = True
+		self._lock = threading.RLock()
+		self._percent_cache = {}
+		self._last_cache_cleanup = time.time()
 
 		if self.pyaudio:
 			try:
@@ -79,18 +78,32 @@ class SoundProcessor:
 	def stop(self):
 		with self._lock:
 			self.is_running = False
-			if self.audio_queue.empty():
-				self.audio_queue.put(None)
+			while not self.audio_queue.empty():
+				try:
+					self.audio_queue.get_nowait()
+					self.audio_queue.task_done()
+				except queue.Empty:
+					break
+			self.audio_queue.put(None)
+
 		if self.player_thread and self.player_thread.is_alive():
-			self.player_thread.join(timeout=1.0)
+			self.player_thread.join(timeout=2.0)
 
 		with self._lock:
-			if self.pa_stream and self.pa_stream.is_active():
-				self.pa_stream.stop_stream()
 			if self.pa_stream:
-				self.pa_stream.close()
+				try:
+					if self.pa_stream.is_active():
+						self.pa_stream.stop_stream()
+					self.pa_stream.close()
+				except Exception as e:
+					log.debug(f"SoundProcessor: Stream close error: {e}")
+				self.pa_stream = None
 			if self.pyaudio and hasattr(self, 'p'):
-				self.p.terminate()
+				try:
+					self.p.terminate()
+				except Exception as e:
+					log.debug(f"SoundProcessor: PyAudio terminate error: {e}")
+				self.pyaudio = None
 
 	def _audio_player_loop(self):
 		with self._lock:
@@ -115,7 +128,6 @@ class SoundProcessor:
 				data = self.audio_queue.get(timeout=0.2)
 				if data is None:
 					break
-
 				with self._lock:
 					if self.pa_stream and self.pa_stream.is_active():
 						self.pa_stream.write(data)
@@ -136,13 +148,33 @@ class SoundProcessor:
 					break
 
 	def get_progress_percent(self, obj):
+		if not obj:
+			return None
+
 		try:
-			if obj and hasattr(obj, 'value') and obj.value:
-				match = re.search(r'(\d+)%', obj.value)
-				if match:
-					return int(match.group(1))
+			if time.time() - self._last_cache_cleanup > 60:
+				self._percent_cache.clear()
+				self._last_cache_cleanup = time.time()
+
+			obj_key = id(obj)
+			if obj_key in self._percent_cache:
+				return self._percent_cache[obj_key]
+
+			if hasattr(obj, 'value') and obj.value:
+				value_str = str(obj.value)
+				percent_pos = value_str.find('%')
+				if percent_pos > 0:
+					start = percent_pos - 1
+					while start >= 0 and value_str[start].isdigit():
+						start -= 1
+					start += 1
+					if start < percent_pos:
+						percent_str = value_str[start:percent_pos]
+						percent_val = int(percent_str)
+						self._percent_cache[obj_key] = percent_val
+						return percent_val
 		except Exception as e:
-			log.error(f"SoundProcessor: Percent parse error: {e}")
+			log.debug(f"SoundProcessor: Percent parse error: {e}")
 		return None
 
 	def play_progress_sound(self, percent, direction):
@@ -163,14 +195,14 @@ class SoundProcessor:
 		right_volume = self.volume * pan * PAN_BOOST_FACTOR * self.master_volume
 
 		stereo_samples = array.array('h')
-		for i in range(len(samples)):
-			stereo_samples.append(int(samples[i] * left_volume))
-			stereo_samples.append(int(samples[i] * right_volume))
+		for sample in samples:
+			stereo_samples.append(int(sample * left_volume))
+			stereo_samples.append(int(sample * right_volume))
 
-		fade_samples = self._apply_fade(stereo_samples, self.fade_ratio)
+		faded_samples = self._apply_fade(stereo_samples, self.fade_ratio)
 
 		try:
-			self.audio_queue.put(fade_samples.tobytes())
+			self.audio_queue.put(faded_samples.tobytes())
 		except Exception as e:
 			log.error(f"SoundProcessor: Queue error: {e}")
 
@@ -181,24 +213,24 @@ class SoundProcessor:
 		for i in range(num_samples):
 			t = i / SAMPLE_RATE
 			value = 0.0
-			for j, amplitude in enumerate(self.harmonics):
-				value += amplitude * math.sin(2 * math.pi * frequency * (j + 1) * t)
+			for idx, amplitude in enumerate(self.harmonics):
+				value += amplitude * math.sin(2 * math.pi * frequency * (idx + 1) * t)
 			value = max(min(value, 1.0), -1.0) * 32767
 			samples.append(int(value))
 
 		return samples
 
 	def _apply_fade(self, samples, fade_ratio):
-		fade_samples = array.array('h', samples)
-		fade_length = int(len(samples) * fade_ratio / 2)
+		faded = array.array('h', samples)
+		fade_len = int(len(samples) * fade_ratio / 2)
 
-		for i in range(fade_length):
-			t = i / fade_length if fade_length > 0 else 0
+		for i in range(fade_len):
+			t = i / fade_len if fade_len > 0 else 0
 
 			if self.fade_algorithm == "cosine":
-				fade = 0.5 * (1 - math.cos(math.pi * i / fade_length))
+				fade = 0.5 * (1 - math.cos(math.pi * i / fade_len))
 			elif self.fade_algorithm == "gaussian":
-				fade = math.exp(-((i - fade_length) ** 2) / (2 * (fade_length / 3) ** 2))
+				fade = math.exp(-((i - fade_len) ** 2) / (2 * (fade_len / 3) ** 2))
 			elif self.fade_algorithm == "linear":
 				fade = t
 			elif self.fade_algorithm == "exponential":
@@ -222,7 +254,7 @@ class SoundProcessor:
 			else:
 				fade = t
 
-			fade_samples[i] = int(fade_samples[i] * fade)
-			fade_samples[-(i + 1)] = int(fade_samples[-(i + 1)] * fade)
+			faded[i] = int(faded[i] * fade)
+			faded[-(i + 1)] = int(faded[-(i + 1)] * fade)
 
-		return fade_samples
+		return faded

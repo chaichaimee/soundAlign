@@ -422,6 +422,7 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 	def __init__(self):
 		super(GlobalPlugin, self).__init__()
 		GlobalPlugin.instance = self
+		self._thread_lock = threading.RLock()
 		self.settings = loadSettings()
 		
 		self.originalBeep = tones.beep
@@ -435,7 +436,6 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 			pkg_dir = os.path.join(tools_dir, "pyaudiowpatch")
 			if os.path.isdir(pkg_dir) and pkg_dir not in sys.path:
 				sys.path.insert(0, pkg_dir)
-			
 			import pyaudiowpatch as pyaudio_module
 		except ImportError as e:
 			log.error(f"SoundAlign: Failed to import pyaudiowpatch: {e}")
@@ -464,11 +464,12 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 		self._test_index = 0
 		self._test_progress_values = []
 		self._test_progress_idx = 0
+		self._terminating = False
 		
 		self.setupHooks()
 		self.registerSettingsPanel()
 		
-		wx.CallAfter(self.applySettings)
+		callLater(100, self.applySettings)
 
 	def registerSettingsPanel(self):
 		try:
@@ -563,37 +564,41 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 		self.safeBeep(frequency, duration, left=50, right=50)
 		
 	def handleProgressAnnouncements(self, percent, obj):
-		if not isinstance(percent, (int, float)) or percent < 0:
+		if not isinstance(percent, (int, float)) or percent < 0 or percent > 100:
 			return
+		
+		with self._thread_lock:
+			current_time = time.time()
+			time_interval = self.settings.get("timeBasedInterval", 0)
+			speech_interval = self.settings.get("speechPercentageInterval", 10)
+			beep_interval = self.settings.get("beepPercentageInterval", 5)
+			mixed_mode = self.settings.get("mixedMode", False)
 			
-		current_time = time.time()
-		time_interval = self.settings.get("timeBasedInterval", 0)
-		speech_interval = self.settings.get("speechPercentageInterval", 10)
-		beep_interval = self.settings.get("beepPercentageInterval", 5)
-		mixed_mode = self.settings.get("mixedMode", False)
-		
-		if obj != self.last_progress_object:
-			self.last_progress_object = obj
-			self.last_spoken_percent = -1
-			self.last_beep_percent = -1
-			self.last_time_announced = 0
-		
-		if time_interval > 0 and current_time - self.last_time_announced >= time_interval:
-			ui.message(_("{percent}% complete").format(percent=int(percent)))
-			self.last_time_announced = current_time
-			self.last_spoken_percent = percent
-			return
-		
-		if mixed_mode:
-			if percent % speech_interval == 0 and percent != self.last_spoken_percent:
-				ui.message(_("{percent}% complete").format(percent=int(percent)))
-				self.last_spoken_percent = percent
-			elif percent % beep_interval == 0 and percent != self.last_beep_percent:
-				self.last_beep_percent = percent
-		else:
-			if percent % speech_interval == 0 and percent != self.last_spoken_percent:
-				ui.message(_("{percent}% complete").format(percent=int(percent)))
-				self.last_spoken_percent = percent
+			if obj != self.last_progress_object:
+				self.last_progress_object = obj
+				self.last_spoken_percent = -1
+				self.last_beep_percent = -1
+				self.last_time_announced = 0
+			
+			int_percent = int(percent)
+			
+			if time_interval > 0:
+				if current_time - self.last_time_announced >= time_interval:
+					ui.message(_("{percent}% complete").format(percent=int_percent))
+					self.last_time_announced = current_time
+					self.last_spoken_percent = int_percent
+					return
+			
+			if mixed_mode:
+				if int_percent % speech_interval == 0 and int_percent != self.last_spoken_percent:
+					ui.message(_("{percent}% complete").format(percent=int_percent))
+					self.last_spoken_percent = int_percent
+				elif int_percent % beep_interval == 0 and int_percent != self.last_beep_percent:
+					self.last_beep_percent = int_percent
+			else:
+				if int_percent % speech_interval == 0 and int_percent != self.last_spoken_percent:
+					ui.message(_("{percent}% complete").format(percent=int_percent))
+					self.last_spoken_percent = int_percent
 
 	def getSoundType(self, hz, length):
 		if hz == 600 and length == 300:
@@ -636,7 +641,10 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 			self.settings = loadSettings()
 			if self.sound_processor:
 				waveform_type = self.settings.get("waveformType", 0)
-				self.sound_processor.harmonics = WAVEFORM_MAP.get(waveform_type, TONE_SINE)
+				if waveform_type in WAVEFORM_MAP:
+					self.sound_processor.harmonics = WAVEFORM_MAP[waveform_type]
+				else:
+					self.sound_processor.harmonics = TONE_SINE
 				self.sound_processor.fade_algorithm = self.settings.get("fadeAlgorithm", "cosine")
 				self.sound_processor.volume = self.settings.get("volume", 0.5)
 				self.sound_processor.master_volume = self.settings.get("masterVolume", 100) / 100.0
@@ -669,7 +677,7 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 			self._run_progress_test(progress_direction, waveform_type)
 			return
 		
-		_, freq, duration, direction, sound_type = self._test_sequence[self._test_index]
+		_, freq, duration, direction, _ = self._test_sequence[self._test_index]
 		leftVol, rightVol = self.getBalance(direction)
 		master = self.settings.get("masterVolume", 100) / 100.0
 		self.originalBeep(freq, duration, left=int(leftVol*100*master), right=int(rightVol*100*master))
@@ -690,7 +698,10 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 				return
 			
 			original_harmonics = self.sound_processor.harmonics
-			self.sound_processor.harmonics = WAVEFORM_MAP.get(waveform_type, TONE_SINE)
+			if waveform_type in WAVEFORM_MAP:
+				self.sound_processor.harmonics = WAVEFORM_MAP[waveform_type]
+			else:
+				self.sound_processor.harmonics = TONE_SINE
 			original_master = self.sound_processor.master_volume
 			self.sound_processor.master_volume = self.settings.get("masterVolume", 100) / 100.0
 			
@@ -777,20 +788,15 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 			def handleSingleTap():
 				if self.gesture_count == 1 and not self._settings_dialog_open:
 					self._settings_dialog_open = True
-					wx.CallAfter(self._showSettingsDialog)
+					callLater(100, self._showSettingsDialog)
 				self.gesture_count = 0
 			
-			wx.CallLater(int(self.double_tap_threshold * 1000), handleSingleTap)
+			callLater(int(self.double_tap_threshold * 1000), handleSingleTap)
 
 	def _showSettingsDialog(self):
+		if self._settings_dialog_open is False:
+			return
 		try:
-			if hasattr(gui.settingsDialogs.NVDASettingsDialog, '_instances'):
-				for dlg in gui.settingsDialogs.NVDASettingsDialog._instances:
-					if dlg and dlg.IsShown():
-						dlg.Raise()
-						self._settings_dialog_open = False
-						return
-			
 			gui.mainFrame.popupSettingsDialog(
 				gui.settingsDialogs.NVDASettingsDialog,
 				SoundAlignSettingsPanel
@@ -798,17 +804,32 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 		except Exception as e:
 			log.error(f"SoundAlign: Failed to show settings dialog: {e}")
 		finally:
-			wx.CallLater(500, self._resetSettingsDialogFlag)
+			callLater(500, self._resetSettingsDialogFlag)
 
 	def _resetSettingsDialogFlag(self):
 		self._settings_dialog_open = False
 
 	def terminate(self):
-		tones.beep = self.originalBeep
-		if winsound is not None:
-			winsound.Beep = self.originalWinsoundBeep
+		if self._terminating:
+			return
+		self._terminating = True
+		
+		try:
+			tones.beep = self.originalBeep
+		except Exception as e:
+			log.debug(f"SoundAlign: Restore tones.beep error: {e}")
+		
+		try:
+			if winsound is not None and self.originalWinsoundBeep:
+				winsound.Beep = self.originalWinsoundBeep
+		except Exception as e:
+			log.debug(f"SoundAlign: Restore winsound.Beep error: {e}")
 		
 		if self.sound_processor:
-			self.sound_processor.stop()
+			try:
+				self.sound_processor.stop()
+			except Exception as e:
+				log.error(f"SoundAlign: SoundProcessor stop error: {e}")
+			self.sound_processor = None
 		
 		GlobalPlugin.instance = None
