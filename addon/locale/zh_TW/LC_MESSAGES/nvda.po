@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: soundAlign 2026.4.3\n"
+"Project-Id-Version: soundAlign 2026.8.5\n"
 "Report-Msgid-Bugs-To: chaicm75@gmail.com\n"
-"POT-Creation-Date: 2026-04-11 17:34+0700\n"
+"POT-Creation-Date: 2026-08-06 14:04+0700\n"
 "PO-Revision-Date: \n"
 "Last-Translator: chaiBot and Malee Yamazaki\n"
 "Language-Team: Chinese (Traditional)\n"
@@ -12,215 +12,238 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: DevOn Addon\n"
 
-#: __init__.py:214
+#: __init__.py:424
+msgid "Add reverb to progress tones"
+msgstr "為進度提示音加入殘響效果"
+
+#: __init__.py:278
 msgid "Addon beeps (High Frequency):"
-msgstr "元件提示音 (高頻):"
+msgstr "附加元件嗶聲（高頻）:"
 
-#: __init__.py:213
+#: __init__.py:276
 msgid "Addon beeps (Low Frequency):"
-msgstr "元件提示音 (低頻):"
+msgstr "附加元件嗶聲（低頻）:"
 
-#: __init__.py:317
+#: __init__.py:277
+msgid "Addon beeps (Medium Frequency):"
+msgstr "附加元件嗶聲（中頻）:"
+
+#: __init__.py:205
+msgid "Balanced (recommended)"
+msgstr "平衡（建議）"
+
+#: __init__.py:404
 msgid "Beep announcement interval:"
-msgstr "提示音播報間隔:"
+msgstr "嗶聲播報間隔:"
 
-#: __init__.py:186
+#: __init__.py:255
 msgid "Cannot save settings. No write permission for configuration directory."
-msgstr "無法儲存設定。沒有設定目錄的寫入權限。"
+msgstr "無法儲存設定。設定目錄沒有寫入權限。"
 
-#: __init__.py:225
+#: __init__.py:296
+#: __init__.py:301
 msgid "Center"
 msgstr "置中"
 
-#: __init__.py:120
+#: __init__.py:150
 msgid "Cosine"
-msgstr "餘弦 (Cosine)"
+msgstr "餘弦"
 
-#: __init__.py:130
+#: __init__.py:160
 msgid "Cubic Root"
-msgstr "立方根 (Cubic Root)"
+msgstr "立方根"
 
-#: __init__.py:211
-msgid "Error sounds:"
-msgstr "錯誤提示音:"
+#: __init__.py:204
+msgid "Custom (keep my current settings)"
+msgstr "自訂（保留我目前的設定）"
 
-#: __init__.py:123
+#: __init__.py:153
 msgid "Exponential"
-msgstr "指數 (Exponential)"
+msgstr "指數"
 
-#: __init__.py:251
+#: __init__.py:333
 msgid "Fade algorithm:"
-msgstr "淡入淡出演算法:"
+msgstr "淡出演算法:"
 
-#: __init__.py:197
-#: __init__.py:439
+#: __init__.py:266
+#: __init__.py:586
 msgid "Failed to save settings. Please check permissions or config path."
 msgstr "儲存設定失敗。請檢查權限或設定路徑。"
 
-#: __init__.py:357
-#: __init__.py:403
+#: __init__.py:505
+#: __init__.py:546
 msgid "Frequency Range Error"
 msgstr "頻率範圍錯誤"
 
-#: __init__.py:121
+#: __init__.py:151
 msgid "Gaussian"
-msgstr "高斯 (Gaussian)"
+msgstr "高斯"
 
-#: __init__.py:128
+#: __init__.py:158
 msgid "Half Sine"
-msgstr "半正弦 (Half Sine)"
+msgstr "半正弦"
 
-#: __init__.py:225
+#: __init__.py:296
+#: __init__.py:301
 msgid "Left"
-msgstr "左側"
+msgstr "左"
 
-#: __init__.py:227
+#: __init__.py:301
 msgid "Left to Right"
-msgstr "從左到右"
+msgstr "左到右"
 
-#: __init__.py:122
+#: __init__.py:152
 msgid "Linear"
-msgstr "線性 (Linear)"
+msgstr "線性"
 
-#: __init__.py:124
+#: __init__.py:154
 msgid "Logarithmic"
-msgstr "對數 (Logarithmic)"
+msgstr "對數"
 
-#: __init__.py:272
+#: __init__.py:354
 msgid "Master volume (%):"
-msgstr "主音量 (%):"
+msgstr "主音量（%）:"
 
-#: __init__.py:297
+#: __init__.py:384
 msgid "Maximum frequency:"
 msgstr "最大頻率:"
 
-#: __init__.py:356
-#: __init__.py:402
+#: __init__.py:504
+#: __init__.py:545
 msgid "Minimum frequency must be less than maximum frequency."
 msgstr "最小頻率必須小於最大頻率。"
 
-#: __init__.py:287
+#: __init__.py:374
 msgid "Minimum frequency:"
 msgstr "最小頻率:"
 
-#: __init__.py:333
+#: __init__.py:420
 msgid "Mixed mode (speech + beep)"
-msgstr "混合模式 (語音 + 提示音)"
+msgstr "混合模式（語音 + 嗶聲）"
 
-#: __init__.py:683
+#: __init__.py:930
 msgid "Open SoundAlign settings (single tap) or toggle SoundAlign on/off (double tap)"
-msgstr "開啟 SoundAlign 設定 (單擊) 或切換 SoundAlign 開關 (雙擊)"
+msgstr "開啟 SoundAlign 設定（單擊）或切換 SoundAlign 開/關（雙擊）"
 
-#: __init__.py:94
+#: __init__.py:124
 msgid "Original Tone Beep"
-msgstr "原音提示音"
+msgstr "原始音調嗶聲"
 
-#: __init__.py:391
+#: __init__.py:534
 msgid "Please select valid minimum and maximum frequencies."
-msgstr "請選擇有效的最小和最大頻率。"
+msgstr "請選擇有效的最大與最小頻率。"
 
-#: __init__.py:215
+#: __init__.py:303
 msgid "Progress indicator:"
 msgstr "進度指示器:"
 
-#: __init__.py:665
-msgid "Progress test not available. Pyaudio not imported."
-msgstr "進度測試不可用。未匯入 Pyaudio。"
+#: __init__.py:312
+msgid "Progress sound preset:"
+msgstr "進度音效預設:"
 
-#: __init__.py:239
+#: __init__.py:875
+msgid "Progress test not available. Audio output could not be initialized."
+msgstr "進度測試無法使用。無法初始化音訊輸出。"
+
+#: __init__.py:321
 msgid "Progress tone:"
 msgstr "進度提示音:"
 
-#: __init__.py:131
+#: __init__.py:207
+msgid "Prominent / clear"
+msgstr "突出 / 清晰"
+
+#: __init__.py:161
 msgid "Quadratic"
-msgstr "二次方 (Quadratic)"
+msgstr "二次"
 
-#: __init__.py:127
+#: __init__.py:157
 msgid "Quarter Sine"
-msgstr "四分之一正弦 (Quarter Sine)"
+msgstr "四分之一正弦"
 
-#: __init__.py:225
+#: __init__.py:296
+#: __init__.py:301
 msgid "Right"
-msgstr "右側"
+msgstr "右"
 
-#: __init__.py:227
+#: __init__.py:301
 msgid "Right to Left"
-msgstr "從右到左"
+msgstr "右到左"
 
-#: __init__.py:125
+#: __init__.py:155
 msgid "S-Curve"
-msgstr "S 曲線 (S-Curve)"
+msgstr "S 曲線"
 
-#: __init__.py:187
-#: __init__.py:198
-#: __init__.py:440
+#: __init__.py:256
+#: __init__.py:267
+#: __init__.py:587
 msgid "Save Error"
 msgstr "儲存錯誤"
 
-#: __init__.py:92
+#: __init__.py:122
 msgid "Sawtooth"
-msgstr "鋸齒波 (Sawtooth)"
+msgstr "鋸齒波"
 
-#: __init__.py:392
+#: __init__.py:535
 msgid "Settings Error"
 msgstr "設定錯誤"
 
-#: __init__.py:90
-#: __init__.py:126
+#: __init__.py:120
+#: __init__.py:156
 msgid "Sine"
-msgstr "正弦波 (Sine)"
+msgstr "正弦"
 
-#: __init__.py:336
-msgid "Smooth panning (reduces cracking)"
-msgstr "平滑平移 (減少爆音)"
-
-#: __init__.py:212
-msgid "Sound effects:"
-msgstr "音效:"
-
-#: __init__.py:204
-#: __init__.py:446
+#: __init__.py:282
+#: __init__.py:593
 msgid "SoundAlign"
 msgstr "SoundAlign"
 
-#: __init__.py:703
+#: __init__.py:950
 msgid "SoundAlign off"
 msgstr "SoundAlign 已關閉"
 
-#: __init__.py:701
+#: __init__.py:948
 msgid "SoundAlign on"
 msgstr "SoundAlign 已開啟"
 
-#: __init__.py:307
+#: __init__.py:394
 msgid "Speech announcement interval:"
 msgstr "語音播報間隔:"
 
-#: __init__.py:93
+#: __init__.py:123
 msgid "Square"
-msgstr "方波 (Square)"
+msgstr "方波"
 
-#: __init__.py:129
+#: __init__.py:159
 msgid "Square Root"
-msgstr "平方根 (Square Root)"
+msgstr "平方根"
 
-#: __init__.py:342
+#: __init__.py:206
+msgid "Subtle / quiet"
+msgstr "柔和 / 安靜"
+
+#: __init__.py:431
 msgid "Test All Settings"
 msgstr "測試所有設定"
 
-#: __init__.py:326
+#: __init__.py:517
+msgid "Test already in progress"
+msgstr "測試正在進行中"
+
+#: __init__.py:413
 msgid "Time-based announcement (seconds, 0=disabled):"
-msgstr "基於時間的播報 (秒, 0=停用):"
+msgstr "基於時間的播報（秒，0=停用）:"
 
-#: __init__.py:91
+#: __init__.py:121
 msgid "Triangle"
-msgstr "三角波 (Triangle)"
+msgstr "三角波"
 
-#: __init__.py:263
-msgid "Volume:"
-msgstr "音量:"
+#: __init__.py:344
+msgid "Volume (%):"
+msgstr "音量（%）:"
 
-#: __init__.py:575
-#: __init__.py:582
-#: __init__.py:588
+#: __init__.py:743
+#: __init__.py:750
+#: __init__.py:756
 msgid "{percent}% complete"
 msgstr "已完成 {percent}%"

@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: soundAlign 2026.4.3\n"
+"Project-Id-Version: soundAlign 2026.8.5\n"
 "Report-Msgid-Bugs-To: chaicm75@gmail.com\n"
-"POT-Creation-Date: 2026-04-11 17:34+0700\n"
+"POT-Creation-Date: 2026-08-06 14:04+0700\n"
 "PO-Revision-Date: \n"
 "Last-Translator: chaiBot and Malee Yamazaki\n"
 "Language-Team: Hindi\n"
@@ -12,215 +12,238 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: DevOn Addon\n"
 
-#: __init__.py:214
+#: __init__.py:424
+msgid "Add reverb to progress tones"
+msgstr "प्रगति टोन में रीवर्ब जोड़ें"
+
+#: __init__.py:278
 msgid "Addon beeps (High Frequency):"
-msgstr "एडऑन बीप्स (उच्च आवृत्ति):"
+msgstr "ऐडऑन बीप्स (उच्च आवृत्ति):"
 
-#: __init__.py:213
+#: __init__.py:276
 msgid "Addon beeps (Low Frequency):"
-msgstr "एडऑन बीप्स (निम्न आवृत्ति):"
+msgstr "ऐडऑन बीप्स (निम्न आवृत्ति):"
 
-#: __init__.py:317
+#: __init__.py:277
+msgid "Addon beeps (Medium Frequency):"
+msgstr "ऐडऑन बीप्स (मध्यम आवृत्ति):"
+
+#: __init__.py:205
+msgid "Balanced (recommended)"
+msgstr "संतुलित (अनुशंसित)"
+
+#: __init__.py:404
 msgid "Beep announcement interval:"
 msgstr "बीप घोषणा अंतराल:"
 
-#: __init__.py:186
+#: __init__.py:255
 msgid "Cannot save settings. No write permission for configuration directory."
-msgstr "सेटिंग्स सहेज नहीं सकते। कॉन्फ़िगरेशन निर्देशिका के लिए कोई राइट अनुमति नहीं है।"
+msgstr "सेटिंग्स सहेजी नहीं जा सकतीं। कॉन्फ़िगरेशन निर्देशिका के लिए लिखने की अनुमति नहीं है।"
 
-#: __init__.py:225
+#: __init__.py:296
+#: __init__.py:301
 msgid "Center"
 msgstr "केंद्र"
 
-#: __init__.py:120
+#: __init__.py:150
 msgid "Cosine"
-msgstr "कोसाइन (Cosine)"
+msgstr "कोसाइन"
 
-#: __init__.py:130
+#: __init__.py:160
 msgid "Cubic Root"
 msgstr "घनमूल (Cubic Root)"
 
-#: __init__.py:211
-msgid "Error sounds:"
-msgstr "त्रुटि ध्वनियाँ:"
+#: __init__.py:204
+msgid "Custom (keep my current settings)"
+msgstr "कस्टम (मेरी वर्तमान सेटिंग्स रखें)"
 
-#: __init__.py:123
+#: __init__.py:153
 msgid "Exponential"
 msgstr "घातांकीय (Exponential)"
 
-#: __init__.py:251
+#: __init__.py:333
 msgid "Fade algorithm:"
 msgstr "फेड एल्गोरिदम:"
 
-#: __init__.py:197
-#: __init__.py:439
+#: __init__.py:266
+#: __init__.py:586
 msgid "Failed to save settings. Please check permissions or config path."
-msgstr "सेटिंग्स सहेजने में विफल। कृपया अनुमति या कॉन्फ़िगरेशन पथ की जाँच करें।"
+msgstr "सेटिंग्स सहेजने में विफल। कृपया अनुमतियां या कॉन्फ़िग पथ जांचें।"
 
-#: __init__.py:357
-#: __init__.py:403
+#: __init__.py:505
+#: __init__.py:546
 msgid "Frequency Range Error"
 msgstr "आवृत्ति रेंज त्रुटि"
 
-#: __init__.py:121
+#: __init__.py:151
 msgid "Gaussian"
-msgstr "गॉसियन (Gaussian)"
+msgstr "गॉसियन"
 
-#: __init__.py:128
+#: __init__.py:158
 msgid "Half Sine"
 msgstr "हाफ साइन (Half Sine)"
 
-#: __init__.py:225
+#: __init__.py:296
+#: __init__.py:301
 msgid "Left"
 msgstr "बाएं"
 
-#: __init__.py:227
+#: __init__.py:301
 msgid "Left to Right"
 msgstr "बाएं से दाएं"
 
-#: __init__.py:122
+#: __init__.py:152
 msgid "Linear"
-msgstr "रैखिक (Linear)"
+msgstr "रैखिक"
 
-#: __init__.py:124
+#: __init__.py:154
 msgid "Logarithmic"
 msgstr "लघुगणकीय (Logarithmic)"
 
-#: __init__.py:272
+#: __init__.py:354
 msgid "Master volume (%):"
-msgstr "मास्टर वॉल्यूम (%):"
+msgstr "मुख्य वॉल्यूम (%):"
 
-#: __init__.py:297
+#: __init__.py:384
 msgid "Maximum frequency:"
 msgstr "अधिकतम आवृत्ति:"
 
-#: __init__.py:356
-#: __init__.py:402
+#: __init__.py:504
+#: __init__.py:545
 msgid "Minimum frequency must be less than maximum frequency."
 msgstr "न्यूनतम आवृत्ति अधिकतम आवृत्ति से कम होनी चाहिए।"
 
-#: __init__.py:287
+#: __init__.py:374
 msgid "Minimum frequency:"
 msgstr "न्यूनतम आवृत्ति:"
 
-#: __init__.py:333
+#: __init__.py:420
 msgid "Mixed mode (speech + beep)"
 msgstr "मिश्रित मोड (भाषण + बीप)"
 
-#: __init__.py:683
+#: __init__.py:930
 msgid "Open SoundAlign settings (single tap) or toggle SoundAlign on/off (double tap)"
-msgstr "SoundAlign सेटिंग्स खोलें (एक बार टैप) या SoundAlign चालू/बंद करें (दो बार टैप)"
+msgstr "SoundAlign सेटिंग्स खोलें (सिंगल टैप) या SoundAlign को चालू/बंद टॉगल करें (डबल टैप)"
 
-#: __init__.py:94
+#: __init__.py:124
 msgid "Original Tone Beep"
 msgstr "मूल टोन बीप"
 
-#: __init__.py:391
+#: __init__.py:534
 msgid "Please select valid minimum and maximum frequencies."
-msgstr "कृपया मान्य न्यूनतम और अधिकतम आवृत्तियाँ चुनें।"
+msgstr "कृपया मान्य न्यूनतम और अधिकतम आवृत्तियों का चयन करें।"
 
-#: __init__.py:215
+#: __init__.py:303
 msgid "Progress indicator:"
 msgstr "प्रगति संकेतक:"
 
-#: __init__.py:665
-msgid "Progress test not available. Pyaudio not imported."
-msgstr "प्रगति परीक्षण उपलब्ध नहीं है। Pyaudio आयात नहीं किया गया है।"
+#: __init__.py:312
+msgid "Progress sound preset:"
+msgstr "प्रगति ध्वनि प्रीसेट:"
 
-#: __init__.py:239
+#: __init__.py:875
+msgid "Progress test not available. Audio output could not be initialized."
+msgstr "प्रगति परीक्षण उपलब्ध नहीं है। ऑडियो आउटपुट प्रारंभ नहीं किया जा सका।"
+
+#: __init__.py:321
 msgid "Progress tone:"
 msgstr "प्रगति टोन:"
 
-#: __init__.py:131
-msgid "Quadratic"
-msgstr "द्विघातीय (Quadratic)"
+#: __init__.py:207
+msgid "Prominent / clear"
+msgstr "प्रमुख / स्पष्ट"
 
-#: __init__.py:127
+#: __init__.py:161
+msgid "Quadratic"
+msgstr "द्विघात (Quadratic)"
+
+#: __init__.py:157
 msgid "Quarter Sine"
 msgstr "क्वार्टर साइन (Quarter Sine)"
 
-#: __init__.py:225
+#: __init__.py:296
+#: __init__.py:301
 msgid "Right"
 msgstr "दाएं"
 
-#: __init__.py:227
+#: __init__.py:301
 msgid "Right to Left"
 msgstr "दाएं से बाएं"
 
-#: __init__.py:125
+#: __init__.py:155
 msgid "S-Curve"
-msgstr "एस-कर्व (S-Curve)"
+msgstr "एस-वक्र (S-Curve)"
 
-#: __init__.py:187
-#: __init__.py:198
-#: __init__.py:440
+#: __init__.py:256
+#: __init__.py:267
+#: __init__.py:587
 msgid "Save Error"
-msgstr "सेव त्रुटि"
+msgstr "सहेजने में त्रुटि"
 
-#: __init__.py:92
+#: __init__.py:122
 msgid "Sawtooth"
 msgstr "सॉटूथ (Sawtooth)"
 
-#: __init__.py:392
+#: __init__.py:535
 msgid "Settings Error"
 msgstr "सेटिंग्स त्रुटि"
 
-#: __init__.py:90
-#: __init__.py:126
+#: __init__.py:120
+#: __init__.py:156
 msgid "Sine"
 msgstr "साइन (Sine)"
 
-#: __init__.py:336
-msgid "Smooth panning (reduces cracking)"
-msgstr "सुचारू पैनिंग (क्रैकिंग कम करता है)"
-
-#: __init__.py:212
-msgid "Sound effects:"
-msgstr "ध्वनि प्रभाव:"
-
-#: __init__.py:204
-#: __init__.py:446
+#: __init__.py:282
+#: __init__.py:593
 msgid "SoundAlign"
 msgstr "SoundAlign"
 
-#: __init__.py:703
+#: __init__.py:950
 msgid "SoundAlign off"
 msgstr "SoundAlign बंद"
 
-#: __init__.py:701
+#: __init__.py:948
 msgid "SoundAlign on"
 msgstr "SoundAlign चालू"
 
-#: __init__.py:307
+#: __init__.py:394
 msgid "Speech announcement interval:"
 msgstr "भाषण घोषणा अंतराल:"
 
-#: __init__.py:93
+#: __init__.py:123
 msgid "Square"
-msgstr "स्क्वायर (Square)"
+msgstr "वर्ग (Square)"
 
-#: __init__.py:129
+#: __init__.py:159
 msgid "Square Root"
 msgstr "वर्गमूल (Square Root)"
 
-#: __init__.py:342
+#: __init__.py:206
+msgid "Subtle / quiet"
+msgstr "सूक्ष्म / शांत"
+
+#: __init__.py:431
 msgid "Test All Settings"
 msgstr "सभी सेटिंग्स का परीक्षण करें"
 
-#: __init__.py:326
-msgid "Time-based announcement (seconds, 0=disabled):"
-msgstr "समय-आधारित घोषणा (सेकंड, 0 = अक्षम):"
+#: __init__.py:517
+msgid "Test already in progress"
+msgstr "परीक्षण पहले से ही प्रगति पर है"
 
-#: __init__.py:91
+#: __init__.py:413
+msgid "Time-based announcement (seconds, 0=disabled):"
+msgstr "समय-आधारित घोषणा (सेकंड, 0=अक्षम):"
+
+#: __init__.py:121
 msgid "Triangle"
 msgstr "त्रिभुज (Triangle)"
 
-#: __init__.py:263
-msgid "Volume:"
-msgstr "वॉल्यूम:"
+#: __init__.py:344
+msgid "Volume (%):"
+msgstr "वॉल्यूम (%):"
 
-#: __init__.py:575
-#: __init__.py:582
-#: __init__.py:588
+#: __init__.py:743
+#: __init__.py:750
+#: __init__.py:756
 msgid "{percent}% complete"
 msgstr "{percent}% पूर्ण"

@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: soundAlign 2026.4.3\n"
+"Project-Id-Version: soundAlign 2026.8.5\n"
 "Report-Msgid-Bugs-To: chaicm75@gmail.com\n"
-"POT-Creation-Date: 2026-04-11 17:34+0700\n"
+"POT-Creation-Date: 2026-08-06 14:04+0700\n"
 "PO-Revision-Date: \n"
 "Last-Translator: chaiBot and Malee Yamazaki\n"
 "Language-Team: Thai\n"
@@ -12,215 +12,238 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: DevOn Addon\n"
 
-#: __init__.py:214
+#: __init__.py:424
+msgid "Add reverb to progress tones"
+msgstr "เพิ่มเสียงก้องให้กับโทนความคืบหน้า"
+
+#: __init__.py:278
 msgid "Addon beeps (High Frequency):"
 msgstr "เสียงบี๊บของส่วนเสริม (ความถี่สูง):"
 
-#: __init__.py:213
+#: __init__.py:276
 msgid "Addon beeps (Low Frequency):"
 msgstr "เสียงบี๊บของส่วนเสริม (ความถี่ต่ำ):"
 
-#: __init__.py:317
+#: __init__.py:277
+msgid "Addon beeps (Medium Frequency):"
+msgstr "เสียงบี๊บของส่วนเสริม (ความถี่กลาง):"
+
+#: __init__.py:205
+msgid "Balanced (recommended)"
+msgstr "สมดุล (แนะนำ)"
+
+#: __init__.py:404
 msgid "Beep announcement interval:"
 msgstr "ช่วงเวลาการประกาศด้วยเสียงบี๊บ:"
 
-#: __init__.py:186
+#: __init__.py:255
 msgid "Cannot save settings. No write permission for configuration directory."
-msgstr "ไม่สามารถบันทึกการตั้งค่าได้ เนื่องจากไม่มีสิทธิ์เขียนในไดเรกทอรีการกำหนดค่า"
+msgstr "ไม่สามารถบันทึกการตั้งค่าได้ ไม่มีสิทธิ์เขียนในไดเรกทอรีการกำหนดค่า"
 
-#: __init__.py:225
+#: __init__.py:296
+#: __init__.py:301
 msgid "Center"
-msgstr "ตรงกลาง"
+msgstr "กึ่งกลาง"
 
-#: __init__.py:120
+#: __init__.py:150
 msgid "Cosine"
-msgstr "Cosine"
+msgstr "โคไซน์"
 
-#: __init__.py:130
+#: __init__.py:160
 msgid "Cubic Root"
-msgstr "Cubic Root"
+msgstr "รากที่สาม"
 
-#: __init__.py:211
-msgid "Error sounds:"
-msgstr "เสียงข้อผิดพลาด:"
+#: __init__.py:204
+msgid "Custom (keep my current settings)"
+msgstr "กำหนดเอง (เก็บการตั้งค่าปัจจุบันของฉันไว้)"
 
-#: __init__.py:123
+#: __init__.py:153
 msgid "Exponential"
-msgstr "Exponential"
+msgstr "เลขชี้กำลัง"
 
-#: __init__.py:251
+#: __init__.py:333
 msgid "Fade algorithm:"
-msgstr "อัลกอริทึมการเฟด:"
+msgstr "อัลกอริทึมการค่อยๆจาง:"
 
-#: __init__.py:197
-#: __init__.py:439
+#: __init__.py:266
+#: __init__.py:586
 msgid "Failed to save settings. Please check permissions or config path."
-msgstr "บันทึกการตั้งค่าไม่สำเร็จ โปรดตรวจสอบสิทธิ์หรือเส้นทางของการกำหนดค่า"
+msgstr "บันทึกการตั้งค่าไม่สำเร็จ โปรดตรวจสอบสิทธิ์หรือเส้นทางการกำหนดค่า"
 
-#: __init__.py:357
-#: __init__.py:403
+#: __init__.py:505
+#: __init__.py:546
 msgid "Frequency Range Error"
 msgstr "ข้อผิดพลาดช่วงความถี่"
 
-#: __init__.py:121
+#: __init__.py:151
 msgid "Gaussian"
-msgstr "Gaussian"
+msgstr "เกาส์เซียน"
 
-#: __init__.py:128
+#: __init__.py:158
 msgid "Half Sine"
-msgstr "Half Sine"
+msgstr "ครึ่งไซน์"
 
-#: __init__.py:225
+#: __init__.py:296
+#: __init__.py:301
 msgid "Left"
 msgstr "ซ้าย"
 
-#: __init__.py:227
+#: __init__.py:301
 msgid "Left to Right"
-msgstr "จากซ้ายไปขวา"
+msgstr "ซ้ายไปขวา"
 
-#: __init__.py:122
+#: __init__.py:152
 msgid "Linear"
-msgstr "Linear"
+msgstr "เชิงเส้น"
 
-#: __init__.py:124
+#: __init__.py:154
 msgid "Logarithmic"
-msgstr "Logarithmic"
+msgstr "ลอการิทึม"
 
-#: __init__.py:272
+#: __init__.py:354
 msgid "Master volume (%):"
 msgstr "ระดับเสียงหลัก (%):"
 
-#: __init__.py:297
+#: __init__.py:384
 msgid "Maximum frequency:"
 msgstr "ความถี่สูงสุด:"
 
-#: __init__.py:356
-#: __init__.py:402
+#: __init__.py:504
+#: __init__.py:545
 msgid "Minimum frequency must be less than maximum frequency."
 msgstr "ความถี่ต่ำสุดต้องน้อยกว่าความถี่สูงสุด"
 
-#: __init__.py:287
+#: __init__.py:374
 msgid "Minimum frequency:"
 msgstr "ความถี่ต่ำสุด:"
 
-#: __init__.py:333
+#: __init__.py:420
 msgid "Mixed mode (speech + beep)"
 msgstr "โหมดผสม (เสียงพูด + เสียงบี๊บ)"
 
-#: __init__.py:683
+#: __init__.py:930
 msgid "Open SoundAlign settings (single tap) or toggle SoundAlign on/off (double tap)"
-msgstr "เปิดการตั้งค่า SoundAlign (แตะหนึ่งครั้ง) หรือเปิด/ปิด SoundAlign (แตะสองครั้ง)"
+msgstr "เปิดการตั้งค่า SoundAlign (แตะครั้งเดียว) หรือเปิด/ปิด SoundAlign (แตะสองครั้ง)"
 
-#: __init__.py:94
+#: __init__.py:124
 msgid "Original Tone Beep"
-msgstr "Original Tone Beep"
+msgstr "เสียงบี๊บโทนเดิม"
 
-#: __init__.py:391
+#: __init__.py:534
 msgid "Please select valid minimum and maximum frequencies."
-msgstr "โปรดเลือกช่วงความถี่ต่ำสุดและสูงสุดที่ถูกต้อง"
+msgstr "โปรดเลือกความถี่ต่ำสุดและสูงสุดที่ถูกต้อง"
 
-#: __init__.py:215
+#: __init__.py:303
 msgid "Progress indicator:"
 msgstr "ตัวบ่งชี้ความคืบหน้า:"
 
-#: __init__.py:665
-msgid "Progress test not available. Pyaudio not imported."
-msgstr "ไม่สามารถทดสอบความคืบหน้าได้ เนื่องจากไม่มี Pyaudio"
+#: __init__.py:312
+msgid "Progress sound preset:"
+msgstr "ชุดเสียงความคืบหน้าที่กำหนดไว้ล่วงหน้า:"
 
-#: __init__.py:239
+#: __init__.py:875
+msgid "Progress test not available. Audio output could not be initialized."
+msgstr "ไม่มีการทดสอบความคืบหน้า ไม่สามารถเริ่มต้นการส่งออกเสียงได้"
+
+#: __init__.py:321
 msgid "Progress tone:"
-msgstr "โทนเสียงความคืบหน้า:"
+msgstr "โทนความคืบหน้า:"
 
-#: __init__.py:131
+#: __init__.py:207
+msgid "Prominent / clear"
+msgstr "โดดเด่น / ชัดเจน"
+
+#: __init__.py:161
 msgid "Quadratic"
-msgstr "Quadratic"
+msgstr "กำลังสอง"
 
-#: __init__.py:127
+#: __init__.py:157
 msgid "Quarter Sine"
-msgstr "Quarter Sine"
+msgstr "หนึ่งในสี่ของไซน์"
 
-#: __init__.py:225
+#: __init__.py:296
+#: __init__.py:301
 msgid "Right"
 msgstr "ขวา"
 
-#: __init__.py:227
+#: __init__.py:301
 msgid "Right to Left"
-msgstr "จากขวาไปซ้าย"
+msgstr "ขวาไปซ้าย"
 
-#: __init__.py:125
+#: __init__.py:155
 msgid "S-Curve"
-msgstr "S-Curve"
+msgstr "เส้นโค้ง S"
 
-#: __init__.py:187
-#: __init__.py:198
-#: __init__.py:440
+#: __init__.py:256
+#: __init__.py:267
+#: __init__.py:587
 msgid "Save Error"
 msgstr "ข้อผิดพลาดในการบันทึก"
 
-#: __init__.py:92
+#: __init__.py:122
 msgid "Sawtooth"
-msgstr "Sawtooth"
+msgstr "ฟันเลื่อย"
 
-#: __init__.py:392
+#: __init__.py:535
 msgid "Settings Error"
-msgstr "ข้อผิดพลาดของการตั้งค่า"
+msgstr "ข้อผิดพลาดการตั้งค่า"
 
-#: __init__.py:90
-#: __init__.py:126
+#: __init__.py:120
+#: __init__.py:156
 msgid "Sine"
-msgstr "Sine"
+msgstr "ไซน์"
 
-#: __init__.py:336
-msgid "Smooth panning (reduces cracking)"
-msgstr "การแพนเสียงแบบนุ่มนวล (ลดเสียงแตก)"
-
-#: __init__.py:212
-msgid "Sound effects:"
-msgstr "เอฟเฟกต์เสียง:"
-
-#: __init__.py:204
-#: __init__.py:446
+#: __init__.py:282
+#: __init__.py:593
 msgid "SoundAlign"
 msgstr "SoundAlign"
 
-#: __init__.py:703
+#: __init__.py:950
 msgid "SoundAlign off"
 msgstr "ปิด SoundAlign"
 
-#: __init__.py:701
+#: __init__.py:948
 msgid "SoundAlign on"
 msgstr "เปิด SoundAlign"
 
-#: __init__.py:307
+#: __init__.py:394
 msgid "Speech announcement interval:"
 msgstr "ช่วงเวลาการประกาศด้วยเสียงพูด:"
 
-#: __init__.py:93
+#: __init__.py:123
 msgid "Square"
-msgstr "Square"
+msgstr "คลื่นสี่เหลี่ยม"
 
-#: __init__.py:129
+#: __init__.py:159
 msgid "Square Root"
-msgstr "Square Root"
+msgstr "รากที่สอง"
 
-#: __init__.py:342
+#: __init__.py:206
+msgid "Subtle / quiet"
+msgstr "ละเอียดอ่อน / เงียบ"
+
+#: __init__.py:431
 msgid "Test All Settings"
 msgstr "ทดสอบการตั้งค่าทั้งหมด"
 
-#: __init__.py:326
+#: __init__.py:517
+msgid "Test already in progress"
+msgstr "กำลังทดสอบอยู่แล้ว"
+
+#: __init__.py:413
 msgid "Time-based announcement (seconds, 0=disabled):"
 msgstr "การประกาศตามเวลา (วินาที, 0=ปิดใช้งาน):"
 
-#: __init__.py:91
+#: __init__.py:121
 msgid "Triangle"
-msgstr "Triangle"
+msgstr "สามเหลี่ยม"
 
-#: __init__.py:263
-msgid "Volume:"
-msgstr "ระดับเสียง:"
+#: __init__.py:344
+msgid "Volume (%):"
+msgstr "ระดับเสียง (%):"
 
-#: __init__.py:575
-#: __init__.py:582
-#: __init__.py:588
+#: __init__.py:743
+#: __init__.py:750
+#: __init__.py:756
 msgid "{percent}% complete"
 msgstr "เสร็จสิ้น {percent}%"

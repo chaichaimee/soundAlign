@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: soundAlign 2026.4.3\n"
+"Project-Id-Version: soundAlign 2026.8.5\n"
 "Report-Msgid-Bugs-To: chaicm75@gmail.com\n"
-"POT-Creation-Date: 2026-04-11 17:34+0700\n"
+"POT-Creation-Date: 2026-08-06 14:04+0700\n"
 "PO-Revision-Date: \n"
 "Last-Translator: chaiBot and Malee Yamazaki\n"
 "Language-Team: Tamil\n"
@@ -12,215 +12,238 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: DevOn Addon\n"
 
-#: __init__.py:214
+#: __init__.py:424
+msgid "Add reverb to progress tones"
+msgstr "முன்னேற்ற தொனிகளில் எதிரொலியைச் சேர்க்கவும்"
+
+#: __init__.py:278
 msgid "Addon beeps (High Frequency):"
-msgstr "துணைநிரல் பீப் ஒலிகள் (அதிர்வெண் அதிகம்):"
+msgstr "ஆடான் பீப் ஒலிகள் (உயர் அதிர்வெண்):"
 
-#: __init__.py:213
+#: __init__.py:276
 msgid "Addon beeps (Low Frequency):"
-msgstr "துணைநிரல் பீப் ஒலிகள் (அதிர்வெண் குறைவு):"
+msgstr "ஆடான் பீப் ஒலிகள் (குறைந்த அதிர்வெண்):"
 
-#: __init__.py:317
+#: __init__.py:277
+msgid "Addon beeps (Medium Frequency):"
+msgstr "ஆடான் பீப் ஒலிகள் (நடுத்தர அதிர்வெண்):"
+
+#: __init__.py:205
+msgid "Balanced (recommended)"
+msgstr "சமநிலையானது (பரிந்துரைக்கப்படுகிறது)"
+
+#: __init__.py:404
 msgid "Beep announcement interval:"
 msgstr "பீப் அறிவிப்பு இடைவெளி:"
 
-#: __init__.py:186
+#: __init__.py:255
 msgid "Cannot save settings. No write permission for configuration directory."
-msgstr "அமைப்புகளைச் சேமிக்க முடியவில்லை. கோப்பகத்தில் எழுத அனுமதி இல்லை."
+msgstr "அமைப்புகளைச் சேமிக்க முடியவில்லை. உள்ளமைவு கோப்பகத்திற்கு எழுத அனுமதி இல்லை."
 
-#: __init__.py:225
+#: __init__.py:296
+#: __init__.py:301
 msgid "Center"
 msgstr "மையம்"
 
-#: __init__.py:120
+#: __init__.py:150
 msgid "Cosine"
-msgstr "Cosine"
+msgstr "கொசைன்"
 
-#: __init__.py:130
+#: __init__.py:160
 msgid "Cubic Root"
-msgstr "Cubic Root"
+msgstr "மூன்றாம் படி மூலம்"
 
-#: __init__.py:211
-msgid "Error sounds:"
-msgstr "பிழை ஒலிகள்:"
+#: __init__.py:204
+msgid "Custom (keep my current settings)"
+msgstr "தனிப்பயன் (எனது தற்போதைய அமைப்புகளை வைத்திரு)"
 
-#: __init__.py:123
+#: __init__.py:153
 msgid "Exponential"
-msgstr "Exponential"
+msgstr "அடுக்கு"
 
-#: __init__.py:251
+#: __init__.py:333
 msgid "Fade algorithm:"
-msgstr "ஃபேட் அல்காரிதம்:"
+msgstr "மங்கல் வழிமுறை:"
 
-#: __init__.py:197
-#: __init__.py:439
+#: __init__.py:266
+#: __init__.py:586
 msgid "Failed to save settings. Please check permissions or config path."
-msgstr "அமைப்புகளைச் சேமிக்க முடியவில்லை. அனுமதிகளைச் சரிபார்க்கவும்."
+msgstr "அமைப்புகளைச் சேமிக்கத் தவறியது. அனுமதிகள் அல்லது உள்ளமைவு பாதையைச் சரிபார்க்கவும்."
 
-#: __init__.py:357
-#: __init__.py:403
+#: __init__.py:505
+#: __init__.py:546
 msgid "Frequency Range Error"
 msgstr "அதிர்வெண் வரம்பு பிழை"
 
-#: __init__.py:121
+#: __init__.py:151
 msgid "Gaussian"
-msgstr "Gaussian"
+msgstr "காசியன்"
 
-#: __init__.py:128
+#: __init__.py:158
 msgid "Half Sine"
-msgstr "Half Sine"
+msgstr "அரை சைன்"
 
-#: __init__.py:225
+#: __init__.py:296
+#: __init__.py:301
 msgid "Left"
 msgstr "இடது"
 
-#: __init__.py:227
+#: __init__.py:301
 msgid "Left to Right"
-msgstr "இடமிருந்து வலமாக"
+msgstr "இடமிருந்து வலம்"
 
-#: __init__.py:122
+#: __init__.py:152
 msgid "Linear"
-msgstr "Linear"
+msgstr "நேரியல்"
 
-#: __init__.py:124
+#: __init__.py:154
 msgid "Logarithmic"
-msgstr "Logarithmic"
+msgstr "மடக்கை"
 
-#: __init__.py:272
+#: __init__.py:354
 msgid "Master volume (%):"
 msgstr "முதன்மை ஒலி அளவு (%):"
 
-#: __init__.py:297
+#: __init__.py:384
 msgid "Maximum frequency:"
 msgstr "அதிகபட்ச அதிர்வெண்:"
 
-#: __init__.py:356
-#: __init__.py:402
+#: __init__.py:504
+#: __init__.py:545
 msgid "Minimum frequency must be less than maximum frequency."
-msgstr "குறைந்தபட்ச அதிர்வெண் அதிகபட்சத்தை விட குறைவாக இருக்க வேண்டும்."
+msgstr "குறைந்தபட்ச அதிர்வெண் அதிகபட்ச அதிர்வெண்ணை விட குறைவாக இருக்க வேண்டும்."
 
-#: __init__.py:287
+#: __init__.py:374
 msgid "Minimum frequency:"
 msgstr "குறைந்தபட்ச அதிர்வெண்:"
 
-#: __init__.py:333
+#: __init__.py:420
 msgid "Mixed mode (speech + beep)"
 msgstr "கலப்பு முறை (பேச்சு + பீப்)"
 
-#: __init__.py:683
+#: __init__.py:930
 msgid "Open SoundAlign settings (single tap) or toggle SoundAlign on/off (double tap)"
-msgstr "SoundAlign அமைப்புகளைத் திற (ஒரு தட்டு) அல்லது ஆன்/ஆஃப் செய் (இரு தட்டு)"
+msgstr "SoundAlign அமைப்புகளைத் திறக்கவும் (ஒற்றைத் தட்டு) அல்லது SoundAlign ஐ இயக்க/முடக்கவும் (இரட்டைத் தட்டு)"
 
-#: __init__.py:94
+#: __init__.py:124
 msgid "Original Tone Beep"
-msgstr "Original Tone Beep"
+msgstr "அசல் தொனி பீப்"
 
-#: __init__.py:391
+#: __init__.py:534
 msgid "Please select valid minimum and maximum frequencies."
-msgstr "சரியான அதிர்வெண் வரம்பைத் தேர்ந்தெடுக்கவும்."
+msgstr "சரியான குறைந்தபட்ச மற்றும் அதிகபட்ச அதிர்வெண்களைத் தேர்ந்தெடுக்கவும்."
 
-#: __init__.py:215
+#: __init__.py:303
 msgid "Progress indicator:"
-msgstr "முன்னேற்றக் காட்டி:"
+msgstr "முன்னேற்ற காட்டி:"
 
-#: __init__.py:665
-msgid "Progress test not available. Pyaudio not imported."
-msgstr "முன்னேற்ற சோதனை கிடைக்கவில்லை. Pyaudio இல்லை."
+#: __init__.py:312
+msgid "Progress sound preset:"
+msgstr "முன்னேற்ற ஒலி முன்னமைவு:"
 
-#: __init__.py:239
+#: __init__.py:875
+msgid "Progress test not available. Audio output could not be initialized."
+msgstr "முன்னேற்ற சோதனை கிடைக்கவில்லை. ஆடியோ வெளியீட்டைத் தொடங்க முடியவில்லை."
+
+#: __init__.py:321
 msgid "Progress tone:"
-msgstr "முன்னேற்ற ஒலி:"
+msgstr "முன்னேற்ற தொனி:"
 
-#: __init__.py:131
+#: __init__.py:207
+msgid "Prominent / clear"
+msgstr "முக்கியமான / தெளிவான"
+
+#: __init__.py:161
 msgid "Quadratic"
-msgstr "Quadratic"
+msgstr "இருபடி"
 
-#: __init__.py:127
+#: __init__.py:157
 msgid "Quarter Sine"
-msgstr "Quarter Sine"
+msgstr "கால் சைன்"
 
-#: __init__.py:225
+#: __init__.py:296
+#: __init__.py:301
 msgid "Right"
 msgstr "வலது"
 
-#: __init__.py:227
+#: __init__.py:301
 msgid "Right to Left"
-msgstr "வலமிருந்து இடமாக"
+msgstr "வலமிருந்து இடம்"
 
-#: __init__.py:125
+#: __init__.py:155
 msgid "S-Curve"
-msgstr "S-Curve"
+msgstr "S-வளைவு"
 
-#: __init__.py:187
-#: __init__.py:198
-#: __init__.py:440
+#: __init__.py:256
+#: __init__.py:267
+#: __init__.py:587
 msgid "Save Error"
-msgstr "சேமிப்புப் பிழை"
+msgstr "சேமிப்பு பிழை"
 
-#: __init__.py:92
+#: __init__.py:122
 msgid "Sawtooth"
-msgstr "Sawtooth"
+msgstr "ரம்பப்பல்"
 
-#: __init__.py:392
+#: __init__.py:535
 msgid "Settings Error"
-msgstr "அமைப்புகள் பிழை"
+msgstr "அமைப்பு பிழை"
 
-#: __init__.py:90
-#: __init__.py:126
+#: __init__.py:120
+#: __init__.py:156
 msgid "Sine"
-msgstr "Sine"
+msgstr "சைன்"
 
-#: __init__.py:336
-msgid "Smooth panning (reduces cracking)"
-msgstr "மென்மையான பேன்னிங் (வெடிப்பு ஒலியைக் குறைக்கிறது)"
-
-#: __init__.py:212
-msgid "Sound effects:"
-msgstr "ஒலி விளைவுகள்:"
-
-#: __init__.py:204
-#: __init__.py:446
+#: __init__.py:282
+#: __init__.py:593
 msgid "SoundAlign"
 msgstr "SoundAlign"
 
-#: __init__.py:703
+#: __init__.py:950
 msgid "SoundAlign off"
-msgstr "SoundAlign அணைக்கப்பட்டது"
+msgstr "SoundAlign முடக்கப்பட்டது"
 
-#: __init__.py:701
+#: __init__.py:948
 msgid "SoundAlign on"
 msgstr "SoundAlign இயக்கப்பட்டது"
 
-#: __init__.py:307
+#: __init__.py:394
 msgid "Speech announcement interval:"
 msgstr "பேச்சு அறிவிப்பு இடைவெளி:"
 
-#: __init__.py:93
+#: __init__.py:123
 msgid "Square"
-msgstr "Square"
+msgstr "சதுரம்"
 
-#: __init__.py:129
+#: __init__.py:159
 msgid "Square Root"
-msgstr "Square Root"
+msgstr "வர்க்கமூலம்"
 
-#: __init__.py:342
+#: __init__.py:206
+msgid "Subtle / quiet"
+msgstr "நுட்பமான / அமைதியான"
+
+#: __init__.py:431
 msgid "Test All Settings"
 msgstr "அனைத்து அமைப்புகளையும் சோதிக்கவும்"
 
-#: __init__.py:326
+#: __init__.py:517
+msgid "Test already in progress"
+msgstr "சோதனை ஏற்கனவே நடந்துகொண்டிருக்கிறது"
+
+#: __init__.py:413
 msgid "Time-based announcement (seconds, 0=disabled):"
-msgstr "நேர அடிப்படையிலான அறிவிப்பு (வினாடி, 0=முடக்கப்பட்டது):"
+msgstr "நேரம் சார்ந்த அறிவிப்பு (விநாடிகள், 0=முடக்கப்பட்டது):"
 
-#: __init__.py:91
+#: __init__.py:121
 msgid "Triangle"
-msgstr "Triangle"
+msgstr "முக்கோணம்"
 
-#: __init__.py:263
-msgid "Volume:"
-msgstr "ஒலி அளவு:"
+#: __init__.py:344
+msgid "Volume (%):"
+msgstr "ஒலி அளவு (%):"
 
-#: __init__.py:575
-#: __init__.py:582
-#: __init__.py:588
+#: __init__.py:743
+#: __init__.py:750
+#: __init__.py:756
 msgid "{percent}% complete"
-msgstr "{percent}% முடிந்தது"
+msgstr "{percent}% நிறைவுற்றது"

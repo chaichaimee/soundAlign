@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: soundAlign 2026.4.3\n"
+"Project-Id-Version: soundAlign 2026.8.5\n"
 "Report-Msgid-Bugs-To: chaicm75@gmail.com\n"
-"POT-Creation-Date: 2026-04-11 17:34+0700\n"
+"POT-Creation-Date: 2026-08-06 14:04+0700\n"
 "PO-Revision-Date: \n"
 "Last-Translator: chaiBot and Malee Yamazaki\n"
 "Language-Team: Portuguese (Portugal)\n"
@@ -12,215 +12,238 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: DevOn Addon\n"
 
-#: __init__.py:214
+#: __init__.py:424
+msgid "Add reverb to progress tones"
+msgstr "Adicionar reverberação aos tons de progresso"
+
+#: __init__.py:278
 msgid "Addon beeps (High Frequency):"
-msgstr "Bipes do suplemento (Alta frequência):"
+msgstr "Bips do extra (alta frequência):"
 
-#: __init__.py:213
+#: __init__.py:276
 msgid "Addon beeps (Low Frequency):"
-msgstr "Bipes do suplemento (Baixa frequência):"
+msgstr "Bips do extra (baixa frequência):"
 
-#: __init__.py:317
+#: __init__.py:277
+msgid "Addon beeps (Medium Frequency):"
+msgstr "Bips do extra (frequência média):"
+
+#: __init__.py:205
+msgid "Balanced (recommended)"
+msgstr "Equilibrado (recomendado)"
+
+#: __init__.py:404
 msgid "Beep announcement interval:"
-msgstr "Intervalo de anúncio de bipes:"
+msgstr "Intervalo de anúncio de bip:"
 
-#: __init__.py:186
+#: __init__.py:255
 msgid "Cannot save settings. No write permission for configuration directory."
-msgstr "Impossível guardar definições. Sem permissão de escrita no diretório de configuração."
+msgstr "Não é possível guardar as definições. Sem permissão de escrita para o diretório de configuração."
 
-#: __init__.py:225
+#: __init__.py:296
+#: __init__.py:301
 msgid "Center"
 msgstr "Centro"
 
-#: __init__.py:120
+#: __init__.py:150
 msgid "Cosine"
 msgstr "Cosseno"
 
-#: __init__.py:130
+#: __init__.py:160
 msgid "Cubic Root"
 msgstr "Raiz cúbica"
 
-#: __init__.py:211
-msgid "Error sounds:"
-msgstr "Sons de erro:"
+#: __init__.py:204
+msgid "Custom (keep my current settings)"
+msgstr "Personalizado (manter as minhas definições atuais)"
 
-#: __init__.py:123
+#: __init__.py:153
 msgid "Exponential"
 msgstr "Exponencial"
 
-#: __init__.py:251
+#: __init__.py:333
 msgid "Fade algorithm:"
-msgstr "Algoritmo de fade:"
+msgstr "Algoritmo de desvanecimento:"
 
-#: __init__.py:197
-#: __init__.py:439
+#: __init__.py:266
+#: __init__.py:586
 msgid "Failed to save settings. Please check permissions or config path."
-msgstr "Falha ao guardar definições. Verifique as permissões ou o caminho da configuração."
+msgstr "Falha ao guardar definições. Verifique as permissões ou o caminho de configuração."
 
-#: __init__.py:357
-#: __init__.py:403
+#: __init__.py:505
+#: __init__.py:546
 msgid "Frequency Range Error"
 msgstr "Erro de intervalo de frequência"
 
-#: __init__.py:121
+#: __init__.py:151
 msgid "Gaussian"
 msgstr "Gaussiano"
 
-#: __init__.py:128
+#: __init__.py:158
 msgid "Half Sine"
 msgstr "Meio seno"
 
-#: __init__.py:225
+#: __init__.py:296
+#: __init__.py:301
 msgid "Left"
 msgstr "Esquerda"
 
-#: __init__.py:227
+#: __init__.py:301
 msgid "Left to Right"
-msgstr "Esquerda para a direita"
+msgstr "Esquerda para direita"
 
-#: __init__.py:122
+#: __init__.py:152
 msgid "Linear"
 msgstr "Linear"
 
-#: __init__.py:124
+#: __init__.py:154
 msgid "Logarithmic"
 msgstr "Logarítmico"
 
-#: __init__.py:272
+#: __init__.py:354
 msgid "Master volume (%):"
 msgstr "Volume mestre (%):"
 
-#: __init__.py:297
+#: __init__.py:384
 msgid "Maximum frequency:"
 msgstr "Frequência máxima:"
 
-#: __init__.py:356
-#: __init__.py:402
+#: __init__.py:504
+#: __init__.py:545
 msgid "Minimum frequency must be less than maximum frequency."
 msgstr "A frequência mínima deve ser inferior à frequência máxima."
 
-#: __init__.py:287
+#: __init__.py:374
 msgid "Minimum frequency:"
 msgstr "Frequência mínima:"
 
-#: __init__.py:333
+#: __init__.py:420
 msgid "Mixed mode (speech + beep)"
-msgstr "Modo misto (fala + bipe)"
+msgstr "Modo misto (voz + bip)"
 
-#: __init__.py:683
+#: __init__.py:930
 msgid "Open SoundAlign settings (single tap) or toggle SoundAlign on/off (double tap)"
-msgstr "Abrir definições SoundAlign (um toque) ou alternar SoundAlign ligado/desligado (dois toques)"
+msgstr "Abrir definições do SoundAlign (toque único) ou ativar/desativar SoundAlign (toque duplo)"
 
-#: __init__.py:94
+#: __init__.py:124
 msgid "Original Tone Beep"
-msgstr "Bipe de tom original"
+msgstr "Bip de tom original"
 
-#: __init__.py:391
+#: __init__.py:534
 msgid "Please select valid minimum and maximum frequencies."
 msgstr "Selecione frequências mínimas e máximas válidas."
 
-#: __init__.py:215
+#: __init__.py:303
 msgid "Progress indicator:"
 msgstr "Indicador de progresso:"
 
-#: __init__.py:665
-msgid "Progress test not available. Pyaudio not imported."
-msgstr "Teste de progresso indisponível. Pyaudio não importado."
+#: __init__.py:312
+msgid "Progress sound preset:"
+msgstr "Predefinição de som de progresso:"
 
-#: __init__.py:239
+#: __init__.py:875
+msgid "Progress test not available. Audio output could not be initialized."
+msgstr "Teste de progresso não disponível. Não foi possível inicializar a saída de áudio."
+
+#: __init__.py:321
 msgid "Progress tone:"
 msgstr "Tom de progresso:"
 
-#: __init__.py:131
+#: __init__.py:207
+msgid "Prominent / clear"
+msgstr "Proeminente / claro"
+
+#: __init__.py:161
 msgid "Quadratic"
 msgstr "Quadrático"
 
-#: __init__.py:127
+#: __init__.py:157
 msgid "Quarter Sine"
 msgstr "Quarto de seno"
 
-#: __init__.py:225
+#: __init__.py:296
+#: __init__.py:301
 msgid "Right"
 msgstr "Direita"
 
-#: __init__.py:227
+#: __init__.py:301
 msgid "Right to Left"
-msgstr "Direita para a esquerda"
+msgstr "Direita para esquerda"
 
-#: __init__.py:125
+#: __init__.py:155
 msgid "S-Curve"
-msgstr "Curva-S"
+msgstr "Curva em S"
 
-#: __init__.py:187
-#: __init__.py:198
-#: __init__.py:440
+#: __init__.py:256
+#: __init__.py:267
+#: __init__.py:587
 msgid "Save Error"
 msgstr "Erro ao guardar"
 
-#: __init__.py:92
+#: __init__.py:122
 msgid "Sawtooth"
 msgstr "Dente de serra"
 
-#: __init__.py:392
+#: __init__.py:535
 msgid "Settings Error"
 msgstr "Erro de definições"
 
-#: __init__.py:90
-#: __init__.py:126
+#: __init__.py:120
+#: __init__.py:156
 msgid "Sine"
 msgstr "Seno"
 
-#: __init__.py:336
-msgid "Smooth panning (reduces cracking)"
-msgstr "Panorâmica suave (reduz estalidos)"
-
-#: __init__.py:212
-msgid "Sound effects:"
-msgstr "Efeitos sonoros:"
-
-#: __init__.py:204
-#: __init__.py:446
+#: __init__.py:282
+#: __init__.py:593
 msgid "SoundAlign"
 msgstr "SoundAlign"
 
-#: __init__.py:703
+#: __init__.py:950
 msgid "SoundAlign off"
 msgstr "SoundAlign desligado"
 
-#: __init__.py:701
+#: __init__.py:948
 msgid "SoundAlign on"
 msgstr "SoundAlign ligado"
 
-#: __init__.py:307
+#: __init__.py:394
 msgid "Speech announcement interval:"
-msgstr "Intervalo de anúncio de fala:"
+msgstr "Intervalo de anúncio por voz:"
 
-#: __init__.py:93
+#: __init__.py:123
 msgid "Square"
-msgstr "Quadrada"
+msgstr "Quadrado"
 
-#: __init__.py:129
+#: __init__.py:159
 msgid "Square Root"
 msgstr "Raiz quadrada"
 
-#: __init__.py:342
+#: __init__.py:206
+msgid "Subtle / quiet"
+msgstr "Sutil / silencioso"
+
+#: __init__.py:431
 msgid "Test All Settings"
 msgstr "Testar todas as definições"
 
-#: __init__.py:326
+#: __init__.py:517
+msgid "Test already in progress"
+msgstr "Teste já em curso"
+
+#: __init__.py:413
 msgid "Time-based announcement (seconds, 0=disabled):"
 msgstr "Anúncio baseado no tempo (segundos, 0=desativado):"
 
-#: __init__.py:91
+#: __init__.py:121
 msgid "Triangle"
-msgstr "Triangular"
+msgstr "Triângulo"
 
-#: __init__.py:263
-msgid "Volume:"
-msgstr "Volume:"
+#: __init__.py:344
+msgid "Volume (%):"
+msgstr "Volume (%):"
 
-#: __init__.py:575
-#: __init__.py:582
-#: __init__.py:588
+#: __init__.py:743
+#: __init__.py:750
+#: __init__.py:756
 msgid "{percent}% complete"
 msgstr "{percent}% concluído"

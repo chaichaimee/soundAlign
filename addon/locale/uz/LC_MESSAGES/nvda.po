@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: soundAlign 2026.4.3\n"
+"Project-Id-Version: soundAlign 2026.8.5\n"
 "Report-Msgid-Bugs-To: chaicm75@gmail.com\n"
-"POT-Creation-Date: 2026-04-11 17:34+0700\n"
+"POT-Creation-Date: 2026-08-06 14:04+0700\n"
 "PO-Revision-Date: \n"
 "Last-Translator: chaiBot and Malee Yamazaki\n"
 "Language-Team: Uzbek\n"
@@ -12,215 +12,238 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: DevOn Addon\n"
 
-#: __init__.py:214
+#: __init__.py:424
+msgid "Add reverb to progress tones"
+msgstr "Jarayon ohanglariga reverb qo'shish"
+
+#: __init__.py:278
 msgid "Addon beeps (High Frequency):"
-msgstr "Addon biplari (Yuqori chastota):"
+msgstr "Qo'shimcha signal tovushlari (Yuqori chastota):"
 
-#: __init__.py:213
+#: __init__.py:276
 msgid "Addon beeps (Low Frequency):"
-msgstr "Addon biplari (Past chastota):"
+msgstr "Qo'shimcha signal tovushlari (Past chastota):"
 
-#: __init__.py:317
+#: __init__.py:277
+msgid "Addon beeps (Medium Frequency):"
+msgstr "Qo'shimcha signal tovushlari (O'rta chastota):"
+
+#: __init__.py:205
+msgid "Balanced (recommended)"
+msgstr "Muvozanatlashgan (tavsiya etiladi)"
+
+#: __init__.py:404
 msgid "Beep announcement interval:"
-msgstr "Bip e'lon qilish oralig'i:"
+msgstr "Signal xabar oralig'i:"
 
-#: __init__.py:186
+#: __init__.py:255
 msgid "Cannot save settings. No write permission for configuration directory."
-msgstr "Sozlamalarni saqlab bo'lmadi. Konfiguratsiya jildiga yozish huquqi yo'q."
+msgstr "Sozlamalarni saqlab bo'lmadi. Konfiguratsiya katalogiga yozish ruxsati yo'q."
 
-#: __init__.py:225
+#: __init__.py:296
+#: __init__.py:301
 msgid "Center"
 msgstr "Markaz"
 
-#: __init__.py:120
+#: __init__.py:150
 msgid "Cosine"
-msgstr "Cosine"
+msgstr "Kosinus"
 
-#: __init__.py:130
+#: __init__.py:160
 msgid "Cubic Root"
-msgstr "Cubic Root"
+msgstr "Kub ildiz"
 
-#: __init__.py:211
-msgid "Error sounds:"
-msgstr "Xato tovushlari:"
+#: __init__.py:204
+msgid "Custom (keep my current settings)"
+msgstr "Moslashtirilgan (joriy sozlamalarimni saqlash)"
 
-#: __init__.py:123
+#: __init__.py:153
 msgid "Exponential"
-msgstr "Exponential"
+msgstr "Eksponensial"
 
-#: __init__.py:251
+#: __init__.py:333
 msgid "Fade algorithm:"
 msgstr "So'nish algoritmi:"
 
-#: __init__.py:197
-#: __init__.py:439
+#: __init__.py:266
+#: __init__.py:586
 msgid "Failed to save settings. Please check permissions or config path."
-msgstr "Sozlamalarni saqlash muvaffaqiyatsiz tugadi. Huquqlarni tekshiring."
+msgstr "Sozlamalarni saqlash amalga oshmadi. Iltimos, ruxsatlar yoki konfiguratsiya yo'lini tekshiring."
 
-#: __init__.py:357
-#: __init__.py:403
+#: __init__.py:505
+#: __init__.py:546
 msgid "Frequency Range Error"
 msgstr "Chastota diapazoni xatosi"
 
-#: __init__.py:121
+#: __init__.py:151
 msgid "Gaussian"
-msgstr "Gaussian"
+msgstr "Gauss"
 
-#: __init__.py:128
+#: __init__.py:158
 msgid "Half Sine"
-msgstr "Half Sine"
+msgstr "Yarim sinus"
 
-#: __init__.py:225
+#: __init__.py:296
+#: __init__.py:301
 msgid "Left"
 msgstr "Chap"
 
-#: __init__.py:227
+#: __init__.py:301
 msgid "Left to Right"
 msgstr "Chapdan o'ngga"
 
-#: __init__.py:122
+#: __init__.py:152
 msgid "Linear"
-msgstr "Linear"
+msgstr "Chiziqli"
 
-#: __init__.py:124
+#: __init__.py:154
 msgid "Logarithmic"
-msgstr "Logarithmic"
+msgstr "Logarifmik"
 
-#: __init__.py:272
+#: __init__.py:354
 msgid "Master volume (%):"
-msgstr "Asosiy ovoz balandligi (%):"
+msgstr "Asosiy ovoz (%):"
 
-#: __init__.py:297
+#: __init__.py:384
 msgid "Maximum frequency:"
 msgstr "Maksimal chastota:"
 
-#: __init__.py:356
-#: __init__.py:402
+#: __init__.py:504
+#: __init__.py:545
 msgid "Minimum frequency must be less than maximum frequency."
-msgstr "Minimal chastota maksimaldan kichik bo'lishi kerak."
+msgstr "Minimal chastota maksimal chastotadan kichik bo'lishi kerak."
 
-#: __init__.py:287
+#: __init__.py:374
 msgid "Minimum frequency:"
 msgstr "Minimal chastota:"
 
-#: __init__.py:333
+#: __init__.py:420
 msgid "Mixed mode (speech + beep)"
-msgstr "Aralash rejim (nutq + bip)"
+msgstr "Aralash rejim (nutq + signal)"
 
-#: __init__.py:683
+#: __init__.py:930
 msgid "Open SoundAlign settings (single tap) or toggle SoundAlign on/off (double tap)"
-msgstr "SoundAlign sozlamalarini ochish (1 bosish) yoki yoqish/o'chirish (2 bosish)"
+msgstr "SoundAlign sozlamalarini ochish (bir marta bosish) yoki SoundAlign-ni yoqish/o'chirish (ikki marta bosish)"
 
-#: __init__.py:94
+#: __init__.py:124
 msgid "Original Tone Beep"
-msgstr "Original Tone Beep"
+msgstr "Asl ohangli signal"
 
-#: __init__.py:391
+#: __init__.py:534
 msgid "Please select valid minimum and maximum frequencies."
-msgstr "Iltimos, to'g'ri chastotalarni tanlang."
+msgstr "Iltimos, to'g'ri minimal va maksimal chastotalarni tanlang."
 
-#: __init__.py:215
+#: __init__.py:303
 msgid "Progress indicator:"
-msgstr "Progress indikatori:"
+msgstr "Jarayon ko'rsatkichi:"
 
-#: __init__.py:665
-msgid "Progress test not available. Pyaudio not imported."
-msgstr "Progress testi mavjud emas. Pyaudio topilmadi."
+#: __init__.py:312
+msgid "Progress sound preset:"
+msgstr "Jarayon ovozi tayinlamasi:"
 
-#: __init__.py:239
+#: __init__.py:875
+msgid "Progress test not available. Audio output could not be initialized."
+msgstr "Jarayon testi mavjud emas. Audio chiqishni ishga tushirib bo'lmadi."
+
+#: __init__.py:321
 msgid "Progress tone:"
-msgstr "Progress ohangi:"
+msgstr "Jarayon ohangi:"
 
-#: __init__.py:131
+#: __init__.py:207
+msgid "Prominent / clear"
+msgstr "Ko'zga tashlanadigan / aniq"
+
+#: __init__.py:161
 msgid "Quadratic"
-msgstr "Quadratic"
+msgstr "Kvadrat"
 
-#: __init__.py:127
+#: __init__.py:157
 msgid "Quarter Sine"
-msgstr "Quarter Sine"
+msgstr "Chorak sinus"
 
-#: __init__.py:225
+#: __init__.py:296
+#: __init__.py:301
 msgid "Right"
 msgstr "O'ng"
 
-#: __init__.py:227
+#: __init__.py:301
 msgid "Right to Left"
 msgstr "O'ngdan chapga"
 
-#: __init__.py:125
+#: __init__.py:155
 msgid "S-Curve"
-msgstr "S-Curve"
+msgstr "S-egri"
 
-#: __init__.py:187
-#: __init__.py:198
-#: __init__.py:440
+#: __init__.py:256
+#: __init__.py:267
+#: __init__.py:587
 msgid "Save Error"
 msgstr "Saqlash xatosi"
 
-#: __init__.py:92
+#: __init__.py:122
 msgid "Sawtooth"
-msgstr "Sawtooth"
+msgstr "Tarra tishi"
 
-#: __init__.py:392
+#: __init__.py:535
 msgid "Settings Error"
-msgstr "Sozlamalar xatosi"
+msgstr "Sozlama xatosi"
 
-#: __init__.py:90
-#: __init__.py:126
+#: __init__.py:120
+#: __init__.py:156
 msgid "Sine"
-msgstr "Sine"
+msgstr "Sinus"
 
-#: __init__.py:336
-msgid "Smooth panning (reduces cracking)"
-msgstr "Silliq panoramalash (shovqinni kamaytiradi)"
-
-#: __init__.py:212
-msgid "Sound effects:"
-msgstr "Ovoz effektlari:"
-
-#: __init__.py:204
-#: __init__.py:446
+#: __init__.py:282
+#: __init__.py:593
 msgid "SoundAlign"
 msgstr "SoundAlign"
 
-#: __init__.py:703
+#: __init__.py:950
 msgid "SoundAlign off"
 msgstr "SoundAlign o'chiq"
 
-#: __init__.py:701
+#: __init__.py:948
 msgid "SoundAlign on"
-msgstr "SoundAlign yoqiq"
+msgstr "SoundAlign yoqilgan"
 
-#: __init__.py:307
+#: __init__.py:394
 msgid "Speech announcement interval:"
-msgstr "Nutq e'lon qilish oralig'i:"
+msgstr "Nutq xabar oralig'i:"
 
-#: __init__.py:93
+#: __init__.py:123
 msgid "Square"
-msgstr "Square"
+msgstr "To'rtburchak"
 
-#: __init__.py:129
+#: __init__.py:159
 msgid "Square Root"
-msgstr "Square Root"
+msgstr "Kvadrat ildiz"
 
-#: __init__.py:342
+#: __init__.py:206
+msgid "Subtle / quiet"
+msgstr "Nozik / jim"
+
+#: __init__.py:431
 msgid "Test All Settings"
-msgstr "Barcha sozlamalarni sinash"
+msgstr "Barcha sozlamalarni sinab ko'rish"
 
-#: __init__.py:326
+#: __init__.py:517
+msgid "Test already in progress"
+msgstr "Sinov allaqachon davom etmoqda"
+
+#: __init__.py:413
 msgid "Time-based announcement (seconds, 0=disabled):"
-msgstr "Vaqtga asoslangan e'lon (soniya, 0=o'chiq):"
+msgstr "Vaqtga asoslangan xabar (soniya, 0=o'chiq):"
 
-#: __init__.py:91
+#: __init__.py:121
 msgid "Triangle"
-msgstr "Triangle"
+msgstr "Uchburchak"
 
-#: __init__.py:263
-msgid "Volume:"
-msgstr "Ovoz balandligi:"
+#: __init__.py:344
+msgid "Volume (%):"
+msgstr "Ovoz (%):"
 
-#: __init__.py:575
-#: __init__.py:582
-#: __init__.py:588
+#: __init__.py:743
+#: __init__.py:750
+#: __init__.py:756
 msgid "{percent}% complete"
 msgstr "{percent}% bajarildi"
