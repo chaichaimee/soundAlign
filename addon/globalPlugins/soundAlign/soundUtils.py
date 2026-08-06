@@ -1,4 +1,6 @@
 # soundUtils.py
+# Copyright (C) 2026 Chai Chaimee
+# Licensed under GNU General Public License. See COPYING.txt for details.
 
 import threading
 import queue
@@ -14,6 +16,24 @@ CENTER = 1
 RIGHT = 2
 LEFT_TO_RIGHT = 3
 RIGHT_TO_LEFT = 4
+
+
+def fraction_to_gain(fraction):
+	"""
+	Maps a 0.0-1.0 volume fraction to an audio gain using a square-law
+	curve instead of using the fraction directly as a linear amplitude
+	multiplier. Human loudness perception is much closer to logarithmic
+	than linear: a straight linear multiplier barely changes perceived
+	loudness across the top half of the range and barely attenuates
+	anything in the bottom half either -- e.g. 50% sounding almost as
+	loud as 80%, and 20% still sounding loud, is exactly what a linear
+	multiplier produces. Squaring the fraction (a standard, simple
+	approximation of a perceptual/audio-taper curve) makes each step of
+	the control correspond much more evenly to a step in perceived
+	loudness.
+	"""
+	fraction = max(0.0, min(1.0, fraction))
+	return fraction * fraction
 
 # SoundAlign only handles sounds played via tones.beep now (addon beeps and
 # the progress indicator). Wave-file cues (NVDA's built-in error/start/exit/
@@ -34,68 +54,47 @@ CHANNELS = 2
 SAMPLE_WIDTH = 2
 PAN_BOOST_FACTOR = 1.0
 
-# --- Continuous progress-tone engine tuning -------------------------------
-# Earlier revisions generated progress audio as discrete ~100ms chunks, one
-# per NVDA progress-beep event, each independently panned and queued. That
-# produced an audible click at every chunk boundary, and for short
-# operations (only a couple of progress events) the pan simply stopped
-# wherever the last chunk happened to land instead of completing a sweep.
+# --- Progress-tone engine ---------------------------------------------
+# This has gone through several designs:
+#  1. Discrete chunks per NVDA beep event -> audible clicks at every
+#     chunk boundary.
+#  2. One continuous background generator, gliding frequency/pan/
+#     amplitude toward the latest target -> click-free, and sweeps
+#     nicely for short operations, but for anything that keeps running
+#     for a while (e.g. converting a large video) it becomes one
+#     unbroken drone, which is fatiguing to listen to.
+#  3. A continuous/discrete hybrid that switched to ticking after a
+#     fixed number of seconds -> the threshold was measured per audio
+#     session, but a session gets torn down and restarted on every gap
+#     between real progress updates longer than the inactivity timeout,
+#     so for operations with naturally sparse updates the "how long has
+#     this been running" clock kept resetting and the continuous mode
+#     never actually handed off -- plus every one of those restarts
+#     replayed the "sweep from the start" behaviour, which sounded
+#     chaotic and repetitive over a long operation.
 #
-# The standard real-time-synthesis fix for both problems (per common
-# practice for glide/portamento-based tone generators) is to run ONE
-# continuous generator instead of discrete chunks, smoothly interpolating
-# ("gliding") frequency and pan toward their latest target values instead
-# of snapping to them.
-#
-# IMPORTANT (this is the part an earlier revision got wrong): NVDA's own
-# nvwave.WavePlayer had its automatic internal buffering removed in recent
-# versions (the 'buffered' constructor parameter was deprecated and then
-# removed) -- so the caller is now fully responsible for keeping playback
-# fed with a comfortable lookahead cushion. Generating one small block and
-# immediately blocking on feed() for it, over and over with no cushion,
-# means ANY tiny timing hiccup (GIL contention, a slightly slow block) is
-# instantly an audible gap. The fix is the standard producer/consumer
-# pattern: a GENERATOR thread renders blocks continuously and pushes them
-# into a bounded queue running comfortably ahead of playback, while a
-# separate FEEDER thread drains that queue into WavePlayer.feed(). Jitter
-# in generation timing is absorbed by the queued cushion instead of
-# reaching the speaker as a click.
-_BLOCK_SECONDS = 0.1
-# How many blocks to keep queued ahead of playback (0.1s * 5 = 500ms of
-# lookahead cushion).
-_QUEUE_LOOKAHEAD_BLOCKS = 5
-# Portamento time constant: how quickly frequency/pan glide toward their
-# latest target, spread over multiple blocks. Frequency/pan/amplitude are
-# then interpolated per-SAMPLE within each block (see _render_block) so
-# there is never a step at a block boundary, only a continuously moving
-# value throughout.
-#
-# Shortened from 0.3s: with sparser progress updates (common for real
-# copy operations, which often only report every few hundred ms rather
-# than continuously), a longer glide meant the audible pan noticeably
-# lagged behind each new target -- felt like a jump rather than a sweep,
-# especially for short (few-second) operations with only a handful of
-# updates total.
-_GLIDE_SECONDS = 0.15
-_FADE_IN_SECONDS = 0.03
-_FADE_OUT_SECONDS = 0.25
-# If no new progress update arrives for this long, treat the operation as
-# finished: glide the rest of the way to this direction's natural end
-# point and fade out, rather than cutting off abruptly.
-#
-# IMPORTANT: this must be comfortably longer than the normal gap between
-# real progress updates, or a still-running operation gets misdetected as
-# "finished" mid-sweep -- triggering a fade-out-and-stop, then a fresh
-# fade-in-from-silence restart the moment the next real update arrives a
-# moment later. That start/stop/restart cycle is what produced the
-# jumpy, discontinuous, cut-off-sounding pan reported for short
-# operations: 0.35s turned out to be shorter than several real-world
-# progress dialogs' normal update interval.
-_INACTIVITY_TIMEOUT = 0.8
+# This is the current, simpler design: every progress update renders and
+# queues ONE short, self-contained "tick" -- gliding from wherever the
+# previous tick left off to the new target, holding briefly, then fading
+# back to silence -- and nothing plays in between updates at all. No
+# continuous background loop, no "is this finished yet?" timeout logic:
+# each tick is inherently self-terminating, so there's nothing to hang
+# open or need to be wrapped up. Frequent updates naturally sound like a
+# connected sweep (each tick glides in from the last one); infrequent
+# updates naturally sound like separate discrete beeps. Either way nothing
+# ever drones on continuously.
+_TICK_SECONDS = 0.2
+_TICK_ATTACK_FRACTION = 0.15
+_TICK_DECAY_FRACTION = 0.35
+# A silence longer than this before the next progress update is treated
+# as a genuinely new, unrelated operation (so the next tick starts fresh
+# from this direction's beginning again) rather than a continuation of
+# the same one (which resumes from wherever the last tick left off).
+_TASK_RESET_GAP = 3.0
 
 # Short delay-line length used for the optional progress-tone reverb
-# effect. Longer than a single block by a wide margin so the buffer never
-# wraps around within a fast-changing block.
+# effect. Longer than a single tick by a wide margin so the buffer never
+# wraps around within one.
 _DELAY_SECONDS = 0.15
 _DELAY_FEEDBACK = 0.20
 _DELAY_MIX = 0.24
@@ -141,21 +140,21 @@ class SoundProcessor:
 		self._delay_buffer_right = array.array('h', [0] * delayLen)
 		self._delay_pos = 0
 
-		# Continuous progress-tone generator state. A GENERATOR thread
-		# (_progress_generator_loop) renders blocks and pushes them into
-		# this bounded queue; a separate FEEDER thread (_progress_feeder_loop)
-		# drains it into wave_player.feed(). Keeping the queue running a
-		# few blocks ahead of playback is what absorbs generation-timing
-		# jitter instead of it reaching the speaker as a click.
+		# Progress-tick engine state. play_progress_sound() just records
+		# the latest target and wakes the worker thread; the worker
+		# renders and queues one tick per wake-up, then goes back to
+		# waiting. A separate FEEDER thread drains the render queue into
+		# wave_player.feed() (see _progress_feeder_loop) so a momentarily
+		# slow render can't directly stall audio timing.
 		self._progress_lock = threading.Lock()
-		self._progress_active = False
-		self._progress_target_frequency = None
-		self._progress_target_pan = 0.5
-		self._progress_direction = None
-		self._progress_last_update = 0.0
-		self._progress_generator_thread = None
+		self._progress_pending = None
+		self._progress_last_frequency = None
+		self._progress_last_pan = 0.5
+		self._progress_last_event_time = 0.0
+		self._progress_worker_thread = None
 		self._progress_feeder_thread = None
-		self._progress_queue = queue.Queue(maxsize=_QUEUE_LOOKAHEAD_BLOCKS * 2)
+		self._progress_wake = threading.Event()
+		self._progress_queue = queue.Queue(maxsize=32)
 
 		try:
 			try:
@@ -177,19 +176,16 @@ class SoundProcessor:
 
 	def stop(self):
 		self.is_running = False
-		with self._progress_lock:
-			self._progress_active = False
+		self._progress_wake.set()
 
-		# Wake up the feeder thread if it's blocked waiting on an empty
-		# queue, and the generator thread if it checks is_running promptly.
 		try:
 			self._progress_queue.put_nowait(None)
 		except queue.Full:
 			pass
 
-		generatorThread = self._progress_generator_thread
-		if generatorThread and generatorThread.is_alive():
-			generatorThread.join(timeout=2.0)
+		workerThread = self._progress_worker_thread
+		if workerThread and workerThread.is_alive():
+			workerThread.join(timeout=2.0)
 
 		feederThread = self._progress_feeder_thread
 		if feederThread and feederThread.is_alive():
@@ -218,12 +214,10 @@ class SoundProcessor:
 
 	def play_progress_sound(self, percent, direction):
 		"""
-		Updates the continuous progress-tone generator's target frequency
-		and pan; cheap and non-blocking (just updates a few numbers under
-		a lock), so it's safe to call directly from safeBeep regardless of
-		which thread that runs on. The actual audio generation happens
-		continuously on a dedicated background thread -- see
-		_progress_generator_loop / _progress_feeder_loop.
+		Records the latest target frequency/pan and wakes the tick
+		worker; cheap and non-blocking; safe to call directly from
+		safeBeep regardless of which thread that runs on. See
+		_progress_worker_loop for the actual rendering.
 		"""
 		if not self.wave_player:
 			return
@@ -241,25 +235,44 @@ class SoundProcessor:
 		else:
 			pan = 0.5
 
+		now = time.monotonic()
 		with self._progress_lock:
-			self._progress_target_frequency = frequency
-			self._progress_target_pan = pan
-			self._progress_direction = direction
-			self._progress_last_update = time.monotonic()
-			wasActive = self._progress_active
-			self._progress_active = True
-
-		if not wasActive:
-			self._start_progress_thread()
-
-	def _start_progress_thread(self):
-		with self._lock:
-			if self._progress_generator_thread and self._progress_generator_thread.is_alive():
-				return
-			self._progress_generator_thread = threading.Thread(
-				target=self._progress_generator_loop, daemon=True
+			gap = (now - self._progress_last_event_time) if self._progress_last_event_time else None
+			isNewTask = (
+				self._progress_last_frequency is None
+				or gap is None
+				or gap > _TASK_RESET_GAP
 			)
-			self._progress_generator_thread.start()
+			if isNewTask:
+				# Genuinely new/unrelated operation (or the very first
+				# ever): start the next tick from this direction's true
+				# beginning. NVDA's very first progress update for an
+				# operation is often already well underway -- e.g. a fast
+				# copy can report its first update at 37% or even 85%
+				# complete -- so starting from wherever that first value
+				# happens to be would sound like playback "began in the
+				# middle" instead of sweeping from the start.
+				self._progress_last_frequency = self.min_frequency
+				if direction == LEFT_TO_RIGHT or direction == LEFT:
+					self._progress_last_pan = 0.0
+				elif direction == RIGHT_TO_LEFT or direction == RIGHT:
+					self._progress_last_pan = 1.0
+				else:
+					self._progress_last_pan = 0.5
+
+			self._progress_pending = (frequency, pan)
+			self._progress_last_event_time = now
+
+		self._ensure_progress_worker()
+		self._progress_wake.set()
+
+	def _ensure_progress_worker(self):
+		with self._lock:
+			if not self._progress_worker_thread or not self._progress_worker_thread.is_alive():
+				self._progress_worker_thread = threading.Thread(
+					target=self._progress_worker_loop, daemon=True
+				)
+				self._progress_worker_thread.start()
 
 			if not self._progress_feeder_thread or not self._progress_feeder_thread.is_alive():
 				self._progress_feeder_thread = threading.Thread(
@@ -269,11 +282,10 @@ class SoundProcessor:
 
 	def _progress_feeder_loop(self):
 		"""
-		Drains queued, pre-rendered blocks into wave_player.feed(). Kept
-		completely separate from generation so that a momentarily slow
+		Drains queued, pre-rendered ticks into wave_player.feed(). Kept
+		completely separate from rendering so that a momentarily slow
 		render (GIL contention, a heavier waveform, etc.) doesn't directly
-		stall the feed timing -- it just eats into the queued lookahead
-		cushion instead of becoming an audible gap.
+		stall the feed timing.
 		"""
 		while self.is_running:
 			try:
@@ -291,108 +303,90 @@ class SoundProcessor:
 				log.error(f"SoundProcessor: feed error: {e}")
 				break
 
-	def _progress_generator_loop(self):
-		blockSamples = max(1, int(SAMPLE_RATE * _BLOCK_SECONDS))
-		glideFactor = min(1.0, _BLOCK_SECONDS / _GLIDE_SECONDS)
-		currentFrequency = None
-		currentPan = 0.5
-		currentAmplitude = 0.0
-		fadeElapsed = 0.0
-		fadingIn = True
-
+	def _progress_worker_loop(self):
+		"""
+		Sleeps until play_progress_sound() signals a new target, then
+		renders and queues exactly one tick for it and goes back to
+		sleep. There is no per-block looping or timeout/"is this
+		finished" logic here at all -- each tick is a short, complete,
+		self-fading sound on its own, so there's nothing left open that
+		would need to be wrapped up later.
+		"""
 		while self.is_running:
+			triggered = self._progress_wake.wait(timeout=0.5)
+			if not self.is_running:
+				break
+			if not triggered:
+				continue
+			self._progress_wake.clear()
+
 			with self._progress_lock:
-				targetFrequency = self._progress_target_frequency
-				targetPan = self._progress_target_pan
-				direction = self._progress_direction
-				lastUpdate = self._progress_last_update
+				pending = self._progress_pending
+				self._progress_pending = None
+				startFrequency = self._progress_last_frequency
+				startPan = self._progress_last_pan
 
-			if targetFrequency is None:
+			if pending is None:
+				continue
+
+			targetFrequency, targetPan = pending
+			tick = self._render_progress_tick(startFrequency, targetFrequency, startPan, targetPan)
+			if not self._enqueue(tick):
 				break
 
-			if currentFrequency is None:
-				# A fresh session (this thread just started for a new
-				# operation). NVDA's very first progress update for an
-				# operation is often already well underway -- e.g. a fast
-				# copy can report its first update at 37% or even 85%
-				# complete, because the underlying work outran how often
-				# NVDA polls/reports it. Starting the audible sweep
-				# directly at that first reported position made it sound
-				# like playback "began in the middle" instead of sweeping
-				# from the start. Always begin at this direction's true
-				# starting point instead (low pitch, and the sweep's
-				# starting side) and let the normal glide carry it from
-				# there to the first real target -- so even a short,
-				# already-partway-along operation still sounds like a
-				# sweep from the beginning, matching test mode.
-				currentFrequency = self.min_frequency
-				if direction == LEFT_TO_RIGHT or direction == LEFT:
-					currentPan = 0.0
-				elif direction == RIGHT_TO_LEFT or direction == RIGHT:
-					currentPan = 1.0
-				else:
-					currentPan = 0.5
+			with self._progress_lock:
+				self._progress_last_frequency = targetFrequency
+				self._progress_last_pan = targetPan
 
-			idleFor = time.monotonic() - lastUpdate
-			if idleFor > _INACTIVITY_TIMEOUT:
-				# No new progress update in a while -- treat the operation
-				# as finished. Glide the rest of the way to this
-				# direction's natural end point and fade out, instead of
-				# just stopping wherever the last update happened to land.
-				# This is what makes even a very short (few-second)
-				# operation still sound like a complete sweep rather than
-				# an abrupt cutoff.
-				endPan = targetPan
-				if direction == LEFT_TO_RIGHT:
-					endPan = 1.0
-				elif direction == RIGHT_TO_LEFT:
-					endPan = 0.0
-				self._render_wrapup(currentFrequency, currentPan, endPan, currentAmplitude, glideFactor, blockSamples)
-				with self._progress_lock:
-					self._progress_active = False
-				break
+	def _render_progress_tick(self, startFrequency, endFrequency, startPan, endPan):
+		"""
+		One short, self-contained burst: glides frequency/pan from the
+		previous tick's ending point to this one's target during the
+		attack (so a run of frequent updates still feels like a connected
+		sweep), holds briefly at the target, then fades back to silence
+		during the decay -- so nothing is ever left "hanging open"
+		waiting for a next update that might not arrive for a while.
 
-			nextFrequency = currentFrequency + (targetFrequency - currentFrequency) * glideFactor
-			nextPan = currentPan + (targetPan - currentPan) * glideFactor
+		The attack/decay amplitude ramps are shaped by the user's chosen
+		fade_algorithm (_fade_curve) rather than a plain straight line:
+		_render_block itself only interpolates linearly within a single
+		call, so each ramp is built from several small linear sub-steps
+		whose endpoints follow the curve, closely approximating it.
+		"""
+		numSamples = max(1, int(SAMPLE_RATE * _TICK_SECONDS))
+		attackSamples = max(1, int(numSamples * _TICK_ATTACK_FRACTION))
+		decaySamples = max(1, int(numSamples * _TICK_DECAY_FRACTION))
+		sustainSamples = max(1, numSamples - attackSamples - decaySamples)
 
-			nextAmplitude = currentAmplitude
-			if fadingIn:
-				fadeElapsed += _BLOCK_SECONDS
-				progress = min(1.0, fadeElapsed / _FADE_IN_SECONDS)
-				nextAmplitude = self._fade_curve(progress)
-				if progress >= 1.0:
-					fadingIn = False
-					nextAmplitude = 1.0
+		curveSteps = 6
+		result = array.array('h')
 
-			# Frequency/pan/amplitude are interpolated per-SAMPLE from their
-			# current value to next value inside _render_block -- so even
-			# though targets only update once per block, the actual audio
-			# never steps; it's a continuously moving value throughout.
-			block = self._render_block(
-				blockSamples, currentFrequency, nextFrequency, currentPan, nextPan, currentAmplitude, nextAmplitude
+		stepSamples = max(1, attackSamples // curveSteps)
+		for i in range(curveSteps):
+			t0 = i / curveSteps
+			t1 = (i + 1) / curveSteps
+			freq0 = startFrequency + (endFrequency - startFrequency) * t0
+			freq1 = startFrequency + (endFrequency - startFrequency) * t1
+			pan0 = startPan + (endPan - startPan) * t0
+			pan1 = startPan + (endPan - startPan) * t1
+			result += self._render_block(
+				stepSamples, freq0, freq1, pan0, pan1, self._fade_curve(t0), self._fade_curve(t1)
 			)
-			if not self._enqueue(block):
-				break
 
-			currentFrequency = nextFrequency
-			currentPan = nextPan
-			currentAmplitude = nextAmplitude
+		result += self._render_block(
+			sustainSamples, endFrequency, endFrequency, endPan, endPan, 1.0, 1.0
+		)
 
-	def _render_wrapup(self, startFrequency, startPan, endPan, startAmplitude, glideFactor, blockSamples):
-		steps = max(1, int(_FADE_OUT_SECONDS / _BLOCK_SECONDS))
-		currentPan = startPan
-		currentAmplitude = startAmplitude
-		for i in range(steps):
-			nextPan = currentPan + (endPan - currentPan) * glideFactor
-			fadeProgress = (i + 1) / steps
-			nextAmplitude = startAmplitude * self._fade_curve(1.0 - fadeProgress)
-			block = self._render_block(
-				blockSamples, startFrequency, startFrequency, currentPan, nextPan, currentAmplitude, nextAmplitude
+		stepSamples = max(1, decaySamples // curveSteps)
+		for i in range(curveSteps):
+			t0 = i / curveSteps
+			t1 = (i + 1) / curveSteps
+			result += self._render_block(
+				stepSamples, endFrequency, endFrequency, endPan, endPan,
+				1.0 - self._fade_curve(t0), 1.0 - self._fade_curve(t1)
 			)
-			if not self._enqueue(block):
-				return
-			currentPan = nextPan
-			currentAmplitude = nextAmplitude
+
+		return result
 
 	def _enqueue(self, block):
 		if not self.is_running:
@@ -434,7 +428,7 @@ class SoundProcessor:
 		phase = self._tone_phase
 		twoPi = 2 * math.pi
 		harmonics = self.harmonics
-		volume = self.volume * PAN_BOOST_FACTOR * self.master_volume
+		volume = fraction_to_gain(self.volume) * PAN_BOOST_FACTOR * fraction_to_gain(self.master_volume)
 
 		stereo = array.array('h')
 		for _i in range(numSamples):
@@ -501,9 +495,8 @@ class SoundProcessor:
 	def _fade_curve(self, t):
 		"""
 		Maps a 0-1 progress fraction to a 0-1 amplitude using the selected
-		fade_algorithm shape. Used for the fade-in when the progress tone
-		starts from silence and the fade-out during the end-of-operation
-		wrap-up (see _render_wrapup).
+		fade_algorithm shape. Used to shape each progress tick's
+		attack/decay envelope (see _render_progress_tick).
 		"""
 		t = max(0.0, min(1.0, t))
 		algo = self.fade_algorithm

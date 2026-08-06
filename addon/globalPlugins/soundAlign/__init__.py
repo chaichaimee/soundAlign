@@ -47,6 +47,7 @@ if plugin_dir not in sys.path:
 
 from .soundUtils import (
 	SoundProcessor,
+	fraction_to_gain,
 	LEFT,
 	RIGHT,
 	LEFT_TO_RIGHT,
@@ -695,7 +696,7 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 
 				leftVol_dynamic = (1.0 - pan_pos) * 100
 				rightVol_dynamic = pan_pos * 100
-				master = self.settings.get("masterVolume", 100) / 100.0
+				master = fraction_to_gain(self.settings.get("masterVolume", 100) / 100.0)
 				self.originalBeep(hz, length, left=int(leftVol_dynamic * master), right=int(rightVol_dynamic * master))
 			else:
 				if percent != getattr(sound_context, 'last_progress_value', -1):
@@ -708,7 +709,7 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 						self.originalBeep(hz, length, left=left, right=right)
 		else:
 			leftVol, rightVol = self.getBalance(direction)
-			master = self.settings.get("masterVolume", 100) / 100.0
+			master = fraction_to_gain(self.settings.get("masterVolume", 100) / 100.0)
 			self.originalBeep(hz, length, left=int(leftVol * 100 * master), right=int(rightVol * 100 * master))
 
 	def safeBeepWinsound(self, frequency, duration):
@@ -858,7 +859,7 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 
 		_, freq, duration, direction = self._test_sequence[self._test_index]
 		leftVol, rightVol = self.getBalance(direction)
-		master = self.settings.get("masterVolume", 100) / 100.0
+		master = fraction_to_gain(self.settings.get("masterVolume", 100) / 100.0)
 		self.originalBeep(freq, duration, left=int(leftVol*100*master), right=int(rightVol*100*master))
 		self._test_index += 1
 		callLater(600, self._run_next_test_beep)
@@ -904,7 +905,7 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 
 		leftVol_dynamic = (1.0 - pan_pos) * 100
 		rightVol_dynamic = pan_pos * 100
-		master = self.settings.get("masterVolume", 100) / 100.0
+		master = fraction_to_gain(self.settings.get("masterVolume", 100) / 100.0)
 		self.originalBeep(int(hz), 40, left=int(leftVol_dynamic * master), right=int(rightVol_dynamic * master))
 		self._test_progress_idx += 1
 		callLater(20, self._run_next_progress_beep)
@@ -920,7 +921,7 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 
 	def testBeep(self, freq, duration, direction, soundType):
 		leftVol, rightVol = self.getBalance(direction)
-		master = self.settings.get("masterVolume", 100) / 100.0
+		master = fraction_to_gain(self.settings.get("masterVolume", 100) / 100.0)
 		self.originalBeep(freq, duration, left=int(leftVol*100*master), right=int(rightVol*100*master))
 
 	def testProgress(self, direction, waveform_type):
