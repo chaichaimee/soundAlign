@@ -92,6 +92,26 @@ _TICK_DECAY_FRACTION = 0.35
 # the same one (which resumes from wherever the last tick left off).
 _TASK_RESET_GAP = 3.0
 
+# A batch of many quick operations (e.g. converting a hundred small audio
+# files back-to-back) can call play_progress_sound() far faster than a
+# single tick's own duration, which used to queue up a long backlog of
+# stale ticks that kept playing long after the real state had moved on --
+# heard as a wall of overlapping beeps. Any non-terminal update arriving
+# faster than this, for an already-in-progress task, is folded into the
+# running position instead of spawning its own tick; the next tick that
+# does get rendered still reflects the latest target.
+_MIN_TICK_SUBMIT_INTERVAL = 0.08
+
+# A task whose very first update already reports a high percentage, and
+# which then finishes within this short a window, is a fast, sub-second
+# operation (e.g. copying a small file). Rendering its finishing tick as
+# the usual short glide from wherever the sparse updates happened to land
+# sounds like a truncated blip rather than a proper sweep, so that tick is
+# instead rendered as a longer, full sweep from the true start of the
+# configured direction through to the finishing point.
+_SHORT_OPERATION_SECONDS = 0.6
+_SHORT_SWEEP_TICK_SECONDS = 0.45
+
 # Short delay-line length used for the optional progress-tone reverb
 # effect. Longer than a single tick by a wide margin so the buffer never
 # wraps around within one.
@@ -99,21 +119,22 @@ _DELAY_SECONDS = 0.15
 _DELAY_FEEDBACK = 0.20
 _DELAY_MIX = 0.24
 
+# How long the feeder thread lets wave_player sit idle (no ticks fed) before
+# releasing the underlying WASAPI stream and letting it be recreated lazily
+# on next use. Holding one nvwave.WavePlayer open for the entire NVDA
+# session -- as this add-on previously did -- starves other concurrent
+# users of the same output device on setups with a limited number of
+# concurrent stream slots (common on virtualized/RDP audio drivers), which
+# was observed to silently suppress tones.beep() calls made by other
+# add-ons while SoundAlign was loaded, even though SoundAlign itself
+# wasn't actively playing anything at the time.
+_IDLE_RELEASE_SECONDS = 5.0
+
 
 class SoundProcessor:
 
 	def __init__(self, global_plugin):
 		self.global_plugin = global_plugin
-		# NVDA's own audio player (WASAPI-based), the exact same class
-		# tones.py itself uses to play tones.beep. Earlier revisions of
-		# this add-on opened a completely separate PyAudio/pyaudiowpatch
-		# WASAPI stream running in parallel to NVDA's own audio engine --
-		# that redundant second audio path is what caused the persistent
-		# crackling, unpanned playback and doubled-sound bugs. Routing
-		# through nvwave.WavePlayer instead means SoundAlign's synthesized
-		# tones share the exact same, already battle-tested audio output
-		# mechanism NVDA itself relies on for everything else, with no
-		# separate/competing audio session.
 		self.wave_player = None
 		self.is_running = False
 		self.volume = 0.5
@@ -151,28 +172,59 @@ class SoundProcessor:
 		self._progress_last_frequency = None
 		self._progress_last_pan = 0.5
 		self._progress_last_event_time = 0.0
+		self._progress_last_submit_time = 0.0
+		self._progress_task_start_time = 0.0
 		self._progress_worker_thread = None
 		self._progress_feeder_thread = None
 		self._progress_wake = threading.Event()
-		self._progress_queue = queue.Queue(maxsize=32)
+		# Kept deliberately short: this is a lookahead cushion for smoothing
+		# out normal playback timing, not a buffer for queuing up a
+		# backlog of ticks from a burst of many quick operations. A deep
+		# queue there just means the audio keeps playing minutes' worth of
+		# stale, no-longer-relevant ticks after a batch job has already
+		# moved on.
+		self._progress_queue = queue.Queue(maxsize=8)
 
-		try:
+		# wave_player is created lazily on first actual use (see
+		# _ensure_wave_player) and released again after a period of
+		# inactivity (see _IDLE_RELEASE_SECONDS / _progress_feeder_loop)
+		# rather than being opened once here and held for the entire NVDA
+		# session. is_running reflects whether this SoundProcessor is
+		# available for use at all, independent of whether the device
+		# happens to be open at this exact moment.
+		self.is_running = True
+
+	def _ensure_wave_player(self):
+		# NVDA's own audio player (WASAPI-based), the exact same class
+		# tones.py itself uses to play tones.beep. Earlier revisions of
+		# this add-on opened a completely separate PyAudio/pyaudiowpatch
+		# WASAPI stream running in parallel to NVDA's own audio engine --
+		# that redundant second audio path is what caused the persistent
+		# crackling, unpanned playback and doubled-sound bugs. Routing
+		# through nvwave.WavePlayer instead means SoundAlign's synthesized
+		# tones share the exact same, already battle-tested audio output
+		# mechanism NVDA itself relies on for everything else, with no
+		# separate/competing audio session.
+		with self._lock:
+			if self.wave_player:
+				return self.wave_player
 			try:
-				outputDevice = config.conf["audio"]["outputDevice"]
-			except KeyError:
-				# Older NVDA config layout.
-				outputDevice = config.conf["speech"]["outputDevice"]
-			self.wave_player = nvwave.WavePlayer(
-				channels=CHANNELS,
-				samplesPerSec=SAMPLE_RATE,
-				bitsPerSample=SAMPLE_WIDTH * 8,
-				outputDevice=outputDevice,
-				wantDucking=False,
-			)
-			self.is_running = True
-		except Exception as e:
-			log.error(f"SoundProcessor: nvwave.WavePlayer init failed: {e}")
-			self.wave_player = None
+				try:
+					outputDevice = config.conf["audio"]["outputDevice"]
+				except KeyError:
+					# Older NVDA config layout.
+					outputDevice = config.conf["speech"]["outputDevice"]
+				self.wave_player = nvwave.WavePlayer(
+					channels=CHANNELS,
+					samplesPerSec=SAMPLE_RATE,
+					bitsPerSample=SAMPLE_WIDTH * 8,
+					outputDevice=outputDevice,
+					wantDucking=False,
+				)
+			except Exception as e:
+				log.error(f"SoundProcessor: nvwave.WavePlayer init failed: {e}")
+				self.wave_player = None
+			return self.wave_player
 
 	def stop(self):
 		self.is_running = False
@@ -219,21 +271,30 @@ class SoundProcessor:
 		safeBeep regardless of which thread that runs on. See
 		_progress_worker_loop for the actual rendering.
 		"""
-		if not self.wave_player:
+		# wave_player is opened lazily on first actual use, not eagerly
+		# here -- so its absence at this point isn't itself a reason to
+		# bail out. is_running is the real kill-switch (set False once by
+		# stop() and never reopened).
+		if not self.is_running:
 			return
 
 		frequency = self.min_frequency + (self.max_frequency - self.min_frequency) * (percent / 100.0)
 
 		if direction == LEFT_TO_RIGHT:
 			pan = percent / 100.0
+			beginPan = 0.0
 		elif direction == RIGHT_TO_LEFT:
 			pan = 1.0 - (percent / 100.0)
+			beginPan = 1.0
 		elif direction == LEFT:
 			pan = 0.0
+			beginPan = 0.0
 		elif direction == RIGHT:
 			pan = 1.0
+			beginPan = 1.0
 		else:
 			pan = 0.5
+			beginPan = 0.5
 
 		now = time.monotonic()
 		with self._progress_lock:
@@ -253,15 +314,48 @@ class SoundProcessor:
 				# happens to be would sound like playback "began in the
 				# middle" instead of sweeping from the start.
 				self._progress_last_frequency = self.min_frequency
-				if direction == LEFT_TO_RIGHT or direction == LEFT:
-					self._progress_last_pan = 0.0
-				elif direction == RIGHT_TO_LEFT or direction == RIGHT:
-					self._progress_last_pan = 1.0
-				else:
-					self._progress_last_pan = 0.5
+				self._progress_last_pan = beginPan
+				self._progress_task_start_time = now
 
-			self._progress_pending = (frequency, pan)
+			taskElapsed = now - self._progress_task_start_time if self._progress_task_start_time else 0.0
+			isQuickCompletion = (
+				not isNewTask
+				and percent >= 95
+				and taskElapsed < _SHORT_OPERATION_SECONDS
+			)
+			isTerminalPercent = percent <= 0 or percent >= 100
+
+			submitGap = (now - self._progress_last_submit_time) if self._progress_last_submit_time else None
+			isFlooding = (
+				not isNewTask
+				and not isTerminalPercent
+				and not isQuickCompletion
+				and submitGap is not None
+				and submitGap < _MIN_TICK_SUBMIT_INTERVAL
+			)
+			if isFlooding:
+				# Too many updates too close together for a fast batch of
+				# small operations: fold this one into the running
+				# position without spawning its own tick, rather than
+				# queuing it up behind the ones still waiting to play.
+				self._progress_last_frequency = frequency
+				self._progress_last_pan = pan
+				self._progress_last_event_time = now
+				return
+
+			if isQuickCompletion:
+				# This task started and is finishing within a fraction of
+				# a second, so its sparse updates would otherwise render
+				# as a short, disconnected blip instead of a proper
+				# sweep -- render one longer tick that sweeps the whole
+				# way from this direction's true beginning through to the
+				# finishing point.
+				self._progress_pending = (frequency, pan, True, self.min_frequency, beginPan)
+			else:
+				self._progress_pending = (frequency, pan, False, None, None)
+
 			self._progress_last_event_time = now
+			self._progress_last_submit_time = now
 
 		self._ensure_progress_worker()
 		self._progress_wake.set()
@@ -286,21 +380,38 @@ class SoundProcessor:
 		completely separate from rendering so that a momentarily slow
 		render (GIL contention, a heavier waveform, etc.) doesn't directly
 		stall the feed timing.
+
+		Also owns the wave_player's lazy-open/idle-release lifecycle: the
+		device is opened here on first actual tick and released again
+		after _IDLE_RELEASE_SECONDS of nothing to feed, rather than being
+		held open for the entire NVDA session regardless of use.
 		"""
+		lastFeedTime = time.monotonic()
 		while self.is_running:
 			try:
 				data = self._progress_queue.get(timeout=0.5)
 			except queue.Empty:
+				if self.wave_player and (time.monotonic() - lastFeedTime) >= _IDLE_RELEASE_SECONDS:
+					with self._lock:
+						if self.wave_player:
+							try:
+								self.wave_player.stop()
+							except Exception as e:
+								log.debug(f"SoundProcessor: WavePlayer idle-release stop error: {e}")
+							self.wave_player = None
 				continue
 			if data is None:
 				continue
-			player = self.wave_player
+			player = self._ensure_wave_player()
 			if not player:
-				break
+				continue
 			try:
 				player.feed(data)
+				lastFeedTime = time.monotonic()
 			except Exception as e:
 				log.error(f"SoundProcessor: feed error: {e}")
+				with self._lock:
+					self.wave_player = None
 				break
 
 	def _progress_worker_loop(self):
@@ -329,8 +440,16 @@ class SoundProcessor:
 			if pending is None:
 				continue
 
-			targetFrequency, targetPan = pending
-			tick = self._render_progress_tick(startFrequency, targetFrequency, startPan, targetPan)
+			targetFrequency, targetPan, forceFullSweep, overrideStartFrequency, overrideStartPan = pending
+			if forceFullSweep:
+				startFrequency = overrideStartFrequency
+				startPan = overrideStartPan
+				tick = self._render_progress_tick(
+					startFrequency, targetFrequency, startPan, targetPan,
+					tickSeconds=_SHORT_SWEEP_TICK_SECONDS
+				)
+			else:
+				tick = self._render_progress_tick(startFrequency, targetFrequency, startPan, targetPan)
 			if not self._enqueue(tick):
 				break
 
@@ -338,7 +457,7 @@ class SoundProcessor:
 				self._progress_last_frequency = targetFrequency
 				self._progress_last_pan = targetPan
 
-	def _render_progress_tick(self, startFrequency, endFrequency, startPan, endPan):
+	def _render_progress_tick(self, startFrequency, endFrequency, startPan, endPan, tickSeconds=_TICK_SECONDS):
 		"""
 		One short, self-contained burst: glides frequency/pan from the
 		previous tick's ending point to this one's target during the
@@ -352,8 +471,14 @@ class SoundProcessor:
 		_render_block itself only interpolates linearly within a single
 		call, so each ramp is built from several small linear sub-steps
 		whose endpoints follow the curve, closely approximating it.
+
+		tickSeconds defaults to the standard short tick duration but is
+		overridden to a longer value for a quick-completing task's
+		finishing sweep (see play_progress_sound's isQuickCompletion
+		handling), so that sweep is long enough to actually be heard
+		moving across the stereo field rather than sounding like a blip.
 		"""
-		numSamples = max(1, int(SAMPLE_RATE * _TICK_SECONDS))
+		numSamples = max(1, int(SAMPLE_RATE * tickSeconds))
 		attackSamples = max(1, int(numSamples * _TICK_ATTACK_FRACTION))
 		decaySamples = max(1, int(numSamples * _TICK_DECAY_FRACTION))
 		sustainSamples = max(1, numSamples - attackSamples - decaySamples)
