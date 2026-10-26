@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: soundAlign 2026.8.5\n"
+"Project-Id-Version: soundAlign 2026.11.0\n"
 "Report-Msgid-Bugs-To: chaicm75@gmail.com\n"
-"POT-Creation-Date: 2026-08-06 14:04+0700\n"
+"POT-Creation-Date: 2026-10-26 09:09+0700\n"
 "PO-Revision-Date: \n"
 "Last-Translator: chaiBot and Malee Yamazaki\n"
 "Language-Team: Arabic\n"
@@ -10,240 +10,407 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: DevOn Addon\n"
+"X-Generator: ChaiBot Addon\n"
 
-#: __init__.py:424
+#: update.py:173
+msgid "&Later"
+msgstr "في وقت لاحق"
+
+#: update.py:171
+msgid "&Update now"
+msgstr "&تحديث الآن"
+
+#: soundAlignCore.py:1311
+msgid "...truncated"
+msgstr "...مبتور"
+
+#: soundAlignCore.py:688
+msgid "A preset named \"{name}\" already exists. Overwrite it?"
+msgstr "يوجد إعداد مسبق باسم \"{name}\" بالفعل. هل تريد استبداله؟"
+
+#: soundAlignCore.py:535
 msgid "Add reverb to progress tones"
 msgstr "إضافة صدى لنغمات التقدم"
 
-#: __init__.py:278
+#: soundAlignCore.py:579
+msgid "Add-on for direction override:"
+msgstr "إضافة لتجاوز الاتجاه:"
+
+#: soundAlignCore.py:591
+msgid "Add/update override"
+msgstr "إضافة/تحديث التجاوز"
+
+#: soundAlignCore.py:455
+msgid "Addon beep volume (%):"
+msgstr "مستوى صوت تنبيه الإضافة (%):"
+
+#: soundAlignCore.py:364
 msgid "Addon beeps (High Frequency):"
 msgstr "نغمات الإضافة (تردد عالي):"
 
-#: __init__.py:276
+#: soundAlignCore.py:362
 msgid "Addon beeps (Low Frequency):"
 msgstr "نغمات الإضافة (تردد منخفض):"
 
-#: __init__.py:277
+#: soundAlignCore.py:363
 msgid "Addon beeps (Medium Frequency):"
 msgstr "نغمات الإضافة (تردد متوسط):"
 
-#: __init__.py:205
+#: soundAlignCore.py:620
+msgid "Announce a heartbeat when progress stalls"
+msgstr "الإعلان عن نبضات قلب عند توقف التقدم"
+
+#: soundAlignCore.py:230
 msgid "Balanced (recommended)"
 msgstr "متوازن (موصى به)"
 
-#: __init__.py:404
+#: soundAlignCore.py:515
 msgid "Beep announcement interval:"
 msgstr "فاصل الإعلان بالنغمة:"
 
-#: __init__.py:255
+#: soundAlignCore.py:302
 msgid "Cannot save settings. No write permission for configuration directory."
 msgstr "لا يمكن حفظ الإعدادات. لا يوجد إذن كتابة لدليل التكوين."
 
-#: __init__.py:296
-#: __init__.py:301
+#: soundAlignCore.py:382
+#: soundAlignCore.py:387
+#: soundAlignCore.py:588
+#: soundAlignCore.py:729
+#: soundAlignCore.py:742
 msgid "Center"
 msgstr "الوسط"
 
-#: __init__.py:150
+#: soundAlignCore.py:175
 msgid "Cosine"
 msgstr "جيب التمام (Cosine)"
 
-#: __init__.py:160
+#: update.py:255
+msgid "Could not download the update. Opening the releases page."
+msgstr "تعذر تنزيل التحديث. جاري فتح صفحة الإصدارات."
+
+#: soundAlignCore.py:185
 msgid "Cubic Root"
 msgstr "الجذر التكعيبي"
 
-#: __init__.py:204
+#: soundAlignCore.py:595
+msgid "Current direction overrides:"
+msgstr "تجاوزات الاتجاه الحالية:"
+
+#: soundAlignCore.py:229
 msgid "Custom (keep my current settings)"
 msgstr "مخصص (الاحتفاظ بإعداداتي الحالية)"
 
-#: __init__.py:153
+#: update.py:244
+msgid "Downloading {name} {version}"
+msgstr "جاري تنزيل {name} {version}"
+
+#: soundAlignCore.py:610
+msgid "Duck amount (% lower while speaking):"
+msgstr "نسبة خفض الصوت (% أثناء التحدث):"
+
+#: soundAlignCore.py:606
+msgid "Duck progress tone volume while NVDA is speaking"
+msgstr "خفض مستوى صوت نغمة التقدم أثناء تحدث NVDA"
+
+#: soundAlignCore.py:556
+msgid "Exclude these add-ons from SoundAlign (their beeps will not be hooked):"
+msgstr "استبعاد هذه الإضافات من SoundAlign (لن يتم ربط تنبيهاتها):"
+
+#: soundAlignCore.py:178
 msgid "Exponential"
 msgstr "أُسي"
 
-#: __init__.py:333
+#: soundAlignCore.py:429
 msgid "Fade algorithm:"
 msgstr "خوارزمية التلاشي:"
 
-#: __init__.py:266
-#: __init__.py:586
+#: soundAlignCore.py:313
+#: soundAlignCore.py:899
 msgid "Failed to save settings. Please check permissions or config path."
 msgstr "فشل حفظ الإعدادات. يرجى التحقق من الأذونات أو مسار التكوين."
 
-#: __init__.py:505
-#: __init__.py:546
+#: soundAlignCore.py:806
+#: soundAlignCore.py:847
 msgid "Frequency Range Error"
 msgstr "خطأ في نطاق التردد"
 
-#: __init__.py:151
+#: soundAlignCore.py:176
 msgid "Gaussian"
 msgstr "غاوسي (Gaussian)"
 
-#: __init__.py:158
+#: soundAlignCore.py:183
 msgid "Half Sine"
 msgstr "نصف جيب (Half Sine)"
 
-#: __init__.py:296
-#: __init__.py:301
+#: soundAlignCore.py:624
+msgid "Heartbeat interval (seconds):"
+msgstr "فاصل نبضات القلب (بالثواني):"
+
+#: soundAlignCore.py:382
+#: soundAlignCore.py:387
+#: soundAlignCore.py:588
+#: soundAlignCore.py:729
 msgid "Left"
 msgstr "اليسار"
 
-#: __init__.py:301
+#: soundAlignCore.py:387
 msgid "Left to Right"
 msgstr "من اليسار إلى اليمين"
 
-#: __init__.py:152
+#: soundAlignCore.py:177
 msgid "Linear"
 msgstr "خطي"
 
-#: __init__.py:154
+#: soundAlignCore.py:179
 msgid "Logarithmic"
 msgstr "لوغاريتمي"
 
-#: __init__.py:354
+#: soundAlignCore.py:465
 msgid "Master volume (%):"
 msgstr "مستوى الصوت الرئيسي (%):"
 
-#: __init__.py:384
+#: soundAlignCore.py:495
 msgid "Maximum frequency:"
 msgstr "التردد الأقصى:"
 
-#: __init__.py:504
-#: __init__.py:545
+#: soundAlignCore.py:805
+#: soundAlignCore.py:846
 msgid "Minimum frequency must be less than maximum frequency."
 msgstr "يجب أن يكون التردد الأدنى أقل من التردد الأقصى."
 
-#: __init__.py:374
+#: soundAlignCore.py:485
 msgid "Minimum frequency:"
 msgstr "التردد الأدنى:"
 
-#: __init__.py:420
+#: soundAlignCore.py:531
 msgid "Mixed mode (speech + beep)"
 msgstr "وضع مختلط (كلام + نغمة)"
 
-#: __init__.py:930
-msgid "Open SoundAlign settings (single tap) or toggle SoundAlign on/off (double tap)"
-msgstr "فتح إعدادات SoundAlign (ضغطة واحدة) أو تشغيل/إيقاف SoundAlign (ضغطة مزدوجة)"
+#: soundAlignCore.py:409
+msgid "New preset name:"
+msgstr "اسم الإعداد المسبق الجديد:"
 
-#: __init__.py:124
+#: soundAlignCore.py:1438
+msgid "Open SoundAlign settings (single tap), toggle SoundAlign on/off (double tap), or speak a status summary (triple tap)"
+msgstr "فتح إعدادات SoundAlign (نقرة واحدة)، تبديل تشغيل/إيقاف SoundAlign (نقرتان)، أو نطق ملخص للحالة (ثلاث نقرات)"
+
+#: soundAlignCore.py:1276
+msgid "Operation may be stuck at {percent}%"
+msgstr "قد تكون العملية متوقفة عند نسبة {percent}%"
+
+#: soundAlignCore.py:149
 msgid "Original Tone Beep"
 msgstr "نغمة الرنين الأصلية"
 
-#: __init__.py:534
+#: soundAlignCore.py:586
+msgid "Override direction:"
+msgstr "تجاوز الاتجاه:"
+
+#: soundAlignCore.py:689
+msgid "Overwrite Preset"
+msgstr "استبدال الإعداد المسبق"
+
+#: soundAlignCore.py:835
 msgid "Please select valid minimum and maximum frequencies."
 msgstr "يرجى تحديد ترددات أدنى وأقصى صالحة."
 
-#: __init__.py:303
+#: soundAlignCore.py:672
+msgid "Please type a name for the new preset first."
+msgstr "يرجى كتابة اسم للإعداد المسبق الجديد أولاً."
+
+#: soundAlignCore.py:713
+msgid "Preset \"{name}\" saved"
+msgstr "تم حفظ الإعدادات المسبقة \"{name}\""
+
+#: soundAlignCore.py:673
+msgid "Preset Name Required"
+msgstr "اسم الإعدادات المسبقة مطلوب"
+
+#: soundAlignCore.py:680
+msgid "Preset Name Reserved"
+msgstr "اسم الإعدادات المسبقة محجوز"
+
+#: soundAlignCore.py:389
 msgid "Progress indicator:"
 msgstr "مؤشر التقدم:"
 
-#: __init__.py:312
+#: soundAlignCore.py:401
 msgid "Progress sound preset:"
 msgstr "الإعداد المسبق لصوت التقدم:"
 
-#: __init__.py:875
+#: soundAlignCore.py:1376
 msgid "Progress test not available. Audio output could not be initialized."
 msgstr "اختبار التقدم غير متوفر. تعذر تهيئة مخرج الصوت."
 
-#: __init__.py:321
+#: soundAlignCore.py:417
 msgid "Progress tone:"
 msgstr "نغمة التقدم:"
 
-#: __init__.py:207
+#: soundAlignCore.py:440
+msgid "Progress volume (%):"
+msgstr "مستوى صوت التقدم (%):"
+
+#: soundAlignCore.py:232
 msgid "Prominent / clear"
 msgstr "بارز / واضح"
 
-#: __init__.py:161
+#: soundAlignCore.py:186
 msgid "Quadratic"
 msgstr "تربيعي"
 
-#: __init__.py:157
+#: soundAlignCore.py:182
 msgid "Quarter Sine"
 msgstr "ربع جيب (Quarter Sine)"
 
-#: __init__.py:296
-#: __init__.py:301
+#: soundAlignCore.py:599
+msgid "Remove selected override"
+msgstr "إزالة التجاوز المحدد"
+
+#: soundAlignCore.py:382
+#: soundAlignCore.py:387
+#: soundAlignCore.py:588
+#: soundAlignCore.py:729
 msgid "Right"
 msgstr "اليمين"
 
-#: __init__.py:301
+#: soundAlignCore.py:387
 msgid "Right to Left"
 msgstr "من اليمين إلى اليسار"
 
-#: __init__.py:155
+#: soundAlignCore.py:180
 msgid "S-Curve"
 msgstr "منحنى S"
 
-#: __init__.py:256
-#: __init__.py:267
-#: __init__.py:587
+#: soundAlignCore.py:303
+#: soundAlignCore.py:314
+#: soundAlignCore.py:900
 msgid "Save Error"
 msgstr "خطأ في الحفظ"
 
-#: __init__.py:122
+#: soundAlignCore.py:412
+msgid "Save current settings as preset"
+msgstr "حفظ الإعدادات الحالية كإعدادات مسبقة"
+
+#: soundAlignCore.py:147
 msgid "Sawtooth"
 msgstr "سن المنشار"
 
-#: __init__.py:535
+#: soundAlignCore.py:836
 msgid "Settings Error"
 msgstr "خطأ في الإعدادات"
 
-#: __init__.py:120
-#: __init__.py:156
+#: soundAlignCore.py:145
+#: soundAlignCore.py:181
 msgid "Sine"
 msgstr "جيب (Sine)"
 
-#: __init__.py:282
-#: __init__.py:593
+#: soundAlignCore.py:368
+#: soundAlignCore.py:906
 msgid "SoundAlign"
 msgstr "SoundAlign"
 
-#: __init__.py:950
+#: soundAlignCore.py:1300
+msgid "SoundAlign is {state}"
+msgstr "SoundAlign هو {state}"
+
+#: soundAlignCore.py:1486
 msgid "SoundAlign off"
 msgstr "إيقاف SoundAlign"
 
-#: __init__.py:948
+#: soundAlignCore.py:1484
 msgid "SoundAlign on"
 msgstr "تشغيل SoundAlign"
 
-#: __init__.py:394
+#: soundAlignCore.py:1315
+msgid "SoundAlign: could not read status"
+msgstr "SoundAlign: تعذر قراءة الحالة"
+
+#: soundAlignCore.py:505
 msgid "Speech announcement interval:"
 msgstr "فاصل الإعلان الصوتي:"
 
-#: __init__.py:123
+#: soundAlignCore.py:148
 msgid "Square"
 msgstr "مربع"
 
-#: __init__.py:159
+#: soundAlignCore.py:184
 msgid "Square Root"
 msgstr "الجذر التربيعي"
 
-#: __init__.py:206
+#: soundAlignCore.py:1279
+msgid "Still working, {percent}%"
+msgstr "لا يزال قيد العمل، {percent}%"
+
+#: soundAlignCore.py:231
 msgid "Subtle / quiet"
 msgstr "خافت / هادئ"
 
-#: __init__.py:431
+#: soundAlignCore.py:631
 msgid "Test All Settings"
 msgstr "اختبار جميع الإعدادات"
 
-#: __init__.py:517
+#: soundAlignCore.py:818
 msgid "Test already in progress"
 msgstr "الاختبار قيد التقدم بالفعل"
 
-#: __init__.py:413
+#: soundAlignCore.py:679
+msgid "That name is reserved for a built-in preset. Please choose a different name."
+msgstr "هذا الاسم محجوز لإعداد مسبق مدمج. الرجاء اختيار اسم مختلف."
+
+#: soundAlignCore.py:524
 msgid "Time-based announcement (seconds, 0=disabled):"
 msgstr "إعلان مبني على الوقت (بالثواني، 0=معطل):"
 
-#: __init__.py:121
+#: soundAlignCore.py:146
 msgid "Triangle"
 msgstr "مثلث"
 
-#: __init__.py:344
-msgid "Volume (%):"
-msgstr "مستوى الصوت (%):"
+#: soundAlignCore.py:1303
+msgid "audio output ready"
+msgstr "إخراج الصوتي جاهز"
 
-#: __init__.py:743
-#: __init__.py:750
-#: __init__.py:756
+#: soundAlignCore.py:1303
+msgid "audio output unavailable"
+msgstr "الإخراج الصوتي غير متوفر"
+
+#: soundAlignCore.py:1300
+msgid "off"
+msgstr "متوقف"
+
+#: soundAlignCore.py:1300
+msgid "on"
+msgstr "مشغل"
+
+#: soundAlignCore.py:722
+msgid "{addonName} checked"
+msgstr "{addonName} محدد"
+
+#: soundAlignCore.py:725
+msgid "{addonName} not checked"
+msgstr "{addonName} غير محدد"
+
+#: soundAlignCore.py:1301
+msgid "{count} add-ons excluded"
+msgstr "تم استثناء {count} من الإضافات"
+
+#: soundAlignCore.py:1302
+msgid "{count} direction overrides"
+msgstr "{count} تجاوزات للاتجاه"
+
+#: update.py:159
+msgid "{name} update"
+msgstr "تحديث {name}"
+
+#: update.py:164
+msgid ""
+"{name} {new} is available (installed: {old}).\n"
+"Update now?"
+msgstr ""
+"{name} {new} متاح (المثبت: {old}).\n"
+"التحديث الآن؟"
+
+#: soundAlignCore.py:1159
+#: soundAlignCore.py:1166
+#: soundAlignCore.py:1172
 msgid "{percent}% complete"
 msgstr "اكتمل {percent}%"

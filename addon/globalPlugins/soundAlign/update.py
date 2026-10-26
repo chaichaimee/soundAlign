@@ -22,7 +22,7 @@ addonHandler.initTranslation()
 
 GITHUB_OWNER = "chaichaimee"
 # Wait after load before the first request, so a slow network at boot has time to come up.
-STARTUP_DELAY_SECONDS = 45
+STARTUP_DELAY_SECONDS = 30
 # Extra attempts after a failed request, each preceded by this wait.
 RETRY_DELAYS_SECONDS = (60, 180, 600)
 REQUEST_TIMEOUT_SECONDS = 20

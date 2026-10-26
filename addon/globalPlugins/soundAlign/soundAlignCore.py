@@ -1,6 +1,4 @@
 # soundAlignCore.py
-# Copyright (C) 2026 Chai Chaimee
-# Licensed under GNU General Public License. See COPYING.txt for details.
 
 import sys
 import os
@@ -944,8 +942,8 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 		# gesture -- see script_handleSoundAlign), driven by NVDA's own
 		# scriptHandler.getLastScriptRepeatCount() convention rather than a
 		# bespoke timer, per house multi-tap discipline.
-		self.double_tap_threshold = 0.3
 		self._pendingTapCount = 0
+		self._tapTimer = None
 		self._settings_dialog_open = False
 
 		self._test_running = False
@@ -1351,6 +1349,8 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 			self._applySoundProcessorSettings(self.settings)
 
 	def _run_next_test_beep(self):
+		if self._terminating:
+			return
 		if self._test_index >= len(self._test_sequence):
 			progress_direction = self.settings.get("progressDirection", LEFT_TO_RIGHT)
 			waveform_type = self.settings.get("waveformType", 0)
@@ -1383,6 +1383,8 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 			self._run_next_progress_sound()
 
 	def _run_next_progress_beep(self):
+		if self._terminating:
+			return
 		if self._test_progress_idx >= len(self._test_progress_values):
 			self._finishTestSequence()
 			return
@@ -1411,6 +1413,8 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 		callLater(20, self._run_next_progress_beep)
 
 	def _run_next_progress_sound(self):
+		if self._terminating:
+			return
 		if self._test_progress_idx >= len(self._test_progress_values):
 			self._finishTestSequence()
 			return
@@ -1435,19 +1439,39 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 		gesture="kb:NVDA+Windows+S"
 	)
 	def script_handleSoundAlign(self, gesture):
-		# Uses NVDA's own multi-tap convention (scriptHandler's repeat-count
-		# tracking) instead of a bespoke timer to detect which tap this is,
-		# per house multi-tap gesture discipline -- but still defers the
-		# actual action via callLater until the tap burst has ended, since
-		# single/double/triple tap here are meant to be three exclusive
-		# actions, not one action fired cumulatively per tap.
-		repeatCount = scriptHandler.getLastScriptRepeatCount()
-		self._pendingTapCount = repeatCount
-		if repeatCount == 0:
-			callLater(int(self.double_tap_threshold * 1000), self._resolveMultiTap)
+		# The tap count comes from NVDA's own repeat counter. The action is
+		# deferred until no further tap can join the burst, so single, double
+		# and triple tap stay three exclusive actions. The wait restarts on
+		# every tap and is measured from the latest one, matching how NVDA
+		# itself decides whether a press is a repeat.
+		self._pendingTapCount = scriptHandler.getLastScriptRepeatCount()
+		self._stopTapTimer()
+		self._tapTimer = callLater(self._getTapResolveDelayMs(), self._resolveMultiTap)
+
+	def _getTapResolveDelayMs(self):
+		timeoutMs = 500
+		try:
+			timeoutMs = int(config.conf["keyboard"]["multiPressTimeout"])
+		except (KeyError, TypeError, ValueError):
+			log.debugWarning("SoundAlign: multiPressTimeout unreadable, using 500 ms")
+		return timeoutMs + 50
+
+	def _stopTapTimer(self):
+		timer = self._tapTimer
+		self._tapTimer = None
+		if timer is None:
+			return
+		try:
+			timer.Stop()
+		except RuntimeError:
+			log.debugWarning("SoundAlign: tap timer already gone", exc_info=True)
 
 	def _resolveMultiTap(self):
+		self._tapTimer = None
+		if self._terminating:
+			return
 		finalCount = self._pendingTapCount
+		self._pendingTapCount = 0
 		if finalCount == 0:
 			if not self._settings_dialog_open:
 				self._settings_dialog_open = True
@@ -1484,6 +1508,7 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 			return
 		self._terminating = True
 		self._heartbeatAlive = False
+		self._stopTapTimer()
 		update.stop()
 
 		try:
@@ -1493,13 +1518,19 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 			log.debug(f"SoundAlign: Unregister synth extension points error: {e}")
 
 		try:
-			tones.beep = self.originalBeep
+			if tones.beep == self.safeBeep:
+				tones.beep = self.originalBeep
+			else:
+				log.warning("SoundAlign: tones.beep was wrapped by another add-on, leaving it in place")
 		except Exception as e:
 			log.debug(f"SoundAlign: Restore tones.beep error: {e}")
 
 		try:
 			if winsound is not None and self.originalWinsoundBeep:
-				winsound.Beep = self.originalWinsoundBeep
+				if winsound.Beep == self.safeBeepWinsound:
+					winsound.Beep = self.originalWinsoundBeep
+				else:
+					log.warning("SoundAlign: winsound.Beep was wrapped by another add-on, leaving it in place")
 		except Exception as e:
 			log.debug(f"SoundAlign: Restore winsound.Beep error: {e}")
 

@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: soundAlign 2026.8.5\n"
+"Project-Id-Version: soundAlign 2026.11.0\n"
 "Report-Msgid-Bugs-To: chaicm75@gmail.com\n"
-"POT-Creation-Date: 2026-08-06 14:04+0700\n"
+"POT-Creation-Date: 2026-10-26 09:09+0700\n"
 "PO-Revision-Date: \n"
 "Last-Translator: chaiBot and Malee Yamazaki\n"
 "Language-Team: Japanese\n"
@@ -10,240 +10,407 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: DevOn Addon\n"
+"X-Generator: ChaiBot Addon\n"
 
-#: __init__.py:424
+#: update.py:173
+msgid "&Later"
+msgstr "&L後で"
+
+#: update.py:171
+msgid "&Update now"
+msgstr "&U今すぐアップデート"
+
+#: soundAlignCore.py:1311
+msgid "...truncated"
+msgstr "...省略されました"
+
+#: soundAlignCore.py:688
+msgid "A preset named \"{name}\" already exists. Overwrite it?"
+msgstr "\"{name}\" という名前のプリセットはすでに存在します。上書きしますか？"
+
+#: soundAlignCore.py:535
 msgid "Add reverb to progress tones"
 msgstr "進捗トーンにリバーブを追加"
 
-#: __init__.py:278
+#: soundAlignCore.py:579
+msgid "Add-on for direction override:"
+msgstr "方向上書き用アドオン:"
+
+#: soundAlignCore.py:591
+msgid "Add/update override"
+msgstr "上書きの追加/更新"
+
+#: soundAlignCore.py:455
+msgid "Addon beep volume (%):"
+msgstr "アドオンのビープ音量 (%):"
+
+#: soundAlignCore.py:364
 msgid "Addon beeps (High Frequency):"
 msgstr "アドオンビープ音（高周波数）:"
 
-#: __init__.py:276
+#: soundAlignCore.py:362
 msgid "Addon beeps (Low Frequency):"
 msgstr "アドオンビープ音（低周波数）:"
 
-#: __init__.py:277
+#: soundAlignCore.py:363
 msgid "Addon beeps (Medium Frequency):"
 msgstr "アドオンビープ音（中周波数）:"
 
-#: __init__.py:205
+#: soundAlignCore.py:620
+msgid "Announce a heartbeat when progress stalls"
+msgstr "進捗が止まったときにハートビート音を鳴らす"
+
+#: soundAlignCore.py:230
 msgid "Balanced (recommended)"
 msgstr "バランス（推奨）"
 
-#: __init__.py:404
+#: soundAlignCore.py:515
 msgid "Beep announcement interval:"
 msgstr "ビープ音通知間隔:"
 
-#: __init__.py:255
+#: soundAlignCore.py:302
 msgid "Cannot save settings. No write permission for configuration directory."
 msgstr "設定を保存できません。設定ディレクトリへの書き込み権限がありません。"
 
-#: __init__.py:296
-#: __init__.py:301
+#: soundAlignCore.py:382
+#: soundAlignCore.py:387
+#: soundAlignCore.py:588
+#: soundAlignCore.py:729
+#: soundAlignCore.py:742
 msgid "Center"
 msgstr "中央"
 
-#: __init__.py:150
+#: soundAlignCore.py:175
 msgid "Cosine"
 msgstr "コサイン"
 
-#: __init__.py:160
+#: update.py:255
+msgid "Could not download the update. Opening the releases page."
+msgstr "アップデートをダウンロードできませんでした。リリースページを開きます。"
+
+#: soundAlignCore.py:185
 msgid "Cubic Root"
 msgstr "立方根"
 
-#: __init__.py:204
+#: soundAlignCore.py:595
+msgid "Current direction overrides:"
+msgstr "現在の方向上書き:"
+
+#: soundAlignCore.py:229
 msgid "Custom (keep my current settings)"
 msgstr "カスタム（現在の設定を保持）"
 
-#: __init__.py:153
+#: update.py:244
+msgid "Downloading {name} {version}"
+msgstr "{name} {version} をダウンロード中"
+
+#: soundAlignCore.py:610
+msgid "Duck amount (% lower while speaking):"
+msgstr "下げ幅 (% 発話中に音量を下げる割合):"
+
+#: soundAlignCore.py:606
+msgid "Duck progress tone volume while NVDA is speaking"
+msgstr "NVDAの発話中にプログレス音の音量を下げる"
+
+#: soundAlignCore.py:556
+msgid "Exclude these add-ons from SoundAlign (their beeps will not be hooked):"
+msgstr "SoundAlignからこれらのアドオンを除外する (ビープ音のフックを行わない):"
+
+#: soundAlignCore.py:178
 msgid "Exponential"
 msgstr "指数"
 
-#: __init__.py:333
+#: soundAlignCore.py:429
 msgid "Fade algorithm:"
 msgstr "フェードアルゴリズム:"
 
-#: __init__.py:266
-#: __init__.py:586
+#: soundAlignCore.py:313
+#: soundAlignCore.py:899
 msgid "Failed to save settings. Please check permissions or config path."
 msgstr "設定の保存に失敗しました。権限または設定パスを確認してください。"
 
-#: __init__.py:505
-#: __init__.py:546
+#: soundAlignCore.py:806
+#: soundAlignCore.py:847
 msgid "Frequency Range Error"
 msgstr "周波数範囲エラー"
 
-#: __init__.py:151
+#: soundAlignCore.py:176
 msgid "Gaussian"
 msgstr "ガウス"
 
-#: __init__.py:158
+#: soundAlignCore.py:183
 msgid "Half Sine"
 msgstr "ハーフサイン"
 
-#: __init__.py:296
-#: __init__.py:301
+#: soundAlignCore.py:624
+msgid "Heartbeat interval (seconds):"
+msgstr "ハートビートの間隔 (秒):"
+
+#: soundAlignCore.py:382
+#: soundAlignCore.py:387
+#: soundAlignCore.py:588
+#: soundAlignCore.py:729
 msgid "Left"
 msgstr "左"
 
-#: __init__.py:301
+#: soundAlignCore.py:387
 msgid "Left to Right"
 msgstr "左から右"
 
-#: __init__.py:152
+#: soundAlignCore.py:177
 msgid "Linear"
 msgstr "リニア"
 
-#: __init__.py:154
+#: soundAlignCore.py:179
 msgid "Logarithmic"
 msgstr "対数"
 
-#: __init__.py:354
+#: soundAlignCore.py:465
 msgid "Master volume (%):"
 msgstr "マスターボリューム（%）:"
 
-#: __init__.py:384
+#: soundAlignCore.py:495
 msgid "Maximum frequency:"
 msgstr "最大周波数:"
 
-#: __init__.py:504
-#: __init__.py:545
+#: soundAlignCore.py:805
+#: soundAlignCore.py:846
 msgid "Minimum frequency must be less than maximum frequency."
 msgstr "最小周波数は最大周波数より小さくなければなりません。"
 
-#: __init__.py:374
+#: soundAlignCore.py:485
 msgid "Minimum frequency:"
 msgstr "最小周波数:"
 
-#: __init__.py:420
+#: soundAlignCore.py:531
 msgid "Mixed mode (speech + beep)"
 msgstr "混合モード（音声＋ビープ）"
 
-#: __init__.py:930
-msgid "Open SoundAlign settings (single tap) or toggle SoundAlign on/off (double tap)"
-msgstr "SoundAlign設定を開く（シングルタップ）またはSoundAlignのオン/オフを切り替える（ダブルタップ）"
+#: soundAlignCore.py:409
+msgid "New preset name:"
+msgstr "新しいプリセット名:"
 
-#: __init__.py:124
+#: soundAlignCore.py:1438
+msgid "Open SoundAlign settings (single tap), toggle SoundAlign on/off (double tap), or speak a status summary (triple tap)"
+msgstr "SoundAlign設定を開く (1回タップ)、SoundAlignの有効/無効を切り替える (2回タップ)、またはステータスの要約を読み上げる (3回タップ)"
+
+#: soundAlignCore.py:1276
+msgid "Operation may be stuck at {percent}%"
+msgstr "操作が {percent}% で停止している可能性があります"
+
+#: soundAlignCore.py:149
 msgid "Original Tone Beep"
 msgstr "オリジナルトーンビープ"
 
-#: __init__.py:534
+#: soundAlignCore.py:586
+msgid "Override direction:"
+msgstr "方向の上書き:"
+
+#: soundAlignCore.py:689
+msgid "Overwrite Preset"
+msgstr "プリセットの上書き"
+
+#: soundAlignCore.py:835
 msgid "Please select valid minimum and maximum frequencies."
 msgstr "有効な最小周波数と最大周波数を選択してください。"
 
-#: __init__.py:303
+#: soundAlignCore.py:672
+msgid "Please type a name for the new preset first."
+msgstr "まず新しいプリセットの名前を入力してください。"
+
+#: soundAlignCore.py:713
+msgid "Preset \"{name}\" saved"
+msgstr "プリセット \"{name}\" を保存しました"
+
+#: soundAlignCore.py:673
+msgid "Preset Name Required"
+msgstr "プリセット名が必要です"
+
+#: soundAlignCore.py:680
+msgid "Preset Name Reserved"
+msgstr "予約済みのプリセット名です"
+
+#: soundAlignCore.py:389
 msgid "Progress indicator:"
 msgstr "進捗インジケーター:"
 
-#: __init__.py:312
+#: soundAlignCore.py:401
 msgid "Progress sound preset:"
 msgstr "進捗音プリセット:"
 
-#: __init__.py:875
+#: soundAlignCore.py:1376
 msgid "Progress test not available. Audio output could not be initialized."
 msgstr "進捗テストは利用できません。オーディオ出力を初期化できませんでした。"
 
-#: __init__.py:321
+#: soundAlignCore.py:417
 msgid "Progress tone:"
 msgstr "進捗トーン:"
 
-#: __init__.py:207
+#: soundAlignCore.py:440
+msgid "Progress volume (%):"
+msgstr "進行状況の音量 (%):"
+
+#: soundAlignCore.py:232
 msgid "Prominent / clear"
 msgstr "目立つ／クリア"
 
-#: __init__.py:161
+#: soundAlignCore.py:186
 msgid "Quadratic"
 msgstr "二次"
 
-#: __init__.py:157
+#: soundAlignCore.py:182
 msgid "Quarter Sine"
 msgstr "クォーターサイン"
 
-#: __init__.py:296
-#: __init__.py:301
+#: soundAlignCore.py:599
+msgid "Remove selected override"
+msgstr "選択した上書きを削除"
+
+#: soundAlignCore.py:382
+#: soundAlignCore.py:387
+#: soundAlignCore.py:588
+#: soundAlignCore.py:729
 msgid "Right"
 msgstr "右"
 
-#: __init__.py:301
+#: soundAlignCore.py:387
 msgid "Right to Left"
 msgstr "右から左"
 
-#: __init__.py:155
+#: soundAlignCore.py:180
 msgid "S-Curve"
 msgstr "Sカーブ"
 
-#: __init__.py:256
-#: __init__.py:267
-#: __init__.py:587
+#: soundAlignCore.py:303
+#: soundAlignCore.py:314
+#: soundAlignCore.py:900
 msgid "Save Error"
 msgstr "保存エラー"
 
-#: __init__.py:122
+#: soundAlignCore.py:412
+msgid "Save current settings as preset"
+msgstr "現在の設定をプリセットとして保存"
+
+#: soundAlignCore.py:147
 msgid "Sawtooth"
 msgstr "ノコギリ波"
 
-#: __init__.py:535
+#: soundAlignCore.py:836
 msgid "Settings Error"
 msgstr "設定エラー"
 
-#: __init__.py:120
-#: __init__.py:156
+#: soundAlignCore.py:145
+#: soundAlignCore.py:181
 msgid "Sine"
 msgstr "サイン"
 
-#: __init__.py:282
-#: __init__.py:593
+#: soundAlignCore.py:368
+#: soundAlignCore.py:906
 msgid "SoundAlign"
 msgstr "SoundAlign"
 
-#: __init__.py:950
+#: soundAlignCore.py:1300
+msgid "SoundAlign is {state}"
+msgstr "SoundAlign は {state} です"
+
+#: soundAlignCore.py:1486
 msgid "SoundAlign off"
 msgstr "SoundAlign オフ"
 
-#: __init__.py:948
+#: soundAlignCore.py:1484
 msgid "SoundAlign on"
 msgstr "SoundAlign オン"
 
-#: __init__.py:394
+#: soundAlignCore.py:1315
+msgid "SoundAlign: could not read status"
+msgstr "SoundAlign: 状態を読み込めませんでした"
+
+#: soundAlignCore.py:505
 msgid "Speech announcement interval:"
 msgstr "音声通知間隔:"
 
-#: __init__.py:123
+#: soundAlignCore.py:148
 msgid "Square"
 msgstr "矩形波"
 
-#: __init__.py:159
+#: soundAlignCore.py:184
 msgid "Square Root"
 msgstr "平方根"
 
-#: __init__.py:206
+#: soundAlignCore.py:1279
+msgid "Still working, {percent}%"
+msgstr "処理中、{percent}%"
+
+#: soundAlignCore.py:231
 msgid "Subtle / quiet"
 msgstr "控えめ／静か"
 
-#: __init__.py:431
+#: soundAlignCore.py:631
 msgid "Test All Settings"
 msgstr "全設定をテスト"
 
-#: __init__.py:517
+#: soundAlignCore.py:818
 msgid "Test already in progress"
 msgstr "テストは既に実行中です"
 
-#: __init__.py:413
+#: soundAlignCore.py:679
+msgid "That name is reserved for a built-in preset. Please choose a different name."
+msgstr "その名前は組み込みプリセット用に予約されています。別の名前を選んでください。"
+
+#: soundAlignCore.py:524
 msgid "Time-based announcement (seconds, 0=disabled):"
 msgstr "時間ベースの通知（秒、0=無効）:"
 
-#: __init__.py:121
+#: soundAlignCore.py:146
 msgid "Triangle"
 msgstr "三角波"
 
-#: __init__.py:344
-msgid "Volume (%):"
-msgstr "音量（%）:"
+#: soundAlignCore.py:1303
+msgid "audio output ready"
+msgstr "音声出力の準備完了"
 
-#: __init__.py:743
-#: __init__.py:750
-#: __init__.py:756
+#: soundAlignCore.py:1303
+msgid "audio output unavailable"
+msgstr "音声出力を利用できません"
+
+#: soundAlignCore.py:1300
+msgid "off"
+msgstr "オフ"
+
+#: soundAlignCore.py:1300
+msgid "on"
+msgstr "オン"
+
+#: soundAlignCore.py:722
+msgid "{addonName} checked"
+msgstr "{addonName} チェック済み"
+
+#: soundAlignCore.py:725
+msgid "{addonName} not checked"
+msgstr "{addonName} 未チェック"
+
+#: soundAlignCore.py:1301
+msgid "{count} add-ons excluded"
+msgstr "{count} 個のアドオンが除外されました"
+
+#: soundAlignCore.py:1302
+msgid "{count} direction overrides"
+msgstr "{count} 個の方向上書き"
+
+#: update.py:159
+msgid "{name} update"
+msgstr "{name} のアップデート"
+
+#: update.py:164
+msgid ""
+"{name} {new} is available (installed: {old}).\n"
+"Update now?"
+msgstr ""
+"{name} {new} が利用可能です (インストール済み: {old})。\n"
+"今すぐアップデートしますか？"
+
+#: soundAlignCore.py:1159
+#: soundAlignCore.py:1166
+#: soundAlignCore.py:1172
 msgid "{percent}% complete"
 msgstr "{percent}% 完了"

@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: soundAlign 2026.8.5\n"
+"Project-Id-Version: soundAlign 2026.11.0\n"
 "Report-Msgid-Bugs-To: chaicm75@gmail.com\n"
-"POT-Creation-Date: 2026-08-06 14:04+0700\n"
+"POT-Creation-Date: 2026-10-26 09:09+0700\n"
 "PO-Revision-Date: \n"
 "Last-Translator: chaiBot and Malee Yamazaki\n"
 "Language-Team: Chinese (Traditional)\n"
@@ -10,240 +10,407 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: DevOn Addon\n"
+"X-Generator: ChaiBot Addon\n"
 
-#: __init__.py:424
+#: update.py:173
+msgid "&Later"
+msgstr "稍後(&L)"
+
+#: update.py:171
+msgid "&Update now"
+msgstr "立即更新(&U)"
+
+#: soundAlignCore.py:1311
+msgid "...truncated"
+msgstr "...已截斷"
+
+#: soundAlignCore.py:688
+msgid "A preset named \"{name}\" already exists. Overwrite it?"
+msgstr "名為「{name}」的預設集已存在。要覆蓋它嗎？"
+
+#: soundAlignCore.py:535
 msgid "Add reverb to progress tones"
 msgstr "為進度提示音加入殘響效果"
 
-#: __init__.py:278
+#: soundAlignCore.py:579
+msgid "Add-on for direction override:"
+msgstr "方向覆蓋的附加元件："
+
+#: soundAlignCore.py:591
+msgid "Add/update override"
+msgstr "新增/更新覆蓋"
+
+#: soundAlignCore.py:455
+msgid "Addon beep volume (%):"
+msgstr "附加元件提示音音量 (%)："
+
+#: soundAlignCore.py:364
 msgid "Addon beeps (High Frequency):"
 msgstr "附加元件嗶聲（高頻）:"
 
-#: __init__.py:276
+#: soundAlignCore.py:362
 msgid "Addon beeps (Low Frequency):"
 msgstr "附加元件嗶聲（低頻）:"
 
-#: __init__.py:277
+#: soundAlignCore.py:363
 msgid "Addon beeps (Medium Frequency):"
 msgstr "附加元件嗶聲（中頻）:"
 
-#: __init__.py:205
+#: soundAlignCore.py:620
+msgid "Announce a heartbeat when progress stalls"
+msgstr "當進度停滯時宣告心跳聲"
+
+#: soundAlignCore.py:230
 msgid "Balanced (recommended)"
 msgstr "平衡（建議）"
 
-#: __init__.py:404
+#: soundAlignCore.py:515
 msgid "Beep announcement interval:"
 msgstr "嗶聲播報間隔:"
 
-#: __init__.py:255
+#: soundAlignCore.py:302
 msgid "Cannot save settings. No write permission for configuration directory."
 msgstr "無法儲存設定。設定目錄沒有寫入權限。"
 
-#: __init__.py:296
-#: __init__.py:301
+#: soundAlignCore.py:382
+#: soundAlignCore.py:387
+#: soundAlignCore.py:588
+#: soundAlignCore.py:729
+#: soundAlignCore.py:742
 msgid "Center"
 msgstr "置中"
 
-#: __init__.py:150
+#: soundAlignCore.py:175
 msgid "Cosine"
 msgstr "餘弦"
 
-#: __init__.py:160
+#: update.py:255
+msgid "Could not download the update. Opening the releases page."
+msgstr "無法下載更新。正在開啟版本頁面。"
+
+#: soundAlignCore.py:185
 msgid "Cubic Root"
 msgstr "立方根"
 
-#: __init__.py:204
+#: soundAlignCore.py:595
+msgid "Current direction overrides:"
+msgstr "目前的方向覆蓋："
+
+#: soundAlignCore.py:229
 msgid "Custom (keep my current settings)"
 msgstr "自訂（保留我目前的設定）"
 
-#: __init__.py:153
+#: update.py:244
+msgid "Downloading {name} {version}"
+msgstr "正在下載 {name} {version}"
+
+#: soundAlignCore.py:610
+msgid "Duck amount (% lower while speaking):"
+msgstr "壓低音量幅度 (語音發聲時降低 %)："
+
+#: soundAlignCore.py:606
+msgid "Duck progress tone volume while NVDA is speaking"
+msgstr "當 NVDA 發聲時壓低進度提示音的音量"
+
+#: soundAlignCore.py:556
+msgid "Exclude these add-ons from SoundAlign (their beeps will not be hooked):"
+msgstr "從 SoundAlign 中排除這些附加元件 (將不會攔截其提示音)："
+
+#: soundAlignCore.py:178
 msgid "Exponential"
 msgstr "指數"
 
-#: __init__.py:333
+#: soundAlignCore.py:429
 msgid "Fade algorithm:"
 msgstr "淡出演算法:"
 
-#: __init__.py:266
-#: __init__.py:586
+#: soundAlignCore.py:313
+#: soundAlignCore.py:899
 msgid "Failed to save settings. Please check permissions or config path."
 msgstr "儲存設定失敗。請檢查權限或設定路徑。"
 
-#: __init__.py:505
-#: __init__.py:546
+#: soundAlignCore.py:806
+#: soundAlignCore.py:847
 msgid "Frequency Range Error"
 msgstr "頻率範圍錯誤"
 
-#: __init__.py:151
+#: soundAlignCore.py:176
 msgid "Gaussian"
 msgstr "高斯"
 
-#: __init__.py:158
+#: soundAlignCore.py:183
 msgid "Half Sine"
 msgstr "半正弦"
 
-#: __init__.py:296
-#: __init__.py:301
+#: soundAlignCore.py:624
+msgid "Heartbeat interval (seconds):"
+msgstr "心跳聲間隔 (秒)："
+
+#: soundAlignCore.py:382
+#: soundAlignCore.py:387
+#: soundAlignCore.py:588
+#: soundAlignCore.py:729
 msgid "Left"
 msgstr "左"
 
-#: __init__.py:301
+#: soundAlignCore.py:387
 msgid "Left to Right"
 msgstr "左到右"
 
-#: __init__.py:152
+#: soundAlignCore.py:177
 msgid "Linear"
 msgstr "線性"
 
-#: __init__.py:154
+#: soundAlignCore.py:179
 msgid "Logarithmic"
 msgstr "對數"
 
-#: __init__.py:354
+#: soundAlignCore.py:465
 msgid "Master volume (%):"
 msgstr "主音量（%）:"
 
-#: __init__.py:384
+#: soundAlignCore.py:495
 msgid "Maximum frequency:"
 msgstr "最大頻率:"
 
-#: __init__.py:504
-#: __init__.py:545
+#: soundAlignCore.py:805
+#: soundAlignCore.py:846
 msgid "Minimum frequency must be less than maximum frequency."
 msgstr "最小頻率必須小於最大頻率。"
 
-#: __init__.py:374
+#: soundAlignCore.py:485
 msgid "Minimum frequency:"
 msgstr "最小頻率:"
 
-#: __init__.py:420
+#: soundAlignCore.py:531
 msgid "Mixed mode (speech + beep)"
 msgstr "混合模式（語音 + 嗶聲）"
 
-#: __init__.py:930
-msgid "Open SoundAlign settings (single tap) or toggle SoundAlign on/off (double tap)"
-msgstr "開啟 SoundAlign 設定（單擊）或切換 SoundAlign 開/關（雙擊）"
+#: soundAlignCore.py:409
+msgid "New preset name:"
+msgstr "新預設集名稱："
 
-#: __init__.py:124
+#: soundAlignCore.py:1438
+msgid "Open SoundAlign settings (single tap), toggle SoundAlign on/off (double tap), or speak a status summary (triple tap)"
+msgstr "開啟 SoundAlign 設定 (單擊)、切換 SoundAlign 開啟/關閉 (雙擊)，或讀出狀態摘要 (三擊)"
+
+#: soundAlignCore.py:1276
+msgid "Operation may be stuck at {percent}%"
+msgstr "操作可能停滯在 {percent}%"
+
+#: soundAlignCore.py:149
 msgid "Original Tone Beep"
 msgstr "原始音調嗶聲"
 
-#: __init__.py:534
+#: soundAlignCore.py:586
+msgid "Override direction:"
+msgstr "覆蓋方向："
+
+#: soundAlignCore.py:689
+msgid "Overwrite Preset"
+msgstr "覆蓋預設集"
+
+#: soundAlignCore.py:835
 msgid "Please select valid minimum and maximum frequencies."
 msgstr "請選擇有效的最大與最小頻率。"
 
-#: __init__.py:303
+#: soundAlignCore.py:672
+msgid "Please type a name for the new preset first."
+msgstr "請先輸入新預設集的名稱。"
+
+#: soundAlignCore.py:713
+msgid "Preset \"{name}\" saved"
+msgstr "已儲存預設值 \"{name}\""
+
+#: soundAlignCore.py:673
+msgid "Preset Name Required"
+msgstr "需要預設值名稱"
+
+#: soundAlignCore.py:680
+msgid "Preset Name Reserved"
+msgstr "預設值名稱已被保留"
+
+#: soundAlignCore.py:389
 msgid "Progress indicator:"
 msgstr "進度指示器:"
 
-#: __init__.py:312
+#: soundAlignCore.py:401
 msgid "Progress sound preset:"
 msgstr "進度音效預設:"
 
-#: __init__.py:875
+#: soundAlignCore.py:1376
 msgid "Progress test not available. Audio output could not be initialized."
 msgstr "進度測試無法使用。無法初始化音訊輸出。"
 
-#: __init__.py:321
+#: soundAlignCore.py:417
 msgid "Progress tone:"
 msgstr "進度提示音:"
 
-#: __init__.py:207
+#: soundAlignCore.py:440
+msgid "Progress volume (%):"
+msgstr "進度音量 (%):"
+
+#: soundAlignCore.py:232
 msgid "Prominent / clear"
 msgstr "突出 / 清晰"
 
-#: __init__.py:161
+#: soundAlignCore.py:186
 msgid "Quadratic"
 msgstr "二次"
 
-#: __init__.py:157
+#: soundAlignCore.py:182
 msgid "Quarter Sine"
 msgstr "四分之一正弦"
 
-#: __init__.py:296
-#: __init__.py:301
+#: soundAlignCore.py:599
+msgid "Remove selected override"
+msgstr "移除選取的覆寫"
+
+#: soundAlignCore.py:382
+#: soundAlignCore.py:387
+#: soundAlignCore.py:588
+#: soundAlignCore.py:729
 msgid "Right"
 msgstr "右"
 
-#: __init__.py:301
+#: soundAlignCore.py:387
 msgid "Right to Left"
 msgstr "右到左"
 
-#: __init__.py:155
+#: soundAlignCore.py:180
 msgid "S-Curve"
 msgstr "S 曲線"
 
-#: __init__.py:256
-#: __init__.py:267
-#: __init__.py:587
+#: soundAlignCore.py:303
+#: soundAlignCore.py:314
+#: soundAlignCore.py:900
 msgid "Save Error"
 msgstr "儲存錯誤"
 
-#: __init__.py:122
+#: soundAlignCore.py:412
+msgid "Save current settings as preset"
+msgstr "將目前設定儲存為預設值"
+
+#: soundAlignCore.py:147
 msgid "Sawtooth"
 msgstr "鋸齒波"
 
-#: __init__.py:535
+#: soundAlignCore.py:836
 msgid "Settings Error"
 msgstr "設定錯誤"
 
-#: __init__.py:120
-#: __init__.py:156
+#: soundAlignCore.py:145
+#: soundAlignCore.py:181
 msgid "Sine"
 msgstr "正弦"
 
-#: __init__.py:282
-#: __init__.py:593
+#: soundAlignCore.py:368
+#: soundAlignCore.py:906
 msgid "SoundAlign"
 msgstr "SoundAlign"
 
-#: __init__.py:950
+#: soundAlignCore.py:1300
+msgid "SoundAlign is {state}"
+msgstr "SoundAlign 為 {state}"
+
+#: soundAlignCore.py:1486
 msgid "SoundAlign off"
 msgstr "SoundAlign 已關閉"
 
-#: __init__.py:948
+#: soundAlignCore.py:1484
 msgid "SoundAlign on"
 msgstr "SoundAlign 已開啟"
 
-#: __init__.py:394
+#: soundAlignCore.py:1315
+msgid "SoundAlign: could not read status"
+msgstr "SoundAlign: 無法讀取狀態"
+
+#: soundAlignCore.py:505
 msgid "Speech announcement interval:"
 msgstr "語音播報間隔:"
 
-#: __init__.py:123
+#: soundAlignCore.py:148
 msgid "Square"
 msgstr "方波"
 
-#: __init__.py:159
+#: soundAlignCore.py:184
 msgid "Square Root"
 msgstr "平方根"
 
-#: __init__.py:206
+#: soundAlignCore.py:1279
+msgid "Still working, {percent}%"
+msgstr "仍在處理中，{percent}%"
+
+#: soundAlignCore.py:231
 msgid "Subtle / quiet"
 msgstr "柔和 / 安靜"
 
-#: __init__.py:431
+#: soundAlignCore.py:631
 msgid "Test All Settings"
 msgstr "測試所有設定"
 
-#: __init__.py:517
+#: soundAlignCore.py:818
 msgid "Test already in progress"
 msgstr "測試正在進行中"
 
-#: __init__.py:413
+#: soundAlignCore.py:679
+msgid "That name is reserved for a built-in preset. Please choose a different name."
+msgstr "該名稱保留供內建預設值使用。請選擇其他名稱。"
+
+#: soundAlignCore.py:524
 msgid "Time-based announcement (seconds, 0=disabled):"
 msgstr "基於時間的播報（秒，0=停用）:"
 
-#: __init__.py:121
+#: soundAlignCore.py:146
 msgid "Triangle"
 msgstr "三角波"
 
-#: __init__.py:344
-msgid "Volume (%):"
-msgstr "音量（%）:"
+#: soundAlignCore.py:1303
+msgid "audio output ready"
+msgstr "音訊輸出就緒"
 
-#: __init__.py:743
-#: __init__.py:750
-#: __init__.py:756
+#: soundAlignCore.py:1303
+msgid "audio output unavailable"
+msgstr "音訊輸出無法使用"
+
+#: soundAlignCore.py:1300
+msgid "off"
+msgstr "關閉"
+
+#: soundAlignCore.py:1300
+msgid "on"
+msgstr "開啟"
+
+#: soundAlignCore.py:722
+msgid "{addonName} checked"
+msgstr "已勾選 {addonName}"
+
+#: soundAlignCore.py:725
+msgid "{addonName} not checked"
+msgstr "未勾選 {addonName}"
+
+#: soundAlignCore.py:1301
+msgid "{count} add-ons excluded"
+msgstr "已排除 {count} 個附加元件"
+
+#: soundAlignCore.py:1302
+msgid "{count} direction overrides"
+msgstr "{count} 個方向覆寫"
+
+#: update.py:159
+msgid "{name} update"
+msgstr "{name} 更新"
+
+#: update.py:164
+msgid ""
+"{name} {new} is available (installed: {old}).\n"
+"Update now?"
+msgstr ""
+"{name} {new} 可用 (已安裝: {old})。\n"
+"是否立即更新？"
+
+#: soundAlignCore.py:1159
+#: soundAlignCore.py:1166
+#: soundAlignCore.py:1172
 msgid "{percent}% complete"
 msgstr "已完成 {percent}%"

@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: soundAlign 2026.8.5\n"
+"Project-Id-Version: soundAlign 2026.11.0\n"
 "Report-Msgid-Bugs-To: chaicm75@gmail.com\n"
-"POT-Creation-Date: 2026-08-06 14:04+0700\n"
+"POT-Creation-Date: 2026-10-26 09:09+0700\n"
 "PO-Revision-Date: \n"
 "Last-Translator: chaiBot and Malee Yamazaki\n"
 "Language-Team: Ukrainian\n"
@@ -10,240 +10,407 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: DevOn Addon\n"
+"X-Generator: ChaiBot Addon\n"
 
-#: __init__.py:424
+#: update.py:173
+msgid "&Later"
+msgstr "&Пізніше"
+
+#: update.py:171
+msgid "&Update now"
+msgstr "&Оновити зараз"
+
+#: soundAlignCore.py:1311
+msgid "...truncated"
+msgstr "...скорочено"
+
+#: soundAlignCore.py:688
+msgid "A preset named \"{name}\" already exists. Overwrite it?"
+msgstr "Набір параметрів із назвою «{name}» вже існує. Перезаписати його?"
+
+#: soundAlignCore.py:535
 msgid "Add reverb to progress tones"
 msgstr "Додати реверберацію до звуків прогресу"
 
-#: __init__.py:278
+#: soundAlignCore.py:579
+msgid "Add-on for direction override:"
+msgstr "Додаток для зміни напрямку:"
+
+#: soundAlignCore.py:591
+msgid "Add/update override"
+msgstr "Додати/оновити зміну напрямку"
+
+#: soundAlignCore.py:455
+msgid "Addon beep volume (%):"
+msgstr "Гучність звукового сигналу додатка (%):"
+
+#: soundAlignCore.py:364
 msgid "Addon beeps (High Frequency):"
 msgstr "Сигнали доповнення (Висока частота):"
 
-#: __init__.py:276
+#: soundAlignCore.py:362
 msgid "Addon beeps (Low Frequency):"
 msgstr "Сигнали доповнення (Низька частота):"
 
-#: __init__.py:277
+#: soundAlignCore.py:363
 msgid "Addon beeps (Medium Frequency):"
 msgstr "Сигнали доповнення (Середня частота):"
 
-#: __init__.py:205
+#: soundAlignCore.py:620
+msgid "Announce a heartbeat when progress stalls"
+msgstr "Сповіщати пульсом, якщо виконання зупинилося"
+
+#: soundAlignCore.py:230
 msgid "Balanced (recommended)"
 msgstr "Збалансований (рекомендовано)"
 
-#: __init__.py:404
+#: soundAlignCore.py:515
 msgid "Beep announcement interval:"
 msgstr "Інтервал звукового сповіщення:"
 
-#: __init__.py:255
+#: soundAlignCore.py:302
 msgid "Cannot save settings. No write permission for configuration directory."
 msgstr "Не вдалося зберегти налаштування. Немає прав на запис у каталог конфігурації."
 
-#: __init__.py:296
-#: __init__.py:301
+#: soundAlignCore.py:382
+#: soundAlignCore.py:387
+#: soundAlignCore.py:588
+#: soundAlignCore.py:729
+#: soundAlignCore.py:742
 msgid "Center"
 msgstr "По центру"
 
-#: __init__.py:150
+#: soundAlignCore.py:175
 msgid "Cosine"
 msgstr "Косинус"
 
-#: __init__.py:160
+#: update.py:255
+msgid "Could not download the update. Opening the releases page."
+msgstr "Не вдалося завантажити оновлення. Відкриття сторінки випусків."
+
+#: soundAlignCore.py:185
 msgid "Cubic Root"
 msgstr "Кубічний корінь"
 
-#: __init__.py:204
+#: soundAlignCore.py:595
+msgid "Current direction overrides:"
+msgstr "Поточні зміни напрямку:"
+
+#: soundAlignCore.py:229
 msgid "Custom (keep my current settings)"
 msgstr "Користувацький (залишити поточні налаштування)"
 
-#: __init__.py:153
+#: update.py:244
+msgid "Downloading {name} {version}"
+msgstr "Завантаження {name} {version}"
+
+#: soundAlignCore.py:610
+msgid "Duck amount (% lower while speaking):"
+msgstr "Рівень приглушення (% зниження під час мовлення):"
+
+#: soundAlignCore.py:606
+msgid "Duck progress tone volume while NVDA is speaking"
+msgstr "Приглушувати гучність звукового сигналу виконання, коли NVDA говорить"
+
+#: soundAlignCore.py:556
+msgid "Exclude these add-ons from SoundAlign (their beeps will not be hooked):"
+msgstr "Виключити ці додатки із SoundAlign (їхні звукові сигнали не перехоплюватимуться):"
+
+#: soundAlignCore.py:178
 msgid "Exponential"
 msgstr "Експоненціальний"
 
-#: __init__.py:333
+#: soundAlignCore.py:429
 msgid "Fade algorithm:"
 msgstr "Алгоритм загасання (Fade):"
 
-#: __init__.py:266
-#: __init__.py:586
+#: soundAlignCore.py:313
+#: soundAlignCore.py:899
 msgid "Failed to save settings. Please check permissions or config path."
 msgstr "Не вдалося зберегти налаштування. Будь ласка, перевірте права доступу або шлях до конфігурації."
 
-#: __init__.py:505
-#: __init__.py:546
+#: soundAlignCore.py:806
+#: soundAlignCore.py:847
 msgid "Frequency Range Error"
 msgstr "Помилка діапазону частот"
 
-#: __init__.py:151
+#: soundAlignCore.py:176
 msgid "Gaussian"
 msgstr "Гауссівський"
 
-#: __init__.py:158
+#: soundAlignCore.py:183
 msgid "Half Sine"
 msgstr "Половина синуса"
 
-#: __init__.py:296
-#: __init__.py:301
+#: soundAlignCore.py:624
+msgid "Heartbeat interval (seconds):"
+msgstr "Інтервал пульсу (секунди):"
+
+#: soundAlignCore.py:382
+#: soundAlignCore.py:387
+#: soundAlignCore.py:588
+#: soundAlignCore.py:729
 msgid "Left"
 msgstr "Ліворуч"
 
-#: __init__.py:301
+#: soundAlignCore.py:387
 msgid "Left to Right"
 msgstr "Зліва направо"
 
-#: __init__.py:152
+#: soundAlignCore.py:177
 msgid "Linear"
 msgstr "Лінійний"
 
-#: __init__.py:154
+#: soundAlignCore.py:179
 msgid "Logarithmic"
 msgstr "Логарифмічний"
 
-#: __init__.py:354
+#: soundAlignCore.py:465
 msgid "Master volume (%):"
 msgstr "Загальна гучність (%):"
 
-#: __init__.py:384
+#: soundAlignCore.py:495
 msgid "Maximum frequency:"
 msgstr "Максимальна частота:"
 
-#: __init__.py:504
-#: __init__.py:545
+#: soundAlignCore.py:805
+#: soundAlignCore.py:846
 msgid "Minimum frequency must be less than maximum frequency."
 msgstr "Мінімальна частота має бути меншою за максимальну."
 
-#: __init__.py:374
+#: soundAlignCore.py:485
 msgid "Minimum frequency:"
 msgstr "Мінімальна частота:"
 
-#: __init__.py:420
+#: soundAlignCore.py:531
 msgid "Mixed mode (speech + beep)"
 msgstr "Змішаний режим (мова + сигнал)"
 
-#: __init__.py:930
-msgid "Open SoundAlign settings (single tap) or toggle SoundAlign on/off (double tap)"
-msgstr "Відкрити налаштування SoundAlign (один дотик) або увімкнути/вимкнути SoundAlign (подвійний дотик)"
+#: soundAlignCore.py:409
+msgid "New preset name:"
+msgstr "Назва нового набору параметрів:"
 
-#: __init__.py:124
+#: soundAlignCore.py:1438
+msgid "Open SoundAlign settings (single tap), toggle SoundAlign on/off (double tap), or speak a status summary (triple tap)"
+msgstr "Відкрити параметри SoundAlign (один дотик), увімкнути/вимкнути SoundAlign (подвійний дотик) або озвучити короткий стан (потрійний дотик)"
+
+#: soundAlignCore.py:1276
+msgid "Operation may be stuck at {percent}%"
+msgstr "Операція може зависнути на {percent}%"
+
+#: soundAlignCore.py:149
 msgid "Original Tone Beep"
 msgstr "Оригінальний звуковий сигнал"
 
-#: __init__.py:534
+#: soundAlignCore.py:586
+msgid "Override direction:"
+msgstr "Змінити напрямок:"
+
+#: soundAlignCore.py:689
+msgid "Overwrite Preset"
+msgstr "Перезаписати набір параметрів"
+
+#: soundAlignCore.py:835
 msgid "Please select valid minimum and maximum frequencies."
 msgstr "Будь ласка, виберіть коректні мінімальну та максимальну частоти."
 
-#: __init__.py:303
+#: soundAlignCore.py:672
+msgid "Please type a name for the new preset first."
+msgstr "Спочатку введіть назву для нового набору параметрів."
+
+#: soundAlignCore.py:713
+msgid "Preset \"{name}\" saved"
+msgstr "Пресет \"{name}\" збережено"
+
+#: soundAlignCore.py:673
+msgid "Preset Name Required"
+msgstr "Потрібна назва пресету"
+
+#: soundAlignCore.py:680
+msgid "Preset Name Reserved"
+msgstr "Зарезервована назва пресету"
+
+#: soundAlignCore.py:389
 msgid "Progress indicator:"
 msgstr "Індикатор прогресу:"
 
-#: __init__.py:312
+#: soundAlignCore.py:401
 msgid "Progress sound preset:"
 msgstr "Пресет звуку прогресу:"
 
-#: __init__.py:875
+#: soundAlignCore.py:1376
 msgid "Progress test not available. Audio output could not be initialized."
 msgstr "Тест прогресу недоступний. Не вдалося ініціалізувати аудіовихід."
 
-#: __init__.py:321
+#: soundAlignCore.py:417
 msgid "Progress tone:"
 msgstr "Звук прогресу:"
 
-#: __init__.py:207
+#: soundAlignCore.py:440
+msgid "Progress volume (%):"
+msgstr "Гучність прогресу (%):"
+
+#: soundAlignCore.py:232
 msgid "Prominent / clear"
 msgstr "Помітний / чіткий"
 
-#: __init__.py:161
+#: soundAlignCore.py:186
 msgid "Quadratic"
 msgstr "Квадратичний"
 
-#: __init__.py:157
+#: soundAlignCore.py:182
 msgid "Quarter Sine"
 msgstr "Чверть синуса"
 
-#: __init__.py:296
-#: __init__.py:301
+#: soundAlignCore.py:599
+msgid "Remove selected override"
+msgstr "Видалити вибране перезначення"
+
+#: soundAlignCore.py:382
+#: soundAlignCore.py:387
+#: soundAlignCore.py:588
+#: soundAlignCore.py:729
 msgid "Right"
 msgstr "Праворуч"
 
-#: __init__.py:301
+#: soundAlignCore.py:387
 msgid "Right to Left"
 msgstr "Справа наліво"
 
-#: __init__.py:155
+#: soundAlignCore.py:180
 msgid "S-Curve"
 msgstr "S-подібна крива"
 
-#: __init__.py:256
-#: __init__.py:267
-#: __init__.py:587
+#: soundAlignCore.py:303
+#: soundAlignCore.py:314
+#: soundAlignCore.py:900
 msgid "Save Error"
 msgstr "Помилка збереження"
 
-#: __init__.py:122
+#: soundAlignCore.py:412
+msgid "Save current settings as preset"
+msgstr "Зберегти поточні налаштування як пресет"
+
+#: soundAlignCore.py:147
 msgid "Sawtooth"
 msgstr "Пилкоподібний"
 
-#: __init__.py:535
+#: soundAlignCore.py:836
 msgid "Settings Error"
 msgstr "Помилка налаштувань"
 
-#: __init__.py:120
-#: __init__.py:156
+#: soundAlignCore.py:145
+#: soundAlignCore.py:181
 msgid "Sine"
 msgstr "Синусоїда"
 
-#: __init__.py:282
-#: __init__.py:593
+#: soundAlignCore.py:368
+#: soundAlignCore.py:906
 msgid "SoundAlign"
 msgstr "SoundAlign"
 
-#: __init__.py:950
+#: soundAlignCore.py:1300
+msgid "SoundAlign is {state}"
+msgstr "SoundAlign: {state}"
+
+#: soundAlignCore.py:1486
 msgid "SoundAlign off"
 msgstr "SoundAlign вимкнено"
 
-#: __init__.py:948
+#: soundAlignCore.py:1484
 msgid "SoundAlign on"
 msgstr "SoundAlign увімкнено"
 
-#: __init__.py:394
+#: soundAlignCore.py:1315
+msgid "SoundAlign: could not read status"
+msgstr "SoundAlign: не вдалося прочитати стан"
+
+#: soundAlignCore.py:505
 msgid "Speech announcement interval:"
 msgstr "Інтервал голосового сповіщення:"
 
-#: __init__.py:123
+#: soundAlignCore.py:148
 msgid "Square"
 msgstr "Квадратний"
 
-#: __init__.py:159
+#: soundAlignCore.py:184
 msgid "Square Root"
 msgstr "Квадратний корінь"
 
-#: __init__.py:206
+#: soundAlignCore.py:1279
+msgid "Still working, {percent}%"
+msgstr "Триває робота, {percent}%"
+
+#: soundAlignCore.py:231
 msgid "Subtle / quiet"
 msgstr "Приглушений / тихий"
 
-#: __init__.py:431
+#: soundAlignCore.py:631
 msgid "Test All Settings"
 msgstr "Протестувати всі налаштування"
 
-#: __init__.py:517
+#: soundAlignCore.py:818
 msgid "Test already in progress"
 msgstr "Тест вже виконується"
 
-#: __init__.py:413
+#: soundAlignCore.py:679
+msgid "That name is reserved for a built-in preset. Please choose a different name."
+msgstr "Цю назву зарезервовано для вбудованого пресету. Виберіть іншу назву."
+
+#: soundAlignCore.py:524
 msgid "Time-based announcement (seconds, 0=disabled):"
 msgstr "Сповіщення за часом (секунди, 0=вимкнено):"
 
-#: __init__.py:121
+#: soundAlignCore.py:146
 msgid "Triangle"
 msgstr "Трикутний"
 
-#: __init__.py:344
-msgid "Volume (%):"
-msgstr "Гучність (%):"
+#: soundAlignCore.py:1303
+msgid "audio output ready"
+msgstr "аудіовихід готовий"
 
-#: __init__.py:743
-#: __init__.py:750
-#: __init__.py:756
+#: soundAlignCore.py:1303
+msgid "audio output unavailable"
+msgstr "аудіовихід недоступний"
+
+#: soundAlignCore.py:1300
+msgid "off"
+msgstr "вимкнено"
+
+#: soundAlignCore.py:1300
+msgid "on"
+msgstr "увімкнено"
+
+#: soundAlignCore.py:722
+msgid "{addonName} checked"
+msgstr "{addonName} позначено"
+
+#: soundAlignCore.py:725
+msgid "{addonName} not checked"
+msgstr "{addonName} не позначено"
+
+#: soundAlignCore.py:1301
+msgid "{count} add-ons excluded"
+msgstr "Виключено доповнень: {count}"
+
+#: soundAlignCore.py:1302
+msgid "{count} direction overrides"
+msgstr "Перезначень напрямку: {count}"
+
+#: update.py:159
+msgid "{name} update"
+msgstr "оновлення {name}"
+
+#: update.py:164
+msgid ""
+"{name} {new} is available (installed: {old}).\n"
+"Update now?"
+msgstr ""
+"Доступно {name} {new} (встановлено: {old}).\n"
+"Оновити зараз?"
+
+#: soundAlignCore.py:1159
+#: soundAlignCore.py:1166
+#: soundAlignCore.py:1172
 msgid "{percent}% complete"
 msgstr "{percent}% завершено"
